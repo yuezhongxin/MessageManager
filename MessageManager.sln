@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presentation", "1-Presentation", "{A1261C73-9443-4A6B-91D7-629DFC20F9B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Application", "2-Application", "{360D6A48-9A08-462C-8275-C07D032CE958}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Domain", "3-Domain", "{8982C72E-36BE-4A57-86C5-9DF91CFFFCD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infrastructure", "{79AF2391-1E6A-42B8-B19C-54ADC4DD6D35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1-AspnetMVC", "1.1-AspnetMVC", "{C84614B2-B386-4D19-92DE-87B4748B3BE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2-AspnetWebAPI", "1.2-AspnetWebAPI", "{E4EE3B76-EF57-423C-A2CD-59FB4FDF06A5}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C84614B2-B386-4D19-92DE-87B4748B3BE5} = {A1261C73-9443-4A6B-91D7-629DFC20F9B2}
+		{E4EE3B76-EF57-423C-A2CD-59FB4FDF06A5} = {A1261C73-9443-4A6B-91D7-629DFC20F9B2}
+	EndGlobalSection
+EndGlobal
