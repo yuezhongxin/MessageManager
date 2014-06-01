@@ -46,12 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MessageRepository.cs" />
+    <Compile Include="EntityFramework\MessageManagerDbContext.cs" />
+    <Compile Include="EntityFramework\MessageManagerDbContextInitailizer.cs" />
+    <Compile Include="EntityFramework\EntityFrameworkRepository.cs" />
+    <Compile Include="EntityFramework\EntityFrameworkRepositoryContext.cs" />
+    <Compile Include="EntityFramework\IEntityFrameworkRepositoryContext.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\UserConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\MessageConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specifications\UserNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\UserStringEqualsSpecification.cs" />
+    <Compile Include="Specifications\MessageFromUserIDEqualsSpecification.cs" />
+    <Compile Include="Specifications\MessageToUserIDEqualsSpecification.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessageManager.Domain\MessageManager.Domain.csproj">
+      <Project>{4f16815a-e9bb-4abc-b477-0437a151f513}</Project>
+      <Name>MessageManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Infrastructure\MessageManager.Infrastructure.csproj">
+      <Project>{49c2af9e-c6aa-4013-ac65-adb303104661}</Project>
+      <Name>MessageManager.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

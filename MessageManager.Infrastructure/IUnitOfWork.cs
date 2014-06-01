@@ -1,4 +1,9 @@
-﻿namespace MessageManager.Infrastructure
+﻿/**
+* author:xishuai
+* address:https://www.github.com/yuezhongxin/MessageManager
+**/
+
+namespace MessageManager.Infrastructure
 {
     /// <summary>
     /// 表示所有集成于该接口的类型都是Unit Of Work的一种实现。
