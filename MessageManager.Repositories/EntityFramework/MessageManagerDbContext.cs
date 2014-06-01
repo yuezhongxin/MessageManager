@@ -14,7 +14,7 @@ namespace MessageManager.Domain.Repositories.EntityFramework
         /// 构造函数，初始化一个新的<c>MessageManagerDbContext</c>实例。
         /// </summary>
         public MessageManagerDbContext()
-            : base("MessageManager")
+            : base("MessageManagerDbContext")
         {
             this.Configuration.LazyLoadingEnabled = true;
         }

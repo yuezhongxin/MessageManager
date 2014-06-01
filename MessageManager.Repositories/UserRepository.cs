@@ -21,7 +21,7 @@ namespace MessageManager.Domain.Repositories
         { }
 
         #region IUserRepository Members
-        public User GetUsersByName(string name)
+        public User GetUserByName(string name)
         {
             return Get(new UserNameEqualsSpecification(name));
         }

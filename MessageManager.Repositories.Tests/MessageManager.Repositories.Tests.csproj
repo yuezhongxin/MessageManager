@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D45BF779-47E5-46B7-A481-DF0D93D78833}</ProjectGuid>
+    <ProjectGuid>{54A0BAC1-59A6-4F42-AF86-5DEFFDEC1AC2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MessageManager.Application</RootNamespace>
-    <AssemblyName>MessageManager.Application</AssemblyName>
+    <RootNamespace>MessageManager.Repositories.Tests</RootNamespace>
+    <AssemblyName>MessageManager.Repositories.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,11 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationService.cs" />
-    <Compile Include="DTO\MessageDTO.cs" />
-    <Compile Include="DTO\UserDTO.cs" />
-    <Compile Include="Implementation\MessageServiceImpl.cs" />
-    <Compile Include="IMessageService.cs" />
+    <Compile Include="RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,9 +57,12 @@
       <Project>{49c2af9e-c6aa-4013-ac65-adb303104661}</Project>
       <Name>MessageManager.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Repositories\MessageManager.Repositories.csproj">
+      <Project>{43b71851-61d1-4f51-bb9a-1f53405a4378}</Project>
+      <Name>MessageManager.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

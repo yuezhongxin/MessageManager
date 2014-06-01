@@ -21,11 +21,11 @@ namespace MessageManager.Domain.Repositories
         { }
 
         #region IMessageRepository Members
-        public IEnumerable<Message> FindMessagesBySendUser(User user)
+        public IEnumerable<Message> GetMessagesBySendUser(User user)
         {
             return FindAll(new MessageFromUserIDEqualsSpecification(user), sp => sp.SendTime, SortOrder.Descending);
         }
-        public IEnumerable<Message> FindMessagesByReceiveUser(User user)
+        public IEnumerable<Message> GetMessagesByReceiveUser(User user)
         {
             return FindAll(new MessageFromUserIDEqualsSpecification(user), sp => sp.ReceiveTime, SortOrder.Descending);
         }

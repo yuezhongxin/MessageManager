@@ -9,19 +9,19 @@ namespace MessageManager.Domain.Repositories.EntityFramework
 
         public override void RegisterDeleted<TAggregateRoot>(TAggregateRoot obj)
         {
-            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.Entity.EntityState.Deleted;
+            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.EntityState.Deleted;
             Committed = false;
         }
 
         public override void RegisterModified<TAggregateRoot>(TAggregateRoot obj)
         {
-            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.Entity.EntityState.Modified;
+            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.EntityState.Modified;
             Committed = false;
         }
 
         public override void RegisterNew<TAggregateRoot>(TAggregateRoot obj)
         {
-            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.Entity.EntityState.Added;
+            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.EntityState.Added;
             Committed = false;
         }
 
