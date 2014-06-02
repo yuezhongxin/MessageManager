@@ -5,7 +5,7 @@
 
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
-using MessageManager.Domain.Repositories.EntityFramework;
+using MessageManager.Repositories.EntityFramework;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
