@@ -27,9 +27,16 @@ namespace MessageManager.Infrastructure
         /// </summary>
         private ServiceLocator()
         {
-            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
-            container = new UnityContainer();
-            section.Configure(container);
+            try
+            {
+                UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection(UnityConfigurationSection.SectionName);
+                container = new UnityContainer();
+                section.Configure(container, UnityConfigurationSection.SectionName);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         #endregion
 
