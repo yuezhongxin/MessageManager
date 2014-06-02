@@ -3,6 +3,7 @@ using AutoMapper;
 using MessageManager.Application.DTO;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
+using System.Configuration;
 
 namespace MessageManager.Application
 {
