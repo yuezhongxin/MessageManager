@@ -27,6 +27,8 @@ namespace MessageManager.Domain.DomainModel
         public DateTime SendTime { get; set; }
         public DateTime ReceiveTime { get; set; }
         public bool IsRead { get; set; }
+        public virtual User FromUser { get; set; }
+        public virtual User ToUser { get; set; }
         #endregion
 
         #region IEntity成员

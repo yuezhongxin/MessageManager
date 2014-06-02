@@ -18,6 +18,7 @@ namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
             HasKey(c => c.ID);
             Property(c => c.ID)
                 .IsRequired()
+                .HasMaxLength(36)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(c => c.Name)
                 .IsRequired()

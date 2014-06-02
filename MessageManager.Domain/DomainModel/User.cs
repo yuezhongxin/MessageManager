@@ -21,6 +21,8 @@ namespace MessageManager.Domain.DomainModel
         
         #region 实体成员
         public string Name { get; set; }
+        public virtual ICollection<Message> SendMessages { get; set; }
+        public virtual ICollection<Message> ReceiveMessages { get; set; }
         #endregion
 
         #region IEntity成员

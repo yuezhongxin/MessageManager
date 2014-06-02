@@ -14,6 +14,7 @@ namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
             HasKey(c => c.ID);
             Property(c => c.ID)
                 .IsRequired()
+                .HasMaxLength(36)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(c => c.FromUserID)
                 .IsRequired()
@@ -34,6 +35,16 @@ namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
             Property(c => c.IsRead)
                 .IsRequired();
             ToTable("Messages");
+
+            // Relationships
+            this.HasRequired(t => t.FromUser)
+                .WithMany(t => t.SendMessages)
+                .HasForeignKey(t => t.FromUserID)
+                .WillCascadeOnDelete(false);
+            this.HasRequired(t => t.ToUser)
+                .WithMany(t => t.ReceiveMessages)
+                .HasForeignKey(t => t.ToUserID)
+                .WillCascadeOnDelete(false);
         }
     }
 }
