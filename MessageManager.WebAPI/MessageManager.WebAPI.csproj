@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -64,9 +68,6 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -163,9 +164,17 @@
       <Project>{d45bf779-47e5-46b7-a481-df0d93d78833}</Project>
       <Name>MessageManager.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Domain\MessageManager.Domain.csproj">
+      <Project>{4f16815a-e9bb-4abc-b477-0437a151f513}</Project>
+      <Name>MessageManager.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageManager.Infrastructure\MessageManager.Infrastructure.csproj">
       <Project>{49c2af9e-c6aa-4013-ac65-adb303104661}</Project>
       <Name>MessageManager.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Repositories\MessageManager.Repositories.csproj">
+      <Project>{43b71851-61d1-4f51-bb9a-1f53405a4378}</Project>
+      <Name>MessageManager.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
