@@ -22,10 +22,10 @@ namespace MessageManager.Repositories.Tests
         public void UserRepository()
         {
             IUserRepository URepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user = new User();
-            //user.Name = "张三";
-            user.Name = "李四";
-            URepository.Add(user);
+            User user1 = new User { Name = "张三" };
+            User user2 = new User { Name = "李四" };
+            URepository.Add(user1);
+            URepository.Add(user2);
             URepository.Context.Commit();
             //var user = URepository.GetUserByName("张三");
             //if (user != null)
