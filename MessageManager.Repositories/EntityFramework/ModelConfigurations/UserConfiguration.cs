@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 using MessageManager.Domain.DomainModel;
 
-namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
+namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {
     /// <summary>
     /// Represents the entity type configuration for the <see cref="Customer"/> entity.

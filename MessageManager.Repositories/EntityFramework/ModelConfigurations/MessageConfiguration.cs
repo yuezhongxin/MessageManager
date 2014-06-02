@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration;
 using MessageManager.Domain.DomainModel;
 
-namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
+namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {
     public class MessageConfiguration : EntityTypeConfiguration<Message>
     {
@@ -29,8 +29,6 @@ namespace MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations
                 .IsRequired()
                 .HasMaxLength(2000);
             Property(c => c.SendTime)
-                .IsRequired();
-            Property(c => c.ReceiveTime)
                 .IsRequired();
             Property(c => c.IsRead)
                 .IsRequired();

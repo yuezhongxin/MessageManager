@@ -10,7 +10,7 @@ using System.Text;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories.Specifications;
 using MessageManager.Domain.Specifications;
-using MessageManager.Domain.Repositories.EntityFramework;
+using MessageManager.Repositories.EntityFramework;
 
 namespace MessageManager.Domain.Repositories
 {

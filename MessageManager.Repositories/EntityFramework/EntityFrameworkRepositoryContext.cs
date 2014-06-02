@@ -1,7 +1,8 @@
-﻿using System.Data.Entity;
+﻿using MessageManager.Domain.Repositories;
+using System.Data.Entity;
 using System.Threading;
 
-namespace MessageManager.Domain.Repositories.EntityFramework
+namespace MessageManager.Repositories.EntityFramework
 {
     public class EntityFrameworkRepositoryContext : RepositoryContext, IEntityFrameworkRepositoryContext
     {

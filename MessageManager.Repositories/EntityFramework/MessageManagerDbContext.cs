@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using MessageManager.Domain.DomainModel;
-using MessageManager.Domain.Repositories.EntityFramework.ModelConfigurations;
+using MessageManager.Repositories.EntityFramework.ModelConfigurations;
 
-namespace MessageManager.Domain.Repositories.EntityFramework
+namespace MessageManager.Repositories.EntityFramework
 {
     /// <summary>
     /// 表示专用于MessageManager案例的数据访问上下文。

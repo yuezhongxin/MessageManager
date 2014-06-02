@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 
-namespace MessageManager.Domain.Repositories.EntityFramework
+namespace MessageManager.Repositories.EntityFramework
 {
     /// <summary>
     /// 表示由MessageManager专用的数据访问上下文初始化器。

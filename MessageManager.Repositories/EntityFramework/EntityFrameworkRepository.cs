@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MessageManager.Domain.Specifications;
+using MessageManager.Domain.Repositories;
+using MessageManager.Domain;
 
-namespace MessageManager.Domain.Repositories.EntityFramework
+namespace MessageManager.Repositories.EntityFramework
 {
     public class EntityFrameworkRepository<TAggregateRoot> : Repository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot

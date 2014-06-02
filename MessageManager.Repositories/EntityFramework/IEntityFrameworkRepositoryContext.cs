@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Entity;
+using MessageManager.Domain.Repositories;
 
-namespace MessageManager.Domain.Repositories.EntityFramework
+namespace MessageManager.Repositories.EntityFramework
 {
     /// <summary>
     /// Represents that the 
