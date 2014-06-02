@@ -11,8 +11,9 @@ using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories.Specifications;
 using MessageManager.Domain.Specifications;
 using MessageManager.Repositories.EntityFramework;
+using MessageManager.Domain.Repositories;
 
-namespace MessageManager.Domain.Repositories
+namespace MessageManager.Repositories
 {
     public class MessageRepository : EntityFrameworkRepository<Message>, IMessageRepository
     {
