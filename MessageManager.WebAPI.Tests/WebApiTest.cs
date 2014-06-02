@@ -31,7 +31,8 @@ namespace MessageManager.WebAPI.Tests
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
 
-                var message = await client.GetAsync("api/News/GetAllNews");
+                //HttpResponseMessage messages = await client.GetAsync("api/Message/GetMessagesBySendUser/张三");
+                string messages = await client.GetStringAsync("api/Message/GetMessagesBySendUser/张三");
             }
         }
     }
