@@ -24,6 +24,7 @@ namespace MessageManager.Application
         public ApplicationService(IRepositoryContext context)
         {
             this.context = context;
+            Initialize();
         }
         #endregion
 
@@ -47,6 +48,8 @@ namespace MessageManager.Application
         {
             Mapper.CreateMap<UserDTO, User>();
             Mapper.CreateMap<MessageDTO, Message>();
+            Mapper.CreateMap<User, UserDTO>();
+            Mapper.CreateMap<Message, MessageDTO>();
         }
         #endregion
     }
