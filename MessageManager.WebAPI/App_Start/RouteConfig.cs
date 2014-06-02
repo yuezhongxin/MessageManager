@@ -15,8 +15,8 @@ namespace MessageManager.WebAPI
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "api/{controller}/{action}/{userName}",
+                defaults: new { userName = UrlParameter.Optional }
             );
         }
     }
