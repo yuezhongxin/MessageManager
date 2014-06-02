@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fw：RE(9): 自荐 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/script/json2.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/common/ubb.js"></script>
+    <script type="text/javascript">
+<!--
+    document.domain = 'cnblogs.' + location.hostname.substring(location.hostname.lastIndexOf(".") + 1, location.hostname.length);
+
+    function InsertUBBImgToEditor(url) {
+        InsertImgUBB("txtContent", url);
+    }
+
+    function OpenWindow(url, width, height, offset) {
+        var leftVal = (screen.width - width) / 2 - offset;
+        var topVal = (screen.height - height) / 2 - offset;
+        var newwindow = window.open(url, '_blank', 'width=' + width + ',height=' + height + ',toolbars=0,resizable=1,left=' + leftVal + ',top=' + topVal);
+        newwindow.focus();
+    }
+
+    //自动拼接回复 开始
+    String.prototype.Count = function (repeatItem) {
+        return this.split(repeatItem).length;
+    }
+    String.prototype.TrimAll = function (repeatItem) {
+        return this.split(repeatItem).join("");
+    }
+    function RegFunction(amatch) {
+        return "RE(" + (Number(amatch.replace(/(RE\()(|[\d]*)(\):)/igm, "$2")) + 1) + "):";
+    }
+    function markReply(aTitle) {
+        var re = /RE\(|[\d]*\):/igm;
+        if ((arr = re.exec(aTitle)) != null) {
+            return aTitle.replace(/RE\([\d]*\):/igm, RegFunction);
+        } else {
+            return "RE(1): " + aTitle.TrimAll("RE:");
+        }
+    }
+    //自动拼接回复 结束
+
+    function showReply() {
+        $("#span_msg_tips").html("");
+        document.getElementById('divContent').style.display = 'block';
+        var title = document.getElementById("lbTitle").innerHTML;
+        var content = document.getElementById("lbContent").innerHTML;
+        var sender = document.getElementById("lbSender").innerHTML;
+        var sendtime = document.getElementById("lbSendTime").innerHTML;
+
+        sender = sender.replace(/&lt;/gi, "<");
+        sender = sender.replace(/&gt;/gi, ">");
+        document.getElementById("txtTitle").value = HtmlDecode(markReply(title));
+        document.getElementById("txtIncept").value = sender;
+        document.getElementById("txtIncept").readOnly = true;
+        $("#txtIncept").prop("disabled", true);
+        //document.getElementById("txtIncept").value = document.getElementById("txtIncept").value.replace("&amp;","&");
+        //document.getElementById("txtContent").value = Decode(content);
+
+        var ReplyCotent = "\r\n\r\n\r\n========== 下面是回复信息 =========\r\n";
+        ReplyCotent = ReplyCotent + sendtime + ", 原发件人：" + sender + "\r\n\r\n";
+        content = content.replace(/javascript:if\(this\.width>600\)\sthis\.width=600;/ig, '');
+        ReplyCotent = ReplyCotent + HtmlDecode((Decode(content)).replace(/<[^>]*>/gi, "")) + "\r\n";
+        TransCotent = ReplyCotent + "===================================\r\n";
+
+        document.getElementById("txtContent").value = ReplyCotent;
+        document.getElementById("txtContent").focus();
+    }
+
+    function SendReply() {
+        var title = document.getElementById("txtTitle").value;
+        if (title == '') {
+            alert('标题不能为空！');
+            return;
+        }
+        var content = document.getElementById("txtContent").value;
+        if (content == '') {
+            alert('内容不能为空！');
+            return;
+        }
+        var incept = document.getElementById("txtIncept").value;
+        if (incept == '') {
+            alert('收件人不能为空！');
+            return;
+        }
+        var inceptId = document.getElementById("txtInceptId").value;
+        var msgId = document.getElementById("span_msgId").innerHTML;
+        $("#span_msg_tips").html("正在发送...");
+        var param = {
+            msgId: msgId,
+            incept: incept,
+            inceptId: inceptId,
+            title: title,
+            content: content
+        };
+        $.ajax({
+            url: '/mvcajax/msg/SendReply',
+            type: 'post',
+            data: JSON.stringify(param),
+            dataType: 'text',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data == '1') {
+                    document.getElementById("div_result").innerHTML = "<span class='red' style='line-height:2em;'>您的短信已经发送成功!</span><br/><a href=/msg/inbox>返回收信箱</a>";
+                    document.getElementById("divContent").style.display = 'none';
+                } else {
+                    alert(data);
+                    $("#span_msg_tips").html("");
+                }
+            },
+            error: function (xhr) {
+                $("#span_msg_tips").html("抱歉！发送失败！错误：" + xhr.responseText);
+            }
+        });
+
+    }
+
+    function ctlent(eventobject) {
+        if (eventobject.ctrlKey && eventobject.keyCode == 13) {
+            SendReply();
+        }
+    }
+
+
+    function hideContent() {
+        document.getElementById('divContent').style.display = 'none';
+    }
+
+    function Decode(text) {
+        text = text.replace(/\n/g, '');
+        text = text.replace(/<br(\s)*(\/)?>/ig, '\n').replace(/(\n){3,}/g, '\n');
+        return text;
+    }
+
+    function HtmlEncode(text) {
+        return text.replace(/&/g, '&amp').replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function HtmlDecode(text) {
+        return $('<div/>').html(text).text();
+        //return text.replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    }
+
+    function RemoveMsg(Id) {
+        if (confirm("确认要删除吗?")) {
+            $.ajax({
+                url: '/mvcajax/msg/DeleteMsg',
+                type: 'post',
+                data: '{"Id":' + Id + '}',
+                dataType: 'text',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#sms_message').html(data).css('color', 'red');
+                },
+                error: function (xhr) {
+                    $('#sms_message').html("抱歉！发送失败！错误：" + xhr.responseText).css('color', 'red');
+                }
+            });
+        }
+    }
+
+    function QueryString(fieldName) {
+        var urlString = document.location.search;
+        if (urlString != null) {
+            var typeQu = fieldName + "=";
+            var urlEnd = urlString.indexOf(typeQu);
+            if (urlEnd != -1) {
+                var paramsUrl = urlString.substring(urlEnd + typeQu.length);
+                var isEnd = paramsUrl.indexOf('&');
+                if (isEnd != -1) {
+                    return paramsUrl.substring(0, isEnd);
+                }
+                else {
+                    return paramsUrl;
+                }
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+
+    //-->
+    </script>
+    <link rel="stylesheet" href="css/cnblogs.css" type="text/css" />
+    <style type="text/css">
+        .prev_next {
+            margin-top: 10px;
+            line-height: 1.8em;
+            margin-left: 10px;
+        }
+        #msg_opt_top {
+            float: right;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <form name="myform" method="post" id="myform">
+        <div id="main_wrapper">
+            <div id="main_header">
+                <script type="text/javascript" src="js/common.js"></script>
+                <div id="guide">
+                    <h1>标题: <span id="lbTitle">Fw：RE(9): 自荐</span></h1>
+                </div>
+            </div>
+            <div id="sideleft">
+                <div style="padding-left: 10px; width: 95%; margin-bottom: 30px;">
+                    <div id="sms_message">
+                        <span class="floatright"><span id="lbSendTime">2014-05-24 22:24</span></span><span class="stitle_green"><span id="lbSenderLink"><a href="http://home.cnblogs.com/u/dudu/"><span id="lbSender">dudu</span></a></span></span>  致 <span id="lbInceptLink">我</span><br />
+                        <div id="sms_content_title">
+                            <div id="msg_opt_top">
+                                <a class="hand" onclick="showReply();" href="#reply">回复</a> | <a class="hand" onclick="RemoveMsg(940611);return false;" href="###">删除</a>
+                            </div>
+                            <div id="sms_content"><span id="lbContent">我的手机：13916259932，如果确定了时间提前告知。<br />
+                                <br />
+========== 下面是回复信息 =========<br />
+2014-05-24 21:59, 原发件人：田园里的蟋蟀<br />
+<br />
+好的，下周我抽一天时间过去，到时候联系dudu或博客园，感谢dudu给这次面试机会。
+                            </span></div>
+                            <br />
+                            <div id="sms_message_deal">
+                                <a class="hand" onclick="showReply();return false;" href="###">回复</a> | <a class="hand" onclick="RemoveMsg(940611);return false;" href="###">删除</a>
+                            </div>
+                            <div id="div_result"></div>
+                            <div id="divContent" style="display: none; margin: 10px 0px 0px 0px;">
+                                <a name="msgtitle">收件人</a>:
+                                <input id="txtIncept" type="text" size="30" class="text_fixedsys" /><input id="txtInceptId" type="text" style="display: none;" value="1" /><br />
+                                主　题:
+                                <input id="txtTitle" name="txtTitle" type="text" size="30" class="text_fixedsys" /><br />
+                                <a name="reply"></a>
+                                <textarea name="txtContent" id="txtContent" style="height: 200px; width: 90%;" onkeydown="ctlent(event)" class="text_fixedsys"></textarea><br />
+                                <input type="button" onclick="SendReply()" value="发送" />
+                                <input type="button" value="取消" onclick="    hideContent();" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sideright">
+                > 当前用户：张三<br /><br />
+                > <a href="compose.html" class="big blue">撰写新短信</a><br />
+                <br />
+                > <a href="inbox.html" class="big blue">收件箱</a><br />
+                <br />
+                <span id="span_msgId" style="display: none">940611</span>
+                <script type="text/javascript">
+                    if (QueryString("reply") == "1") {
+                        showReply();
+                    }
+                </script>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
