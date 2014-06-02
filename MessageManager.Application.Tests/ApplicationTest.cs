@@ -6,7 +6,7 @@
 using MessageManager.Application.DTO;
 using MessageManager.Application.Implementation;
 using MessageManager.Domain.Repositories;
-using MessageManager.Domain.Repositories.EntityFramework;
+using MessageManager.Repositories.EntityFramework;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
