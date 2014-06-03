@@ -48,8 +48,8 @@ namespace MessageManager.Application.Implementation
         /// <returns>消息列表</returns>
         public IEnumerable<MessageDTO> GetMessagesBySendUser(UserDTO sendUserDTO)
         {
-            User user = userRepository.GetUserByName(sendUserDTO.Name);
-            var messages = messageRepository.GetMessagesBySendUser(user);
+            //User user = userRepository.GetUserByName(sendUserDTO.Name);
+            var messages = messageRepository.GetMessagesBySendUser(Mapper.Map<UserDTO, User>(sendUserDTO));
             if (messages == null)
                 return null;
             var ret = new List<MessageDTO>();
@@ -66,8 +66,8 @@ namespace MessageManager.Application.Implementation
         /// <returns>消息列表</returns>
         public IEnumerable<MessageDTO> GetMessagesByReceiveUser(UserDTO receiveUserDTO)
         {
-            User user = userRepository.GetUserByName(receiveUserDTO.Name);
-            var messages = messageRepository.GetMessagesByReceiveUser(user);
+            //User user = userRepository.GetUserByName(receiveUserDTO.Name);
+            var messages = messageRepository.GetMessagesByReceiveUser(Mapper.Map<UserDTO, User>(receiveUserDTO));
             if (messages == null)
                 return null;
             var ret = new List<MessageDTO>();
