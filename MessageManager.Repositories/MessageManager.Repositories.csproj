@@ -55,8 +55,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specifications\UserNameEqualsSpecification.cs" />
     <Compile Include="Specifications\UserStringEqualsSpecification.cs" />
-    <Compile Include="Specifications\MessageFromUserIDEqualsSpecification.cs" />
-    <Compile Include="Specifications\MessageToUserIDEqualsSpecification.cs" />
+    <Compile Include="Specifications\MessageFromUserNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\MessageToUserNameEqualsSpecification.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

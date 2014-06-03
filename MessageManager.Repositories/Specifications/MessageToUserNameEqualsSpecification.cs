@@ -12,18 +12,18 @@ using MessageManager.Domain.Specifications;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    public class MessageFromUserIDEqualsSpecification : Specification<Message>
+    public class MessageToUserNameEqualsSpecification : Specification<Message>
     {
         private readonly User user;
 
-        public MessageFromUserIDEqualsSpecification(User user)
+        public MessageToUserNameEqualsSpecification(User user)
         {
             this.user = user;
         }
 
         public override System.Linq.Expressions.Expression<Func<Message, bool>> GetExpression()
         {
-            return p => p.FromUserID == user.ID;
+            return p => p.ToUserName == user.Name;
         }
     }
 }

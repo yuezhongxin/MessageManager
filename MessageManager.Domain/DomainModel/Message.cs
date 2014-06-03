@@ -21,7 +21,9 @@ namespace MessageManager.Domain.DomainModel
         
         #region 实体成员
         public string FromUserID { get; set; }
+        public string FromUserName { get; set; }
         public string ToUserID { get; set; }
+        public string ToUserName { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime SendTime { get; set; }
