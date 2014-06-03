@@ -19,7 +19,7 @@ namespace MessageManager.Infrastructure
         /// <summary>
         /// 提交当前的Unit Of Work事务。
         /// </summary>
-        void Commit();
+        bool Commit();
         /// <summary>
         /// 回滚当前的Unit Of Work事务。
         /// </summary>
