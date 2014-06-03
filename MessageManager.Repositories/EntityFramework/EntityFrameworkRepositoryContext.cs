@@ -26,12 +26,17 @@ namespace MessageManager.Repositories.EntityFramework
             Committed = false;
         }
 
-        public override void Commit()
+        public override bool Commit()
         {
             if (!Committed)
             {
                 localCtx.Value.SaveChanges();
                 Committed = true;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

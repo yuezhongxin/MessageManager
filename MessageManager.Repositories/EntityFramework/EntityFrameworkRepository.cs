@@ -70,17 +70,23 @@ namespace MessageManager.Repositories.EntityFramework
         protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
         {
             var results = this.DoFindAll(specification, sortPredicate, sortOrder);
-            if (results == null || results.Count() == 0)
-                throw new ArgumentException("Aggregate not found.");
+            //if (results == null || results.Count() == 0)
+            //    throw new ArgumentException("Aggregate not found.");
             return results;
         }
 
         protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
         {
             var results = this.DoFindAll(specification, sortPredicate, sortOrder, pageNumber, pageSize);
-            if (results == null || results.Count() == 0)
-                throw new ArgumentException("Aggregate not found.");
+            //if (results == null || results.Count() == 0)
+            //    throw new ArgumentException("Aggregate not found.");
             return results;
+        }
+
+        protected override int DoGetCount()
+        {
+            var results = this.DoFindAll();
+            return results.Count();
         }
 
         protected override IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
@@ -131,8 +137,8 @@ namespace MessageManager.Repositories.EntityFramework
         protected override TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification)
         {
             TAggregateRoot result = this.DoFind(specification);
-            if (result == null)
-                throw new ArgumentException("Aggregate not found.");
+            //if (result == null)
+            //    throw new ArgumentException("Aggregate not found.");
             return result;
         }
 
@@ -181,16 +187,16 @@ namespace MessageManager.Repositories.EntityFramework
         protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
             var results = this.DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
-            if (results == null || results.Count() == 0)
-                throw new ArgumentException("Aggregate not found.");
+            //if (results == null || results.Count() == 0)
+            //    throw new ArgumentException("Aggregate not found.");
             return results;
         }
 
         protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
             var results = this.DoFindAll(specification, sortPredicate, sortOrder, pageNumber, pageSize, eagerLoadingProperties);
-            if (results == null || results.Count() == 0)
-                throw new ArgumentException("Aggregate not found.");
+            //if (results == null || results.Count() == 0)
+            //    throw new ArgumentException("Aggregate not found.");
             return results;
         }
 
@@ -277,8 +283,8 @@ namespace MessageManager.Repositories.EntityFramework
         protected override TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
             TAggregateRoot result = this.DoFind(specification, eagerLoadingProperties);
-            if (result == null)
-                throw new ArgumentException("Aggregate not found.");
+            //if (result == null)
+            //    throw new ArgumentException("Aggregate not found.");
             return result;
         }
     }
