@@ -28,7 +28,7 @@ namespace MessageManager.Repositories
         }
         public IEnumerable<Message> GetMessagesByReceiveUser(User user)
         {
-            return FindAll(new MessageFromUserIDEqualsSpecification(user), sp => sp.ReceiveTime, SortOrder.Descending);
+            return FindAll(new MessageToUserIDEqualsSpecification(user), sp => sp.SendTime, SortOrder.Descending);
         }
         #endregion
     }

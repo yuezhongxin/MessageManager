@@ -30,8 +30,6 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .HasMaxLength(2000);
             Property(c => c.SendTime)
                 .IsRequired();
-            Property(c => c.ReceiveTime)
-                .IsOptional();
             Property(c => c.IsRead)
                 .IsRequired();
             ToTable("Messages");
