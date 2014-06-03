@@ -17,7 +17,10 @@ namespace MessageManager.WebAPI.Controllers
 {
     public class MessageController : ApiController
     {
+        #region 应用层服务接口
         private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
+        #endregion
+
         #region 消息操作
         /// <summary>
         /// 通过发送方获取消息列表
