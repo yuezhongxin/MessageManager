@@ -58,14 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\ico_delete.gif" />
-    <Content Include="js\json2.js" />
+    <Content Include="index.html" />
+    <Content Include="scripts\json2.js" />
     <Content Include="show.html" />
     <Content Include="Web.config" />
     <Content Include="inbox.html" />
     <Content Include="css\cnblogs.css" />
-    <Content Include="js\common.js" />
-    <Content Include="js\jquery.js" />
-    <Content Include="js\lib.js" />
+    <Content Include="scripts\common.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\lib.js" />
     <Content Include="outbox.html" />
     <Content Include="compose.html" />
   </ItemGroup>
