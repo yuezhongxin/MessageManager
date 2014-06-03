@@ -21,8 +21,8 @@ namespace MessageManager.Application.DTO
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime SendTime { get; set; }
-        public DateTime ReceiveTime { get; set; }
         public bool IsRead { get; set; }
+        public string Status { get; set; }
         #endregion
     }
 }

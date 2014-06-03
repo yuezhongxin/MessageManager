@@ -77,6 +77,45 @@ namespace MessageManager.Application.Implementation
             }
             return ret;
         }
+        /// <summary>
+        /// 删除消息
+        /// </summary>
+        /// <param name="messageDTO"></param>
+        /// <returns></returns>
+        public bool DeleteMessage(MessageDTO messageDTO)
+        {
+            messageRepository.Remove(Mapper.Map<MessageDTO, Message>(messageDTO));
+            return messageRepository.Context.Commit();
+        }
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="messageDTO"></param>
+        /// <returns></returns>
+        public bool SendMessage(MessageDTO messageDTO)
+        {
+            Message message = Mapper.Map<MessageDTO, Message>(messageDTO);
+            message.FromUserID = userRepository.GetUserByName(messageDTO.FromUserName).ID;
+            message.ToUserID = userRepository.GetUserByName(messageDTO.ToUserName).ID;
+            messageRepository.Add(message);
+            return messageRepository.Context.Commit();
+        }
+        /// <summary>
+        /// 查看消息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public MessageDTO ShowMessage(string ID, string isRead)
+        {
+            Message message = messageRepository.GetByKey(ID);
+            if (isRead == "1")
+            {
+                message.IsRead = true;
+                messageRepository.Update(message);
+                messageRepository.Context.Commit();
+            }
+            return Mapper.Map<Message, MessageDTO>(message);
+        }
         #endregion
     }
 }

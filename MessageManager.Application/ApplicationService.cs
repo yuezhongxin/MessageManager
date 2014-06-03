@@ -49,7 +49,22 @@ namespace MessageManager.Application
             Mapper.CreateMap<UserDTO, User>();
             Mapper.CreateMap<MessageDTO, Message>();
             Mapper.CreateMap<User, UserDTO>();
-            Mapper.CreateMap<Message, MessageDTO>();
+            Mapper.CreateMap<Message, MessageDTO>()
+                .ForMember(dest => dest.Status, opt => opt.ResolveUsing<CustomResolver>());
+        }
+        public class CustomResolver : ValueResolver<Message, string>
+        {
+            protected override string ResolveCore(Message source)
+            {
+                if (source.IsRead)
+                {
+                    return "已读";
+                }
+                else
+                {
+                    return "未读";
+                }
+            }
         }
         #endregion
     }
