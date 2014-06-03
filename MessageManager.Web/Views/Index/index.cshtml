@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>起始页</title>
+</head>
+<body>
+    <div>
+        <div style="text-align: center; padding-top: 100px;">
+            <h1>welcome you</h1>
+            <p>
+                请选择用户：<select id="chUser" name="chUser">
+                    <option value ="小菜">小菜</option>
+                    <option value ="大神">大神</option>
+                </select>
+            </p>
+            <a id="subBtn" href="#">点击进入</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var subBtn = document.getElementById('subBtn');//点击对象
+            var chUser = document.getElementById('chUser');//select对象
+            subBtn.onclick = function () {//绑定点击事件
+                window.location = "/index/RegisterUser/" + chUser.value;
+            }
+        }
+</script>
+</body>
+</html>
