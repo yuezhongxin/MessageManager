@@ -173,6 +173,11 @@ namespace MessageManager.Domain.Repositories
         /// <returns>All the aggregate roots that match the given specification and were sorted by using the given sort predicate and the sort order.</returns>
         IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
         /// <summary>
+        /// Gets count
+        /// </summary>
+        /// <returns></returns>
+        int GetCount();
+        /// <summary>
         /// Gets a single aggregate root instance from repository by using the given specification.
         /// </summary>
         /// <param name="specification">The specification with which the aggregate root should match.</param>

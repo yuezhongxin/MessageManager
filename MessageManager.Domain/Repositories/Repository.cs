@@ -219,6 +219,11 @@ namespace MessageManager.Domain.Repositories
             return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified);
         }
         /// <summary>
+        /// Gets count
+        /// </summary>
+        /// <returns></returns>
+        protected abstract int DoGetCount();
+        /// <summary>
         /// Finds all the aggregate roots from repository with paging enabled.
         /// </summary>
         /// <param name="pageNumber">The page number.</param>
@@ -535,6 +540,10 @@ namespace MessageManager.Domain.Repositories
         public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
         {
             return this.DoGetAll(specification, sortPredicate, sortOrder, pageNumber, pageSize);
+        }
+        public int GetCount()
+        {
+            return this.DoGetCount();
         }
         /// <summary>
         /// Removes the aggregate root from current repository.

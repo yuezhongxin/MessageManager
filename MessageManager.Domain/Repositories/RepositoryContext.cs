@@ -148,7 +148,7 @@ namespace MessageManager.Domain.Repositories
         /// <summary>
         /// Commits the UnitOfWork.
         /// </summary>
-        public abstract void Commit();
+        public abstract bool Commit();
         /// <summary>
         /// Rolls-back the UnitOfWork.
         /// </summary>
