@@ -21,12 +21,12 @@ namespace MessageManager.Repositories.Tests
         [Test]
         public void UserRepository()
         {
-            IUserRepository URepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user1 = new User { Name = "张三" };
-            User user2 = new User { Name = "李四" };
-            URepository.Add(user1);
-            URepository.Add(user2);
-            URepository.Context.Commit();
+            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
+            User user1 = new User { Name = "小菜" };
+            User user2 = new User { Name = "大神" };
+            userRepository.Add(user1);
+            userRepository.Add(user2);
+            userRepository.Context.Commit();
             //var user = URepository.GetUserByName("张三");
             //if (user != null)
             //{
