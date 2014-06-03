@@ -1,17 +1,116 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>compose</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>撰写短消息</title>
+    <link rel="stylesheet" href="/../../css/cnblogs.css" type="text/css">
+    <script type="text/javascript" src="/../../scripts/jquery.js"></script>
+    <script src="/../../scripts/json2.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://space.cnblogs.com/common/ubb.js"></script>
+    <script type="text/javascript">
+        function SendMessage() {
+            var title = document.getElementById("txtTitle").value;
+            var content = document.getElementById("txtContent").value;
+            var incept = document.getElementById("txtIncept").value;
+
+            if (incept == "") {
+                alert("收件人是必填的");
+                $("#txtIncept").focus();
+                return;
+            }
+
+            if (title == "") {
+                alert("标题是必填的");
+                $("#txtTitle").focus();
+                return;
+            }
+            if (content == "") {
+                alert("内容是必填的");
+                $("#txtContent").focus();
+                return;
+            }
+            $("#span_msg_tips").html("正在发送...");
+            var param = {
+                incept: incept,
+                title: title,
+                content: content
+            };
+            $.ajax({
+                url: '/message/SendMessage',
+                data: JSON.stringify(param),
+                contentType: 'application/json; charset=utf-8',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.result == "success") {
+                        document.getElementById("span_msg").innerHTML =
+                            "<div class='center' style='padding:30px;'><span class='red'>" + data.content + "</span> <a href=/message/inbox>返回收信箱</a></div>";
+                    } else {
+                        $("#span_msg_tips").html(data.content);
+                    }
+                },
+                error: function (xhr) {
+                    $("#span_msg_tips").html("抱歉！发送失败！错误：" + xhr.responseText);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-    <div>
-        
-    </div>
+    <form name="myForm" method="post" id="myForm">
+        <div id="main_wrapper">
+            <div id="main_header">
+                <script type="text/javascript" src="/../../scripts/common.js"></script>
+                <div id="guide">
+                    <h1>撰写短信</h1>
+                </div>
+            </div>
+            <div id="sideleft">
+                <div style="padding-left: 10px; width: 95%">
+                    <div id="span_msg">
+                        <table width="100%" border="0">
+                            <tbody>
+                                <tr>
+                                    <td align="right" valign="top" class="stitle_green" width="60px">收件人: </td>
+                                    <td valign="top">
+                                        <input name="txtIncept" type="text" maxlength="90" id="txtIncept" class="text_fixedsys" style="width: 300px" disabled="disabled" value="@ViewBag.ToUserName" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top" class="stitle_green">主题: </td>
+                                    <td valign="top">
+                                        <input name="txtTitle" type="text" id="txtTitle" class="text_fixedsys" style="width: 300px" /></td>
+                                </tr>
+                                <tr>
+                                    <td align="right" valign="top" class="stitle_green">内容: </td>
+                                    <td>
+                                        <div style="text-align: right; padding-right: 60px;">
+                                            <span id="span_msg_tips" style="color: red"></span>
+                                        </div>
+                                        <textarea name="txtContent" rows="2" cols="20" id="txtContent" class="text_fixedsys" style="width: 90%; height: 200px"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center" height="50">
+                                        <input type="button" value=" 发 送 " id="btnSend" onclick="SendMessage()" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="sideright">
+                > 当前用户：@ViewBag.UserName （<a href="/../index/index">选择用户</a>）<br />
+                <br />
+                > <a href="/message/compose" class="big blue">撰写新短信</a><br />
+                <br>
+                > <a href="/message/inbox" class="big blue">收件箱</a><br />
+                <br>
+                > <a href="/message/outbox" class="big blue">发件箱</a>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
+

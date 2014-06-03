@@ -29,7 +29,7 @@ namespace MessageManager.Web.Controllers
             if (ctx.Session["userName"] == null)
             {
                 filterContext.Result = new EmptyResult();
-                ctx.Response.Write("<script type='text/javascript'>if(window!= top) top.location.href ='/index/index';</script> ");
+                ctx.Response.Write("<script type='text/javascript'>window.location.href ='/index/index';</script> ");
 
             }
             base.OnActionExecuting(filterContext);

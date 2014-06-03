@@ -5,20 +5,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <title>收件箱</title>
-    <script type="text/javascript" src="../../scripts/jquery.js"></script>
-    <script type="text/javascript" src="../../scripts/lib.js"></script>
+    <script type="text/javascript" src="/../../scripts/jquery.js"></script>
+    <script type="text/javascript" src="/../../scripts/lib.js"></script>
     <script type="text/javascript">
         function RemoveMsg(Id) {
             if (confirm("确认要删除吗?")) {
                 $("#span_" + Id).html('<td colspan="4" style="color:red">删除中......</td>');
+                var param = {
+                    ID: Id
+                };
                 $.ajax({
-                    url: '/mvcajax/msg/DeleteMsg',
+                    url: '/Message/DeleteMessage',
                     type: 'post',
-                    data: '{"Id":' + Id + '}',
-                    dataType: 'text',
+                    data: JSON.stringify(param),
+                    dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
                     success: function (data) {
-                        $("#msg_item_" + Id).html('<td colspan="4" style="color:red">' + data + '</td>');
+                        if (data.result == "success") {
+                            $("#msg_item_" + Id).html('<td colspan="4" style="color:red">' + data.content + '</td>');
+                        }
                     },
                     error: function (xhr) {
                         $("#msg_item_" + Id).html('<td colspan="4" style="color:red">' + xhr.responseText + '</td>');
@@ -27,7 +32,7 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="../../css/cnblogs.css" type="text/css">
+    <link rel="stylesheet" href="/../../css/cnblogs.css" type="text/css">
 </head>
 <body>
     <form name="ListForm" method="post" id="ListForm">
@@ -36,8 +41,8 @@
                 <div style="padding-left: 20px; width: 95%">
                     <div id="navcontainer" class="floatright" style="margin-top: 1px">
                         <ul id="navlist">
-                            <li><a href="inbox.html" class="current">收件箱</a></li>
-                            <li><a href="outbox.html">发件箱</a></li>
+                            <li><a href="/message/inbox" class="current">收件箱</a></li>
+                            <li><a href="/message/outbox">发件箱</a></li>
                         </ul>
                     </div>
                     <div class="clear"></div>
@@ -53,10 +58,10 @@
                                 @foreach (MessageManager.Application.DTO.MessageDTO message in Model)
                                 {
                                     <tr id="msg_item_@message.ID">
-                                        <td>@message.FromUserName</td>
-                                        <td><a target="_blank" href="http://space.cnblogs.com/message/940611/" title="@message.Title">@message.Title</a></td>
+                                        <td class="gray">@message.FromUserName</td>
+                                        <td><a target="_blank" href="/message/show/1/@message.ID" title="@message.Title">@message.Title</a></td>
                                         <td align="center" class="gray">@message.SendTime</td>
-                                        <td align="center" style="width: 40px;"><a class="click_del_off" onclick="RemoveMsg(@message.Title)" title="删除">删除</a></td>
+                                        <td align="center" style="width: 40px;"><a class="click_del_off" onclick="RemoveMsg('@message.ID')" title="删除">删除</a></td>
                                     </tr>
                                 }
                             </tbody>
@@ -67,7 +72,7 @@
             <div id="sideright">
                 > 当前用户：@ViewBag.UserName （<a href="/../index/index">选择用户</a>）<br />
                 <br />
-                > <a href="compose.html" class="big blue">撰写新短消息</a><br />
+                > <a href="/message/compose" class="big blue">撰写新短消息</a><br />
             </div>
         </div>
     </form>

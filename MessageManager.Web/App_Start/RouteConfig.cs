@@ -18,6 +18,11 @@ namespace MessageManager.Web
                 url: "{controller}/{action}/{userName}",
                 defaults: new { controller = "Index", action = "Index", userName = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "ShowMessageRoute",
+                url: "{controller}/{action}/{isRead}/{ID}",
+                defaults: new { controller = "Message", action = "ShowMessage" }
+            );
         }
     }
 }
