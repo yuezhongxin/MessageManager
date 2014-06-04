@@ -27,7 +27,7 @@ namespace MessageManager.Repositories.Tests
             userRepository.Add(user1);
             userRepository.Add(user2);
             userRepository.Context.Commit();
-            //var user = URepository.GetUserByName("张三");
+            //var user = URepository.GetUserByName("小菜");
             //if (user != null)
             //{
             //    Console.WriteLine(user.Name);
