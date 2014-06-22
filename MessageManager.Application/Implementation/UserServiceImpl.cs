@@ -10,6 +10,7 @@ using MessageManager.Application.DTO;
 using MessageManager.Domain;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
+using MessageManager.Domain.DomainService;
 
 namespace MessageManager.Application.Implementation
 {
@@ -19,20 +20,17 @@ namespace MessageManager.Application.Implementation
     public class UserServiceImpl : ApplicationService, IUserService
     {
         #region Private Fields
-        private readonly IUserRepository userRepository;
+        private readonly UserDomainService userDomainService;
         #endregion
 
         #region Ctor
         /// <summary>
         /// 初始化一个<c>UserServiceImpl</c>类型的实例。
         /// </summary>
-        /// <param name="context">用来初始化<c>UserServiceImpl</c>类型的仓储上下文实例。</param>
-        /// <param name="userRepository">“用户”仓储实例。</param>
-        public UserServiceImpl(IRepositoryContext context,
-            IUserRepository userRepository)
-            :base(context)
+        /// <param name="userRepository">“用户”服务实例。</param>
+        public UserServiceImpl(UserDomainService userDomainService)
         {
-            this.userRepository = userRepository;
+            this.userDomainService = userDomainService;
         }
         #endregion
 
@@ -43,8 +41,7 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public bool ExistUser()
         {
-            int users = userRepository.GetCount();
-            return users == 0 ? false : true;
+            return userDomainService.ExistUser();
         }
         /// <summary>
         /// 添加用户
@@ -53,11 +50,7 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public bool AddUser(IList<UserDTO> usersDTO)
         {
-            foreach (UserDTO userDTO in usersDTO)
-            {
-                userRepository.Add(Mapper.Map<UserDTO, User>(userDTO));
-            }
-            return userRepository.Context.Commit();
+            return userDomainService.AddUser(Mapper.Map<IList<User>>(usersDTO));
         }
         #endregion
     }

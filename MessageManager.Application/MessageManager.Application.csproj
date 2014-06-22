@@ -50,9 +50,13 @@
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Implementation\MessageServiceImpl.cs" />
     <Compile Include="IMessageService.cs" />
-    <Compile Include="Implementation\UserServiceImpl.cs" />
+    <Compile Include="Implementation\UserServiceImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IUserService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -10,6 +10,7 @@ using MessageManager.Application.DTO;
 using MessageManager.Domain;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
+using MessageManager.Domain.DomainService;
 
 namespace MessageManager.Application.Implementation
 {
@@ -19,24 +20,17 @@ namespace MessageManager.Application.Implementation
     public class MessageServiceImpl : ApplicationService, IMessageService
     {
         #region Private Fields
-        private readonly IMessageRepository messageRepository;
-        private readonly IUserRepository userRepository;
+        private readonly IMessageDomainService messageService;
         #endregion
 
         #region Ctor
         /// <summary>
         /// 初始化一个<c>MessageServiceImpl</c>类型的实例。
         /// </summary>
-        /// <param name="context">用来初始化<c>MessageServiceImpl</c>类型的仓储上下文实例。</param>
-        /// <param name="messageRepository">“消息”仓储实例。</param>
-        /// <param name="userRepository">“用户”仓储实例。</param>
-        public MessageServiceImpl(IRepositoryContext context,
-            IMessageRepository messageRepository,
-            IUserRepository userRepository)
-            :base(context)
+        /// <param name="messageRepository">“消息”服务实例。</param>
+        public MessageServiceImpl(IMessageDomainService messageService)
         {
-            this.messageRepository = messageRepository;
-            this.userRepository = userRepository;
+            this.messageService = messageService;
         }
         #endregion
 
@@ -49,7 +43,7 @@ namespace MessageManager.Application.Implementation
         public IEnumerable<MessageDTO> GetMessagesBySendUser(UserDTO sendUserDTO)
         {
             //User user = userRepository.GetUserByName(sendUserDTO.Name);
-            var messages = messageRepository.GetMessagesBySendUser(Mapper.Map<UserDTO, User>(sendUserDTO));
+            var messages = messageService.GetMessagesBySendUser(Mapper.Map<UserDTO, User>(sendUserDTO));
             if (messages == null)
                 return null;
             var ret = new List<MessageDTO>();
@@ -67,7 +61,7 @@ namespace MessageManager.Application.Implementation
         public IEnumerable<MessageDTO> GetMessagesByReceiveUser(UserDTO receiveUserDTO)
         {
             //User user = userRepository.GetUserByName(receiveUserDTO.Name);
-            var messages = messageRepository.GetMessagesByReceiveUser(Mapper.Map<UserDTO, User>(receiveUserDTO));
+            var messages = messageService.GetMessagesByReceiveUser(Mapper.Map<UserDTO, User>(receiveUserDTO));
             if (messages == null)
                 return null;
             var ret = new List<MessageDTO>();
@@ -84,8 +78,7 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public bool DeleteMessage(MessageDTO messageDTO)
         {
-            messageRepository.Remove(Mapper.Map<MessageDTO, Message>(messageDTO));
-            return messageRepository.Context.Commit();
+            return messageService.DeleteMessage(Mapper.Map<MessageDTO, Message>(messageDTO));
         }
         /// <summary>
         /// 发送消息
@@ -94,26 +87,16 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public bool SendMessage(MessageDTO messageDTO)
         {
-            Message message = Mapper.Map<MessageDTO, Message>(messageDTO);
-            message.FromUserID = userRepository.GetUserByName(messageDTO.FromUserName).ID;
-            message.ToUserID = userRepository.GetUserByName(messageDTO.ToUserName).ID;
-            messageRepository.Add(message);
-            return messageRepository.Context.Commit();
+            return messageService.SendMessage(Mapper.Map<MessageDTO, Message>(messageDTO));
         }
         /// <summary>
         /// 查看消息
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public MessageDTO ShowMessage(string ID, string isRead)
+        public MessageDTO ShowMessage(string ID, UserDTO CurrentUserDTO)
         {
-            Message message = messageRepository.GetByKey(ID);
-            if (isRead == "1")
-            {
-                message.IsRead = true;
-                messageRepository.Update(message);
-                messageRepository.Context.Commit();
-            }
+            Message message = messageService.ShowMessage(ID, Mapper.Map<UserDTO, User>(CurrentUserDTO));
             return Mapper.Map<Message, MessageDTO>(message);
         }
         #endregion

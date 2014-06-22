@@ -44,7 +44,7 @@ namespace MessageManager.Application
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        MessageDTO ShowMessage(string ID, string isRead);
+        MessageDTO ShowMessage(string ID, UserDTO CurrentUserDTO);
         #endregion
     }
 }
