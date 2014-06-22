@@ -190,6 +190,7 @@
     <Content Include="Views\Index\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\MessageManagerWeb.pubxml" />
     <None Include="Properties\PublishProfiles\web.pubxml" />
   </ItemGroup>
   <PropertyGroup>

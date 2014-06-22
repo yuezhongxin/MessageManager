@@ -61,7 +61,7 @@
                                     <tr id="msg_item_@message.ID">
                                         <td class="gray">@message.Status</td>
                                         <td class="gray">@message.FromUserName</td>
-                                        <td><a target="_blank" href="/message/show/0/@message.ID" title="@message.Title">@message.Title</a></td>
+                                        <td><a target="_blank" href="/message/show/@message.ID" title="@message.Title">@message.Title</a></td>
                                         <td align="center" class="gray">@message.SendTime</td>
                                         <td align="center" style="width: 40px;"><a class="click_del_off" onclick="RemoveMsg('@message.ID')" title="删除">删除</a></td>
                                     </tr>

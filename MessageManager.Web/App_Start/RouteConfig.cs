@@ -14,15 +14,17 @@ namespace MessageManager.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "ShowMessageRoute",
+                "Message/Show/{ID}",
+                new { controller = "Message", action = "Show", ID = UrlParameter.Optional } 
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{userName}",
                 defaults: new { controller = "Index", action = "Index", userName = UrlParameter.Optional }
             );
-            routes.MapRoute(
-                name: "ShowMessageRoute",
-                url: "{controller}/{action}/{isRead}/{ID}",
-                defaults: new { controller = "Message", action = "ShowMessage" }
-            );
+            
         }
     }
 }

@@ -59,11 +59,11 @@ namespace MessageManager.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [UserSessionCheck]
-        public ActionResult Show(string isRead, string ID)
+        public ActionResult Show(string ID)
         {
             ViewBag.UserName = Session["userName"].ToString();
             ViewBag.ToUserName = Session["userName"].ToString().Equals("小菜") ? "大神" : "小菜";
-            MessageDTO messages = messageServiceImpl.ShowMessage(ID, isRead);
+            MessageDTO messages = messageServiceImpl.ShowMessage(ID, new UserDTO { Name = Session["userName"].ToString() });
             return View(messages);
         }
         /// <summary>
