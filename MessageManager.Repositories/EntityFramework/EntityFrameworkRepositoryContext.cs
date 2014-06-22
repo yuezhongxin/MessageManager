@@ -10,7 +10,7 @@ namespace MessageManager.Repositories.EntityFramework
 
         public override void RegisterDeleted<TAggregateRoot>(TAggregateRoot obj)
         {
-            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.EntityState.Deleted;
+            localCtx.Value.Entry<TAggregateRoot>(obj).State = System.Data.EntityState.Deleted; 
             Committed = false;
         }
 
@@ -30,9 +30,16 @@ namespace MessageManager.Repositories.EntityFramework
         {
             if (!Committed)
             {
-                localCtx.Value.SaveChanges();
-                Committed = true;
-                return true;
+                if (localCtx.Value.SaveChanges() > 0)
+                {
+                    Committed = true;
+                    return true;
+                }
+                else
+                {
+                    Committed = false;
+                    return false;
+                }
             }
             else
             {

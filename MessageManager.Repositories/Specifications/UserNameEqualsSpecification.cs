@@ -13,17 +13,17 @@ using MessageManager.Domain.Repositories.Specifications;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal class UserNameEqualsSpecification : UserStringEqualsSpecification
+    internal class UserNameEqualsSpecification : Specification<User>
     {
-        public UserNameEqualsSpecification(string userName)
-            : base(userName)
+        private readonly User user;
+        public UserNameEqualsSpecification(User user)
         {
-
+            this.user = user;
         }
 
         public override System.Linq.Expressions.Expression<Func<User, bool>> GetExpression()
         {
-            return c => c.Name == value;
+            return c => c.Name == user.Name;
         }
     }
 }

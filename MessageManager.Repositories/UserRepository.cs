@@ -22,9 +22,9 @@ namespace MessageManager.Repositories
         { }
 
         #region IUserRepository Members
-        public User GetUserByName(string name)
+        public User GetUser(User user)
         {
-            return Get(new UserNameEqualsSpecification(name));
+            return Get(new UserNameEqualsSpecification(user));
         }
         #endregion
     }
