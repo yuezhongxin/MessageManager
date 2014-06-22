@@ -5,6 +5,7 @@
 
 using MessageManager.Application.DTO;
 using MessageManager.Application.Implementation;
+using MessageManager.Domain.DomainService;
 using MessageManager.Domain.Repositories;
 using MessageManager.Repositories;
 using MessageManager.Repositories.EntityFramework;
@@ -22,12 +23,12 @@ namespace MessageManager.Application.Tests
         [Test]
         public void MessageApplication()
         {
-            IMessageService messageService = new MessageServiceImpl(new EntityFrameworkRepositoryContext()
-                , new MessageRepository(new EntityFrameworkRepositoryContext())
-                , new UserRepository(new EntityFrameworkRepositoryContext()));
+            IMessageService messageService = new MessageServiceImpl(new MessageDomainService(
+                    new MessageRepository(new EntityFrameworkRepositoryContext()),
+                    new UserRepository(new EntityFrameworkRepositoryContext())));
             UserDTO userDTO = new UserDTO
             {
-                Name = "张三"
+                Name = "小菜"
             };
             var messages = messageService.GetMessagesBySendUser(userDTO);
             foreach (MessageDTO item in messages)
