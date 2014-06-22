@@ -32,6 +32,30 @@ namespace MessageManager.Domain.DomainModel
         public virtual User ToUser { get; set; }
         #endregion
 
+        #region 业务逻辑
+        /// <summary>
+        /// 阅读消息
+        /// </summary>
+        /// <param name="CurrentUser"></param>
+        public void ReadMessage(User CurrentUser)
+        {
+            if (!this.IsRead && CurrentUser.ID.Equals(ToUserID))
+            {
+                this.IsRead = true;
+            }
+        }
+        /// <summary>
+        /// 加载用户
+        /// </summary>
+        /// <param name="sendUser"></param>
+        /// <param name="receiveUser"></param>
+        public void LoadUserName(User sendUser,User receiveUser)
+        {
+            this.FromUserID = sendUser.ID;
+            this.ToUserID = receiveUser.ID;
+        }
+        #endregion
+
         #region IEntity成员
         /// <summary>
         /// 获取或设置当前实体对象的全局唯一标识。
