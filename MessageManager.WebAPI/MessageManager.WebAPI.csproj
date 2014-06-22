@@ -178,6 +178,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\MessagManagerWebAPI.pubxml" />
     <None Include="Properties\PublishProfiles\webAPI.pubxml" />
   </ItemGroup>
   <PropertyGroup>
