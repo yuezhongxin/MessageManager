@@ -94,10 +94,19 @@ namespace MessageManager.Application.Implementation
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public MessageDTO ShowMessage(string ID, UserDTO CurrentUserDTO)
+        public MessageDTO ShowMessage(string id, UserDTO currentUserDTO)
         {
-            Message message = messageService.ShowMessage(ID, Mapper.Map<UserDTO, User>(CurrentUserDTO));
+            Message message = messageService.ShowMessage(id, Mapper.Map<UserDTO, User>(currentUserDTO));
             return Mapper.Map<Message, MessageDTO>(message);
+        }
+        /// <summary>
+        /// 获取未读消息数
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public int GetNoReadCount(UserDTO userDTO)
+        {
+            return messageService.GetNoReadCount(Mapper.Map<UserDTO, User>(userDTO));
         }
         #endregion
     }

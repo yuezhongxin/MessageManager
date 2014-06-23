@@ -34,7 +34,7 @@ namespace MessageManager.Domain.DomainService
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        Message ShowMessage(string ID, User CurrentUser);
+        Message ShowMessage(string id, User currentUser);
         /// <summary>
         /// 通过发送方获取消息
         /// </summary>
@@ -47,6 +47,12 @@ namespace MessageManager.Domain.DomainService
         /// <param name="userName"></param>
         /// <returns></returns>
         IEnumerable<Message> GetMessagesByReceiveUser(User user);
+        /// <summary>
+        /// 获取未读消息数
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        int GetNoReadCount(User user);
         #endregion
     }
 }

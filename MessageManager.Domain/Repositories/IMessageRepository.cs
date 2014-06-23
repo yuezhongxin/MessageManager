@@ -18,5 +18,6 @@ namespace MessageManager.Domain.Repositories
     {
         IEnumerable<Message> GetMessagesBySendUser(User user);
         IEnumerable<Message> GetMessagesByReceiveUser(User user);
+        int GetNoReadCount(User user);
     }
 }

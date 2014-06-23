@@ -43,10 +43,10 @@ namespace MessageManager.Domain.DomainService
             messageRepository.Add(message);
             return messageRepository.Context.Commit();
         }
-        public Message ShowMessage(string ID,User CurrentUser)
+        public Message ShowMessage(string id,User currentUser)
         {
-            Message message = messageRepository.GetByKey(ID);
-            message.ReadMessage(userRepository.GetUser(new User { Name = CurrentUser.Name }));
+            Message message = messageRepository.GetByKey(id);
+            message.ReadMessage(userRepository.GetUser(new User { Name = currentUser.Name }));
             messageRepository.Update(message);
             messageRepository.Context.Commit();
             return message;
@@ -60,6 +60,11 @@ namespace MessageManager.Domain.DomainService
         {
             User userResult = userRepository.GetUser(user);
             return messageRepository.GetMessagesByReceiveUser(userResult);
+        }
+        public int GetNoReadCount(User user)
+        {
+            User userResult = userRepository.GetUser(user);
+            return messageRepository.GetNoReadCount(userResult);
         }
         #endregion
     }

@@ -46,6 +46,17 @@ namespace MessageManager.WebAPI.Controllers
             var messages = messageServiceImpl.GetMessagesByReceiveUser(userDTO);
             return messages;
         }
+        /// <summary>
+        /// 获取未读消息数
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public int GetNoReadCount(string userName)
+        {
+            UserDTO userDTO = new UserDTO { Name = userName };
+            return messageServiceImpl.GetNoReadCount(userDTO);
+        }
         #endregion
 
         #region 示例action

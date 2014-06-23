@@ -44,7 +44,13 @@ namespace MessageManager.Application
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        MessageDTO ShowMessage(string ID, UserDTO CurrentUserDTO);
+        MessageDTO ShowMessage(string id, UserDTO currentUserDTO);
+        /// <summary>
+        /// 获取未读消息数
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        int GetNoReadCount(UserDTO userDTO);
         #endregion
     }
 }

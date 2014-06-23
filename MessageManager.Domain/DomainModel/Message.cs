@@ -37,9 +37,9 @@ namespace MessageManager.Domain.DomainModel
         /// 阅读消息
         /// </summary>
         /// <param name="CurrentUser"></param>
-        public void ReadMessage(User CurrentUser)
+        public void ReadMessage(User currentUser)
         {
-            if (!this.IsRead && CurrentUser.ID.Equals(ToUserID))
+            if (!this.IsRead && currentUser.ID.Equals(ToUserID))
             {
                 this.IsRead = true;
             }

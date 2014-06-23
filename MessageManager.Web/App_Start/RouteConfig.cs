@@ -15,8 +15,8 @@ namespace MessageManager.Web
 
             routes.MapRoute(
                 "ShowMessageRoute",
-                "Message/Show/{ID}",
-                new { controller = "Message", action = "Show", ID = UrlParameter.Optional } 
+                "Message/Show/{id}",
+                new { controller = "Message", action = "Show", id = UrlParameter.Optional } 
                 );
 
             routes.MapRoute(

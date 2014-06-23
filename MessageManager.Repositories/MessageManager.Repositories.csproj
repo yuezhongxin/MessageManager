@@ -53,10 +53,11 @@
     <Compile Include="EntityFramework\ModelConfigurations\UserConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\MessageConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specifications\UserNameEqualsSpecification.cs" />
-    <Compile Include="Specifications\UserStringEqualsSpecification.cs" />
-    <Compile Include="Specifications\MessageFromUserNameEqualsSpecification.cs" />
-    <Compile Include="Specifications\MessageToUserNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\Message\MessageNoReadSpecification.cs" />
+    <Compile Include="Specifications\User\UserNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\User\UserStringEqualsSpecification.cs" />
+    <Compile Include="Specifications\Message\MessageFromUserIDEqualsSpecification.cs" />
+    <Compile Include="Specifications\Message\MessageToUserIDEqualsSpecification.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
