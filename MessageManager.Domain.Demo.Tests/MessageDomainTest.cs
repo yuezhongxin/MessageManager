@@ -1,5 +1,4 @@
-﻿using MessageManager.Domain.Demo.V2;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,10 @@ using Xunit;
 
 namespace MessageManager.Domain.Demo.Tests
 {
-    public class MessageDomainTestV2
+    public class MessageDomainTest
     {
         [Fact]
-        public void SendMessageTestV2()
+        public void SendMessageTest()
         {
             User sendUser = new User("小菜");
             User receiveUser = new User("大神");
@@ -21,7 +20,7 @@ namespace MessageManager.Domain.Demo.Tests
         }
 
         [Fact]
-        public Message ReadMessageTestV2()
+        public Message ReadMessageTest()
         {
             return null;
         }
