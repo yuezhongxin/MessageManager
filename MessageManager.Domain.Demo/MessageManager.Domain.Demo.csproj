@@ -60,6 +60,10 @@
     <Compile Include="V1\MessageState.cs" />
     <Compile Include="V1\MessageType.cs" />
     <Compile Include="V1\User.cs" />
+    <Compile Include="V2\Message.cs" />
+    <Compile Include="V2\MessageState.cs" />
+    <Compile Include="V2\MessageType.cs" />
+    <Compile Include="V2\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

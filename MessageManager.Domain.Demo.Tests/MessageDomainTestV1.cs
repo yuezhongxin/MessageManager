@@ -6,14 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xunit;
 
 namespace MessageManager.Domain.Demo.Tests
 {
     [TestFixture]
-    public class DomainTest
+    public class MessageDomainTestV1
     {
         [Test]
-        public void MessageTest()
+        public void SendMessageTestV1()
         {
             IUnityContainer _container;
 

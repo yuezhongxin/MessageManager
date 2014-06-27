@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MessageManager.Domain.Demo.V1
+namespace MessageManager.Domain.Demo.V2
 {
     public enum MessageType
     {
