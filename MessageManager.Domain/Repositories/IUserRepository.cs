@@ -16,6 +16,6 @@ namespace MessageManager.Domain.Repositories
     /// </summary>
     public interface IUserRepository : IRepository<User>
     {
-        User GetUser(User user);
+        User GetUserByName(string name);
     }
 }

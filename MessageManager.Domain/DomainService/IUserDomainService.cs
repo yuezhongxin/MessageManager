@@ -18,16 +18,11 @@ namespace MessageManager.Domain.DomainService
     {
         #region IUserDomainService Members
         /// <summary>
-        /// 判断用户是否存在（初始化用到）
+        /// 获取用户信息
         /// </summary>
+        /// <param name="name"></param>
         /// <returns></returns>
-        bool ExistUser();
-        /// <summary>
-        /// 添加用户
-        /// </summary>
-        /// <param name="usersDTO">用户列表</param>
-        /// <returns></returns>
-        bool AddUser(IList<User> users);
+        User GetUserByName(string name);
         #endregion
     }
 }

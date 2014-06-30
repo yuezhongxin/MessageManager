@@ -29,18 +29,15 @@ namespace MessageManager.Domain.DomainService
         #endregion
 
         #region IUserDomainService Members
-        public bool ExistUser()
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public User GetUserByName(string name)
         {
-            int users = userRepository.GetCount();
-            return users == 0 ? false : true;
-        }
-        public bool AddUser(IList<User> users)
-        {
-            foreach (User user in users)
-            {
-                userRepository.Add(user);
-            }
-            return userRepository.Context.Commit();
+            return userRepository.GetUserByName(name);
+            /// to do...
         }
         #endregion
     }

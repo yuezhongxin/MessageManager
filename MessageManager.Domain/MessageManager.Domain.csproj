@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainModel\Message.cs" />
+    <Compile Include="DomainModel\MessageState.cs" />
     <Compile Include="DomainModel\User.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />

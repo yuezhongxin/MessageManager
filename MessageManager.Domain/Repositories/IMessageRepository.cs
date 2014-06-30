@@ -16,8 +16,5 @@ namespace MessageManager.Domain.Repositories
     /// </summary>
     public interface IMessageRepository : IRepository<Message>
     {
-        IEnumerable<Message> GetMessagesBySendUser(User user);
-        IEnumerable<Message> GetMessagesByReceiveUser(User user);
-        int GetNoReadCount(User user);
     }
 }

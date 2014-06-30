@@ -31,40 +31,15 @@ namespace MessageManager.Domain.DomainService
         #endregion
 
         #region IMessageDomainService Members
-        public bool DeleteMessage(Message message)
-        {
-            messageRepository.Remove(message);
-            return messageRepository.Context.Commit();
-        }
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <returns></returns>
         public bool SendMessage(Message message)
         {
-            message.LoadUserName(userRepository.GetUser(new User { Name = message.FromUserName })
-                , userRepository.GetUser(new User { Name = message.ToUserName }));
             messageRepository.Add(message);
             return messageRepository.Context.Commit();
-        }
-        public Message ShowMessage(string id,User currentUser)
-        {
-            Message message = messageRepository.GetByKey(id);
-            message.ReadMessage(userRepository.GetUser(new User { Name = currentUser.Name }));
-            messageRepository.Update(message);
-            messageRepository.Context.Commit();
-            return message;
-        }
-        public IEnumerable<Message> GetMessagesBySendUser(User user)
-        {
-            User userResult = userRepository.GetUser(user);
-            return messageRepository.GetMessagesBySendUser(userResult);
-        }
-        public IEnumerable<Message> GetMessagesByReceiveUser(User user)
-        {
-            User userResult = userRepository.GetUser(user);
-            return messageRepository.GetMessagesByReceiveUser(userResult);
-        }
-        public int GetNoReadCount(User user)
-        {
-            User userResult = userRepository.GetUser(user);
-            return messageRepository.GetNoReadCount(userResult);
         }
         #endregion
     }
