@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration;
 using MessageManager.Domain.DomainModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {
@@ -16,12 +17,6 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .IsRequired()
                 .HasMaxLength(36)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            Property(c => c.FromUserID)
-                .IsRequired()
-                .HasMaxLength(36);
-            Property(c => c.ToUserID)
-                .IsRequired()
-                .HasMaxLength(36);
             Property(c => c.Title)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -30,18 +25,15 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .HasMaxLength(2000);
             Property(c => c.SendTime)
                 .IsRequired();
-            Property(c => c.IsRead)
-                .IsRequired();
-            ToTable("Messages");
-
+            
             // Relationships
-            this.HasRequired(t => t.FromUser)
-                .WithMany(t => t.SendMessages)
-                .HasForeignKey(t => t.FromUserID)
+            HasRequired(x => x.SendUser)
+                .WithMany()
+                .Map(x => x.MapKey("SendUserID"))
                 .WillCascadeOnDelete(false);
-            this.HasRequired(t => t.ToUser)
-                .WithMany(t => t.ReceiveMessages)
-                .HasForeignKey(t => t.ToUserID)
+            HasRequired(x => x.ReceiveUser)
+                .WithMany()
+                .Map(x => x.MapKey("ReceiveUserID"))
                 .WillCascadeOnDelete(false);
         }
     }

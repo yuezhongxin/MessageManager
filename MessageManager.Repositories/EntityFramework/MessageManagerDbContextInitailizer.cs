@@ -24,6 +24,7 @@ namespace MessageManager.Repositories.EntityFramework
         public static void Initialize()
         {
             Database.SetInitializer<MessageManagerDbContext>(null);
+            //Database.SetInitializer(new DropCreateDatabaseAlways<MessageManagerDbContext>());
         }
     }
 }

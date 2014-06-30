@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.ModelConfiguration;
 using MessageManager.Domain.DomainModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {

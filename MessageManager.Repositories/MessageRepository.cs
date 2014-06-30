@@ -22,18 +22,7 @@ namespace MessageManager.Repositories
         { }
 
         #region IMessageRepository Members
-        public IEnumerable<Message> GetMessagesBySendUser(User user)
-        {
-            return FindAll(new MessageFromUserIDEqualsSpecification(user), sp => sp.SendTime, SortOrder.Descending);
-        }
-        public IEnumerable<Message> GetMessagesByReceiveUser(User user)
-        {
-            return FindAll(new MessageToUserIDEqualsSpecification(user), sp => sp.SendTime, SortOrder.Descending);
-        }
-        public int GetNoReadCount(User user)
-        {
-            return FindAll(new MessageToUserIDEqualsSpecification(user).And(new MessageNoReadSpecification())).Count();
-        }
+        
         #endregion
     }
 }

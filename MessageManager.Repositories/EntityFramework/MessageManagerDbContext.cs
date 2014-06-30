@@ -16,6 +16,7 @@ namespace MessageManager.Repositories.EntityFramework
         public MessageManagerDbContext()
             : base("MessageManagerDB")
         {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance; 
             this.Configuration.LazyLoadingEnabled = true;
         }
         #endregion
