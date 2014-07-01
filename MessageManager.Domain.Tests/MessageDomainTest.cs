@@ -4,10 +4,6 @@
 **/
 
 using MessageManager.Domain.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace MessageManager.Domain.Tests
@@ -20,7 +16,7 @@ namespace MessageManager.Domain.Tests
             User sendUser = new User("小菜");
             User receiveUser = new User("大神");
             Message message = new Message("test", "test", sendUser);
-            Assert.Equal(message.Send(receiveUser),true);
+            Assert.True(message.Send(receiveUser));
         }
 
         [Fact]
