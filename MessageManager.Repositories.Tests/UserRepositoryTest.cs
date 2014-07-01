@@ -6,11 +6,6 @@
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
 using MessageManager.Repositories.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using Xunit;
 
 namespace MessageManager.Repositories.Tests
@@ -26,6 +21,13 @@ namespace MessageManager.Repositories.Tests
             userRepository.Add(user1);
             userRepository.Add(user2);
             userRepository.Context.Commit();
+        }
+
+        [Fact]
+        public void GetUserRepository()
+        {
+            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
+            User user = userRepository.GetUserByName("大神");
         }
     }
 }

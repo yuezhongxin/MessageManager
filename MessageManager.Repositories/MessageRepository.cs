@@ -3,15 +3,9 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MessageManager.Domain.DomainModel;
-using MessageManager.Domain.Repositories.Specifications;
-using MessageManager.Domain.Specifications;
-using MessageManager.Repositories.EntityFramework;
 using MessageManager.Domain.Repositories;
+using MessageManager.Repositories.EntityFramework;
 
 namespace MessageManager.Repositories
 {
@@ -22,7 +16,6 @@ namespace MessageManager.Repositories
         { }
 
         #region IMessageRepository Members
-        
         #endregion
     }
 }

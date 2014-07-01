@@ -3,15 +3,9 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MessageManager.Domain.DomainModel;
-using MessageManager.Domain.Repositories.Specifications;
-using MessageManager.Domain.Specifications;
-using MessageManager.Repositories.EntityFramework;
 using MessageManager.Domain.Repositories;
+using MessageManager.Repositories.EntityFramework;
 
 namespace MessageManager.Repositories
 {
@@ -24,7 +18,10 @@ namespace MessageManager.Repositories
         #region IUserRepository Members
         public User GetUserByName(string name)
         {
-            return Get(new UserNameEqualsSpecification(name));
+            User user = new User(name);
+            user.ID = "ba448332-8c87-4c70-9aa8-7deaff175e86";
+            return user;
+            //return Get(new UserNameEqualsSpecification(name));
         }
         #endregion
     }
