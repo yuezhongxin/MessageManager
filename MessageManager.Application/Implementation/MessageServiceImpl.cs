@@ -3,14 +3,10 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using System;
-using System.Collections.Generic;
 using AutoMapper;
 using MessageManager.Application.DTO;
-using MessageManager.Domain;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
-using MessageManager.Domain.DomainService;
 
 namespace MessageManager.Application.Implementation
 {
@@ -20,93 +16,54 @@ namespace MessageManager.Application.Implementation
     public class MessageServiceImpl : ApplicationService, IMessageService
     {
         #region Private Fields
-        private readonly IMessageDomainService messageService;
+        private readonly IMessageRepository messageRepository;
+        private readonly IUserRepository userRepository;
         #endregion
 
         #region Ctor
         /// <summary>
         /// 初始化一个<c>MessageServiceImpl</c>类型的实例。
         /// </summary>
-        /// <param name="messageRepository">“消息”服务实例。</param>
-        public MessageServiceImpl(IMessageDomainService messageService)
+        /// <param name="context">用来初始化<c>MessageServiceImpl</c>类型的仓储上下文实例。</param>
+        /// <param name="messageRepository">“消息”仓储实例。</param>
+        /// <param name="userRepository">“用户”仓储实例。</param>
+        public MessageServiceImpl(IRepositoryContext context,
+            IMessageRepository messageRepository,
+            IUserRepository userRepository)
+            : base(context)
         {
-            this.messageService = messageService;
+            this.messageRepository = messageRepository;
+            this.userRepository = userRepository;
         }
         #endregion
 
         #region IMessageService Members
         /// <summary>
-        /// 通过发送方获取消息列表
-        /// </summary>
-        /// <param name="userDTO">发送方</param>
-        /// <returns>消息列表</returns>
-        public IEnumerable<MessageDTO> GetMessagesBySendUser(UserDTO sendUserDTO)
-        {
-            //User user = userRepository.GetUserByName(sendUserDTO.Name);
-            var messages = messageService.GetMessagesBySendUser(Mapper.Map<UserDTO, User>(sendUserDTO));
-            if (messages == null)
-                return null;
-            var ret = new List<MessageDTO>();
-            foreach (var message in messages)
-            {
-                ret.Add(Mapper.Map<Message, MessageDTO>(message));
-            }
-            return ret;
-        }
-        /// <summary>
-        /// 通过接受方获取消息列表
-        /// </summary>
-        /// <param name="userDTO">接受方</param>
-        /// <returns>消息列表</returns>
-        public IEnumerable<MessageDTO> GetMessagesByReceiveUser(UserDTO receiveUserDTO)
-        {
-            //User user = userRepository.GetUserByName(receiveUserDTO.Name);
-            var messages = messageService.GetMessagesByReceiveUser(Mapper.Map<UserDTO, User>(receiveUserDTO));
-            if (messages == null)
-                return null;
-            var ret = new List<MessageDTO>();
-            foreach (var message in messages)
-            {
-                ret.Add(Mapper.Map<Message, MessageDTO>(message));
-            }
-            return ret;
-        }
-        /// <summary>
-        /// 删除消息
-        /// </summary>
-        /// <param name="messageDTO"></param>
-        /// <returns></returns>
-        public bool DeleteMessage(MessageDTO messageDTO)
-        {
-            return messageService.DeleteMessage(Mapper.Map<MessageDTO, Message>(messageDTO));
-        }
-        /// <summary>
         /// 发送消息
         /// </summary>
-        /// <param name="messageDTO"></param>
+        /// <param name="title">消息标题</param>
+        /// <param name="content">消息内容</param>
+        /// <param name="sendUserDTO">发送人</param>
+        /// <param name="receiveUserName">接受人</param>
         /// <returns></returns>
-        public bool SendMessage(MessageDTO messageDTO)
+        public bool SendMessage(string title, string content, UserDTO sendUserDTO, string receiveUserName)
         {
-            return messageService.SendMessage(Mapper.Map<MessageDTO, Message>(messageDTO));
-        }
-        /// <summary>
-        /// 查看消息
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        public MessageDTO ShowMessage(string id, UserDTO currentUserDTO)
-        {
-            Message message = messageService.ShowMessage(id, Mapper.Map<UserDTO, User>(currentUserDTO));
-            return Mapper.Map<Message, MessageDTO>(message);
-        }
-        /// <summary>
-        /// 获取未读消息数
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public int GetNoReadCount(UserDTO userDTO)
-        {
-            return messageService.GetNoReadCount(Mapper.Map<UserDTO, User>(userDTO));
+            Message message = new Message(title, content, Mapper.Map<UserDTO, User>(sendUserDTO));
+            User receiveUser = userRepository.GetUserByName(receiveUserName);
+            if (receiveUser == null)
+            {
+                return false;
+            }
+            if (message.Send(receiveUser))
+            {
+                messageRepository.Add(message);
+                return true;
+                //return messageRepository.Context.Commit();
+            }
+            else
+            {
+                return false;
+            }
         }
         #endregion
     }

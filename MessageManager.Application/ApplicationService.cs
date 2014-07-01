@@ -1,9 +1,12 @@
-﻿using System.Linq;
+﻿/**
+* author:xishuai
+* address:https://www.github.com/yuezhongxin/MessageManager
+**/
+
 using AutoMapper;
 using MessageManager.Application.DTO;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
-using System.Configuration;
 
 namespace MessageManager.Application
 {
@@ -13,15 +16,28 @@ namespace MessageManager.Application
     public abstract class ApplicationService
     {
         #region Private Fields
+        private readonly IRepositoryContext context;
         #endregion
 
         #region Ctor
         /// <summary>
         /// 初始化一个<c>ApplicationService</c>类型的实例。
         /// </summary>
-        public ApplicationService()
+        /// <param name="context">用来初始化<c>ApplicationService</c>类型的仓储上下文实例。</param>
+        public ApplicationService(IRepositoryContext context)
         {
+            this.context = context;
             Initialize();
+        }
+        #endregion
+
+        #region Protected Properties
+        /// <summary>
+        /// 获取当前应用层服务所使用的仓储上下文实例。
+        /// </summary>
+        protected IRepositoryContext Context
+        {
+            get { return this.context; }
         }
         #endregion
 
@@ -36,20 +52,22 @@ namespace MessageManager.Application
             Mapper.CreateMap<UserDTO, User>();
             Mapper.CreateMap<MessageDTO, Message>();
             Mapper.CreateMap<User, UserDTO>();
+            Mapper.CreateMap<Message, MessageDTO>();
             Mapper.CreateMap<Message, MessageDTO>()
-                .ForMember(dest => dest.Status, opt => opt.ResolveUsing<CustomResolver>());
+                .ForMember(dest => dest.Status, opt => opt.ResolveUsing<MessageStateCustomResolver>());
         }
-        public class CustomResolver : ValueResolver<Message, string>
+        public class MessageStateCustomResolver : ValueResolver<Message, string>
         {
             protected override string ResolveCore(Message source)
             {
-                if (source.IsRead)
+                switch (source.State)
                 {
-                    return "已读";
-                }
-                else
-                {
-                    return "未读";
+                    case MessageState.NoRead:
+                        return "未读";
+                    case MessageState.Read:
+                        return "已读";
+                    default:
+                        return "未读";
                 }
             }
         }
