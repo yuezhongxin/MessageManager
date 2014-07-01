@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace MessageManager.Web
@@ -16,15 +12,20 @@ namespace MessageManager.Web
             routes.MapRoute(
                 "ShowMessageRoute",
                 "Message/Show/{id}",
-                new { controller = "Message", action = "Show", id = UrlParameter.Optional } 
+                new { controller = "Message", action = "Show", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{userName}",
-                defaults: new { controller = "Index", action = "Index", userName = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Message", action = "Compose" }
             );
-            
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{controller}/{action}/{userName}",
+            //    defaults: new { controller = "Index", action = "Index", userName = UrlParameter.Optional }
+            //);
         }
     }
 }

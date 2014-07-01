@@ -6,10 +6,6 @@
 using MessageManager.Application;
 using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MessageManager.Web.Controllers
@@ -22,91 +18,37 @@ namespace MessageManager.Web.Controllers
 
         #region 消息操作
         /// <summary>
-        /// 发件箱
-        /// </summary>
-        /// <returns></returns>
-        [UserSessionCheck]
-        public ActionResult Outbox()
-        {
-            ViewBag.UserName = Session["userName"].ToString();
-            List<MessageDTO> messages = messageServiceImpl.GetMessagesBySendUser(new UserDTO { Name = Session["userName"].ToString() }).ToList();
-            return View(messages);
-        }
-        /// <summary>
-        /// 收件箱
-        /// </summary>
-        /// <returns></returns>
-        [UserSessionCheck]
-        public ActionResult Inbox()
-        {
-            ViewBag.UserName = Session["userName"].ToString();
-            List<MessageDTO> messages = messageServiceImpl.GetMessagesByReceiveUser(new UserDTO { Name = Session["userName"].ToString() }).ToList();
-            return View(messages);
-        }
-        /// <summary>
         /// 撰写消息
         /// </summary>
         /// <returns></returns>
-        [UserSessionCheck]
+        //[UserSessionCheck]
         public ActionResult Compose()
         {
-            ViewBag.UserName = Session["userName"].ToString();
-            ViewBag.ToUserName = Session["userName"].ToString().Equals("小菜") ? "大神" : "小菜";
+            Session["CurrentUser"] = new UserDTO
+            {
+                ID = "dac488d3-d7f0-4bd8-9dcb-db7d195e94d1",
+                Name = "小菜"
+            };
+            ViewBag.UserName = (Session["CurrentUser"] as UserDTO).Name;
+            ViewBag.ToUserName = (Session["CurrentUser"] as UserDTO).Name.Equals("小菜") ? "大神" : "小菜";
             return View();
-        }
-        /// <summary>
-        /// 查看消息
-        /// </summary>
-        /// <returns></returns>
-        [UserSessionCheck]
-        public ActionResult Show(string id)
-        {
-            ViewBag.UserName = Session["userName"].ToString();
-            ViewBag.ToUserName = Session["userName"].ToString().Equals("小菜") ? "大神" : "小菜";
-            MessageDTO messages = messageServiceImpl.ShowMessage(id, new UserDTO { Name = Session["userName"].ToString() });
-            return View(messages);
         }
         /// <summary>
         /// 发送消息
         /// </summary>
         /// <returns></returns>
-        [UserSessionCheck]
+        //[UserSessionCheck]
         [HttpPost]
         public JsonResult SendMessage(string incept, string title, string content)
         {
-            MessageDTO message = new MessageDTO();
-            message.ID = Guid.NewGuid().ToString();
-            message.Title = title;
-            message.Content = content.Replace("\n", "<br />");
-            message.SendTime = DateTime.Now;
-            message.FromUserName = Session["userName"].ToString();
-            message.ToUserName = incept;
-            message.IsRead = false;
-            if (messageServiceImpl.SendMessage(message))
+            UserDTO sendUserDTO = Session["CurrentUser"] as UserDTO;
+            if (messageServiceImpl.SendMessage(title, content, sendUserDTO, incept))
             {
                 return Json(new { result = "success", content = "发送成功！" });
             }
             else
             {
                 return Json(new { result = "error", content = "发送失败！" });
-            }
-        }
-        /// <summary>
-        /// 删除消息
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        [UserSessionCheck]
-        [HttpPost]
-        public JsonResult DeleteMessage(string ID)
-        {
-            if (messageServiceImpl.DeleteMessage(new MessageDTO { ID = ID }))
-            {
-                return Json(new { result = "success", content = "删除成功！" });
-            }
-            else
-            {
-                return Json(new { result = "error", content = "删除失败！" }); 
             }
         }
         #endregion
