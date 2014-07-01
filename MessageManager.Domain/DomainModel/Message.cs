@@ -4,9 +4,6 @@
 **/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MessageManager.Domain.DomainModel
 {
@@ -19,8 +16,8 @@ namespace MessageManager.Domain.DomainModel
                 throw new ArgumentNullException();
             }
             this.ID = Guid.NewGuid().ToString();
-            this.Title=title;
-            this.Content=content;
+            this.Title = title;
+            this.Content = content;
             this.SendTime = DateTime.Now;
             this.State = MessageState.NoRead;
             this.SendUser = sendUser;
