@@ -3,12 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MessageManager.Domain.DomainService
 {
@@ -31,16 +26,6 @@ namespace MessageManager.Domain.DomainService
         #endregion
 
         #region IMessageDomainService Members
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="Message"></param>
-        /// <returns></returns>
-        public bool SendMessage(Message message)
-        {
-            messageRepository.Add(message);
-            return messageRepository.Context.Commit();
-        }
         #endregion
     }
 }

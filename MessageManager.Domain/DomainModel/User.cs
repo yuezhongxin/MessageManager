@@ -9,17 +9,19 @@ namespace MessageManager.Domain.DomainModel
 {
     public class User : IAggregateRoot
     {
-        public User(string name)
+        public User(string loginName, string displayName)
         {
-            if (name.Equals(""))
+            if (loginName.Equals("") || displayName.Equals(""))
             {
                 throw new ArgumentNullException();
             }
             this.ID = Guid.NewGuid().ToString();
-            this.Name = name;
+            this.LoginName = loginName;
+            this.DisplayName = displayName;
         }
 
         public string ID { get; set; }
-        public string Name { get; set; }
+        public string LoginName { get; set; }
+        public string DisplayName { get; set; }
     }
 }

@@ -16,10 +16,27 @@ namespace MessageManager.Repositories
         { }
 
         #region IUserRepository Members
-        public User GetUserByName(string name)
+        /// <summary>
+        /// 通过登录名获取用户
+        /// </summary>
+        /// <param name="loginName">登录名</param>
+        /// <returns></returns>
+        public User GetUserByLoginName(string loginName)
         {
-            User user = new User(name);
-            user.ID = "ba448332-8c87-4c70-9aa8-7deaff175e86";
+            User user = new User(loginName, "小菜");
+            user.ID = "07d62c85-a813-4ec7-b80f-c81d94408efa";
+            return user;
+            //return Get(new UserNameEqualsSpecification(name));
+        }
+        /// <summary>
+        /// 通过显示名获取用户
+        /// </summary>
+        /// <param name="displayName">显示名</param>
+        /// <returns></returns>
+        public User GetUserByDisplayName(string displayName)
+        {
+            User user = new User("dashen", displayName);
+            user.ID = "dba2b028-6dfe-47b6-ad30-435c53f06ca6";
             return user;
             //return Get(new UserNameEqualsSpecification(name));
         }

@@ -10,7 +10,8 @@ namespace MessageManager.Application.DTO
     {
         #region DTO成员
         public string ID { get; set; }
-        public string Name { get; set; }
+        public string LoginName { get; set; }
+        public string DisplayName { get; set; }
         #endregion
     }
 }

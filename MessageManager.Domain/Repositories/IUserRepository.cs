@@ -4,10 +4,6 @@
 **/
 
 using MessageManager.Domain.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MessageManager.Domain.Repositories
 {
@@ -16,6 +12,17 @@ namespace MessageManager.Domain.Repositories
     /// </summary>
     public interface IUserRepository : IRepository<User>
     {
-        User GetUserByName(string name);
+        /// <summary>
+        /// 通过登录名获取用户
+        /// </summary>
+        /// <param name="loginName">登录名</param>
+        /// <returns></returns>
+        User GetUserByLoginName(string loginName);
+        /// <summary>
+        /// 通过显示名获取用户
+        /// </summary>
+        /// <param name="displayName">显示名</param>
+        /// <returns></returns>
+        User GetUserByDisplayName(string displayName);
     }
 }

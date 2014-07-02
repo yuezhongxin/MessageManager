@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.ModelConfiguration;
-using MessageManager.Domain.DomainModel;
+﻿using MessageManager.Domain.DomainModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 
 namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {
@@ -21,7 +20,10 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .IsRequired()
                 .HasMaxLength(36)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            Property(c => c.Name)
+            Property(c => c.LoginName)
+                .IsRequired()
+                .HasMaxLength(20);
+            Property(c => c.DisplayName)
                 .IsRequired()
                 .HasMaxLength(20);
         }

@@ -3,8 +3,6 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using AutoMapper;
-using MessageManager.Application.DTO;
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
 
@@ -43,21 +41,26 @@ namespace MessageManager.Application.Implementation
         /// </summary>
         /// <param name="title">消息标题</param>
         /// <param name="content">消息内容</param>
-        /// <param name="sendUserDTO">发送人</param>
-        /// <param name="receiveUserName">接受人</param>
+        /// <param name="sendLoginUserName">发送人-登陆名</param>
+        /// <param name="receiveDisplayUserName">接受人-接收人</param>
         /// <returns></returns>
-        public bool SendMessage(string title, string content, UserDTO sendUserDTO, string receiveUserName)
+        public bool SendMessage(string title, string content, string sendLoginUserName, string receiveDisplayUserName)
         {
-            Message message = new Message(title, content, Mapper.Map<UserDTO, User>(sendUserDTO));
-            User receiveUser = userRepository.GetUserByName(receiveUserName);
+            User sendUser = userRepository.GetUserByLoginName(sendLoginUserName);
+            if (sendUser == null)
+            {
+                return false;
+            }
+            Message message = new Message(title, content, sendUser);
+            User receiveUser = userRepository.GetUserByDisplayName(receiveDisplayUserName);
             if (receiveUser == null)
             {
                 return false;
             }
             if (message.Send(receiveUser))
             {
-                messageRepository.Add(message);
                 return true;
+                //messageRepository.Add(message);
                 //return messageRepository.Context.Commit();
             }
             else

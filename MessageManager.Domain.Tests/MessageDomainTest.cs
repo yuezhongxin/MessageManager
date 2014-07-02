@@ -11,16 +11,16 @@ namespace MessageManager.Domain.Tests
     public class MessageDomainTest
     {
         [Fact]
-        public void SendMessageTest()
+        public void DomainTest_SendMessage()
         {
-            User sendUser = new User("小菜");
-            User receiveUser = new User("大神");
+            User sendUser = new User("xiaocai", "小菜");
             Message message = new Message("test", "test", sendUser);
+            User receiveUser = new User("dashen", "大神");
             Assert.True(message.Send(receiveUser));
         }
 
         [Fact]
-        public Message ReadMessageTest()
+        public Message DomainTest_ReadMessage()
         {
             return null;
         }

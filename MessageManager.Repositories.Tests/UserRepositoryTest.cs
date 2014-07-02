@@ -13,21 +13,27 @@ namespace MessageManager.Repositories.Tests
     public class UserRepositoryTest
     {
         [Fact]
-        public void AddUserRepository()
+        public void RepositoryTest_AddUserRepository()
         {
             IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user1 = new User("小菜");
-            User user2 = new User("大神");
+            User user1 = new User("xiaocai", "小菜");
+            User user2 = new User("dashen", "大神");
             userRepository.Add(user1);
             userRepository.Add(user2);
             userRepository.Context.Commit();
         }
 
         [Fact]
-        public void GetUserRepository()
+        public void RepositoryTest_GetUserByLoginName()
         {
             IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user = userRepository.GetUserByName("大神");
+            User user = userRepository.GetUserByLoginName("xiaocai");
+        }
+        [Fact]
+        public void RepositoryTest_GetUserByDisplayName()
+        {
+            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
+            User user = userRepository.GetUserByDisplayName("大神");
         }
     }
 }

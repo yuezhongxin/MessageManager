@@ -3,11 +3,6 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Domain.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MessageManager.Domain.DomainService
 {
@@ -17,12 +12,6 @@ namespace MessageManager.Domain.DomainService
     public interface IMessageDomainService
     {
         #region IMessageDomainService Members
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        /// <param name="Message"></param>
-        /// <returns></returns>
-        bool SendMessage(Message message);
         #endregion
     }
 }

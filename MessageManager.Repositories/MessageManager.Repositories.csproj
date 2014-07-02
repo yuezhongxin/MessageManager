@@ -57,8 +57,9 @@
     <Compile Include="EntityFramework\ModelConfigurations\UserConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\MessageConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specifications\User\UserNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\User\UserLoginNameEqualsSpecification.cs" />
     <Compile Include="Specifications\User\UserStringEqualsSpecification.cs" />
+    <Compile Include="Specifications\User\UserDisplayNameEqualsSpecification.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

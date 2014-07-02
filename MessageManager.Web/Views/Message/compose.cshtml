@@ -74,7 +74,7 @@
                                 <tr>
                                     <td align="right" valign="top" class="stitle_green" width="60px">收件人: </td>
                                     <td valign="top">
-                                        <input name="txtIncept" type="text" maxlength="90" id="txtIncept" class="text_fixedsys" style="width: 300px" disabled="disabled" value="@ViewBag.ToUserName" /></td>
+                                        <input name="txtIncept" type="text" maxlength="90" id="txtIncept" class="text_fixedsys" style="width: 300px" disabled="disabled" value="@ViewBag.ReceiveDisplayUserName" /></td>
                                 </tr>
                                 <tr>
                                     <td align="right" valign="top" class="stitle_green">主题: </td>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div id="sideright">
-                > 当前用户：@ViewBag.UserName （<a href="/../index/index">选择用户</a>）<br />
+                > 当前用户：@ViewBag.DisplayUserName （<a href="/../index/index">选择用户</a>）<br />
                 <br />
                 > <a href="/message/compose" class="big blue">撰写新短信</a><br />
                 <br>

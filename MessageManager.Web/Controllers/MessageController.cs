@@ -4,8 +4,8 @@
 **/
 
 using MessageManager.Application;
-using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MessageManager.Web.Controllers
@@ -24,13 +24,10 @@ namespace MessageManager.Web.Controllers
         //[UserSessionCheck]
         public ActionResult Compose()
         {
-            Session["CurrentUser"] = new UserDTO
-            {
-                ID = "dac488d3-d7f0-4bd8-9dcb-db7d195e94d1",
-                Name = "小菜"
-            };
-            ViewBag.UserName = (Session["CurrentUser"] as UserDTO).Name;
-            ViewBag.ToUserName = (Session["CurrentUser"] as UserDTO).Name.Equals("小菜") ? "大神" : "小菜";
+            HttpCookie userCookie = new HttpCookie("LoginUserNameKey", "xiaocai");
+            Response.Cookies.Add(userCookie);
+            ViewBag.DisplayUserName = "小菜";
+            ViewBag.ReceiveDisplayUserName = "大神";
             return View();
         }
         /// <summary>
@@ -41,8 +38,7 @@ namespace MessageManager.Web.Controllers
         [HttpPost]
         public JsonResult SendMessage(string incept, string title, string content)
         {
-            UserDTO sendUserDTO = Session["CurrentUser"] as UserDTO;
-            if (messageServiceImpl.SendMessage(title, content, sendUserDTO, incept))
+            if (messageServiceImpl.SendMessage(title, content, Request.Cookies["LoginUserNameKey"].Value, incept))
             {
                 return Json(new { result = "success", content = "发送成功！" });
             }
