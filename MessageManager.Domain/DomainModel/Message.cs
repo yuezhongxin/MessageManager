@@ -3,6 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
+using MessageManager.Infrastructure;
 using System;
 
 namespace MessageManager.Domain.DomainModel
@@ -11,9 +12,17 @@ namespace MessageManager.Domain.DomainModel
     {
         public Message(string title, string content, User sendUser)
         {
-            if (title.Equals("") || content.Equals("") || sendUser == null)
+            if (title.Equals(""))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException("title can't be null");
+            }
+            if (content.Equals(""))
+            {
+                throw new ArgumentException("content can't be null");
+            }
+            if (sendUser == null)
+            {
+                throw new ArgumentException("sendUser can't be null");
             }
             this.ID = Guid.NewGuid().ToString();
             this.Title = title;
@@ -30,24 +39,24 @@ namespace MessageManager.Domain.DomainModel
         public virtual User SendUser { get; set; }
         public virtual User ReceiveUser { get; set; }
 
-        public bool Send(User receiveUser)
+        public OperationResponse Send(User receiveUser)
         {
             if (receiveUser == null)
             {
-                throw new ArgumentNullException();
+                return OperationResponse.Error("收件人规则验证失败");
             }
             this.ReceiveUser = receiveUser;
-            return true;
+            return OperationResponse.Success("发送消息成功");
             ///to do...
         }
 
-        public Message Read(User readUser)
-        {
-            if (readUser.Equals(this.ReceiveUser) && this.State == MessageState.NoRead)
-            {
-                this.State = MessageState.Read;
-            }
-            return this;
-        }
+        //public Message Read(User readUser)
+        //{
+        //    if (readUser.Equals(this.ReceiveUser) && this.State == MessageState.NoRead)
+        //    {
+        //        this.State = MessageState.Read;
+        //    }
+        //    return this;
+        //}
     }
 }

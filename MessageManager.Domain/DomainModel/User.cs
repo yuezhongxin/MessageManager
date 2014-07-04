@@ -11,9 +11,13 @@ namespace MessageManager.Domain.DomainModel
     {
         public User(string loginName, string displayName)
         {
-            if (loginName.Equals("") || displayName.Equals(""))
+            if (loginName.Equals(""))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException("loginName can't be null");
+            }
+            if (displayName.Equals(""))
+            {
+                throw new ArgumentException("displayName can't be null");
             }
             this.ID = Guid.NewGuid().ToString();
             this.LoginName = loginName;

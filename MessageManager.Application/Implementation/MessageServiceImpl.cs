@@ -5,6 +5,7 @@
 
 using MessageManager.Domain.DomainModel;
 using MessageManager.Domain.Repositories;
+using MessageManager.Infrastructure;
 
 namespace MessageManager.Application.Implementation
 {
@@ -41,31 +42,32 @@ namespace MessageManager.Application.Implementation
         /// </summary>
         /// <param name="title">消息标题</param>
         /// <param name="content">消息内容</param>
-        /// <param name="sendLoginUserName">发送人-登陆名</param>
-        /// <param name="receiveDisplayUserName">接受人-接收人</param>
+        /// <param name="receiver">发件人-登陆名</param>
+        /// <param name="receiver">收件人-显示名</param>
         /// <returns></returns>
-        public bool SendMessage(string title, string content, string sendLoginUserName, string receiveDisplayUserName)
+        public OperationResponse SendMessage(string title, string content, string sender, string receiver)
         {
-            User sendUser = userRepository.GetUserByLoginName(sendLoginUserName);
+            User sendUser = userRepository.GetUserByLoginName(sender);
             if (sendUser == null)
             {
-                return false;
+                return OperationResponse.Error("未获取到发件人信息");
             }
             Message message = new Message(title, content, sendUser);
-            User receiveUser = userRepository.GetUserByDisplayName(receiveDisplayUserName);
+            User receiveUser = userRepository.GetUserByDisplayName(receiver);
             if (receiveUser == null)
             {
-                return false;
+                return OperationResponse.Error("未获取到收件人信息");
             }
-            if (message.Send(receiveUser))
+            OperationResponse sendResult = message.Send(receiveUser);
+            if (sendResult.IsSuccess)
             {
-                return true;
+                return OperationResponse.Success("发送消息成功");
                 //messageRepository.Add(message);
                 //return messageRepository.Context.Commit();
             }
             else
             {
-                return false;
+                return sendResult;
             }
         }
         #endregion

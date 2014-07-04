@@ -4,8 +4,8 @@
 **/
 
 using MessageManager.Application;
+using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MessageManager.Web.Controllers
@@ -14,6 +14,7 @@ namespace MessageManager.Web.Controllers
     {
         #region 应用层服务接口
         private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
+        private readonly IUserService userServiceImpl = ServiceLocator.Instance.GetService<IUserService>();
         #endregion
 
         #region 消息操作
@@ -24,11 +25,8 @@ namespace MessageManager.Web.Controllers
         //[UserSessionCheck]
         public ActionResult Compose()
         {
-            HttpCookie userCookie = new HttpCookie("LoginUserNameKey", "xiaocai");
-            Response.Cookies.Add(userCookie);
-            ViewBag.DisplayUserName = "小菜";
-            ViewBag.ReceiveDisplayUserName = "大神";
-            return View();
+            UserDTO sendUser = userServiceImpl.GetUserByLoginName("xiaocai");
+            return View(sendUser);
         }
         /// <summary>
         /// 发送消息
@@ -38,13 +36,14 @@ namespace MessageManager.Web.Controllers
         [HttpPost]
         public JsonResult SendMessage(string incept, string title, string content)
         {
-            if (messageServiceImpl.SendMessage(title, content, Request.Cookies["LoginUserNameKey"].Value, incept))
+            OperationResponse sendResult = messageServiceImpl.SendMessage(title, content, Request.Cookies["LoginUserNameKey"].Value, incept);
+            if (sendResult.IsSuccess)
             {
-                return Json(new { result = "success", content = "发送成功！" });
+                return Json(new { result = "success", content = sendResult.Message });
             }
             else
             {
-                return Json(new { result = "error", content = "发送失败！" });
+                return Json(new { result = "error", content = sendResult.Message });
             }
         }
         #endregion

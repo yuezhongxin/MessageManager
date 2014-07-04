@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="DisposableObject.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="OperationResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
   </ItemGroup>

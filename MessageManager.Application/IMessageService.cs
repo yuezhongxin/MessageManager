@@ -3,7 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-
+using MessageManager.Infrastructure;
 namespace MessageManager.Application
 {
     /// <summary>
@@ -17,10 +17,10 @@ namespace MessageManager.Application
         /// </summary>
         /// <param name="title">消息标题</param>
         /// <param name="content">消息内容</param>
-        /// <param name="sendLoginUserName">发送人-登陆名</param>
-        /// <param name="receiveDisplayUserName">接受人-接收人</param>
+        /// <param name="receiver">发件人-登陆名</param>
+        /// <param name="receiver">收件人-显示名</param>
         /// <returns></returns>
-        bool SendMessage(string title, string content, string sendLoginUserName, string receiveDisplayUserName);
+        OperationResponse SendMessage(string title, string content, string sender, string receiver);
         #endregion
     }
 }
