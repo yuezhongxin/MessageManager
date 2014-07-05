@@ -1,4 +1,4 @@
-﻿using MessageManager.Domain.DomainModel;
+﻿using MessageManager.Domain.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 

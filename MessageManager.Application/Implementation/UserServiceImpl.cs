@@ -5,7 +5,7 @@
 
 using AutoMapper;
 using MessageManager.Application.DTO;
-using MessageManager.Domain.DomainModel;
+using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
 
 namespace MessageManager.Application.Implementation

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MessageManager.Domain.DomainModel;
+using MessageManager.Domain.Entity;
 using MessageManager.Domain.Specifications;
 
 namespace MessageManager.Domain.Repositories.Specifications

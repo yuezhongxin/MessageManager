@@ -3,10 +3,11 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
+using MessageManager.Domain.ValueObject;
 using MessageManager.Infrastructure;
 using System;
 
-namespace MessageManager.Domain.DomainModel
+namespace MessageManager.Domain.Entity
 {
     public class Message : IAggregateRoot
     {

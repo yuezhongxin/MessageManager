@@ -5,7 +5,7 @@
 
 using System;
 
-namespace MessageManager.Domain.DomainModel
+namespace MessageManager.Domain.Entity
 {
     public class User : IAggregateRoot
     {

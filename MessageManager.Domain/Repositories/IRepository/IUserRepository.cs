@@ -3,8 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Domain.DomainModel;
-
+using MessageManager.Domain.Entity;
 namespace MessageManager.Domain.Repositories
 {
     /// <summary>

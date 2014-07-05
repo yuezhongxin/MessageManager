@@ -4,7 +4,7 @@
 **/
 
 
-namespace MessageManager.Domain.DomainModel
+namespace MessageManager.Domain.ValueObject
 {
     public enum MessageState
     {

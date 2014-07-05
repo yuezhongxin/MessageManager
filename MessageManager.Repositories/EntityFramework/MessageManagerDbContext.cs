@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using MessageManager.Domain.DomainModel;
+using MessageManager.Domain.Entity;
 using MessageManager.Repositories.EntityFramework.ModelConfigurations;
 
 namespace MessageManager.Repositories.EntityFramework

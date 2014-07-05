@@ -39,9 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainModel\Message.cs" />
-    <Compile Include="DomainModel\MessageState.cs" />
-    <Compile Include="DomainModel\User.cs" />
+    <Compile Include="Entity\Message.cs" />
+    <Compile Include="ValueObject\MessageState.cs" />
+    <Compile Include="Entity\User.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

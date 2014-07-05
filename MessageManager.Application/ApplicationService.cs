@@ -5,8 +5,9 @@
 
 using AutoMapper;
 using MessageManager.Application.DTO;
-using MessageManager.Domain.DomainModel;
+using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
+using MessageManager.Domain.ValueObject;
 
 namespace MessageManager.Application
 {
