@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\SessionCheck.cs" />
@@ -164,9 +165,17 @@
       <Project>{d45bf779-47e5-46b7-a481-df0d93d78833}</Project>
       <Name>MessageManager.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Domain\MessageManager.Domain.csproj">
+      <Project>{4f16815a-e9bb-4abc-b477-0437a151f513}</Project>
+      <Name>MessageManager.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageManager.Infrastructure\MessageManager.Infrastructure.csproj">
       <Project>{49c2af9e-c6aa-4013-ac65-adb303104661}</Project>
       <Name>MessageManager.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Repositories\MessageManager.Repositories.csproj">
+      <Project>{43b71851-61d1-4f51-bb9a-1f53405a4378}</Project>
+      <Name>MessageManager.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +213,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>1556</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:9151/</IISUrl>
+          <IISUrl>http://localhost:9152/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

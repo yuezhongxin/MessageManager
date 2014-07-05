@@ -21,7 +21,7 @@ namespace MessageManager.Infrastructure
         private static readonly ServiceLocator instance = new ServiceLocator();
         #endregion
 
-        #region Ctors
+            #region Ctors
         /// <summary>
         /// Initializes a new instance of <c>ServiceLocator</c> class.
         /// </summary>

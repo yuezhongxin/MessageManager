@@ -12,11 +12,11 @@ namespace MessageManager.Domain.DomainModel
     {
         public Message(string title, string content, User sendUser)
         {
-            if (title.Equals(""))
+            if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentException("title can't be null");
             }
-            if (content.Equals(""))
+            if (string.IsNullOrEmpty(content))
             {
                 throw new ArgumentException("content can't be null");
             }

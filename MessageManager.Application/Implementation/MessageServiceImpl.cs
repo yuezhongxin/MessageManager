@@ -42,18 +42,18 @@ namespace MessageManager.Application.Implementation
         /// </summary>
         /// <param name="title">消息标题</param>
         /// <param name="content">消息内容</param>
-        /// <param name="receiver">发件人-登陆名</param>
-        /// <param name="receiver">收件人-显示名</param>
+        /// <param name="senderLoginName">发件人-登陆名</param>
+        /// <param name="receiverDisplayName">收件人-显示名</param>
         /// <returns></returns>
-        public OperationResponse SendMessage(string title, string content, string sender, string receiver)
+        public OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
         {
-            User sendUser = userRepository.GetUserByLoginName(sender);
+            User sendUser = userRepository.GetUserByLoginName(senderLoginName);
             if (sendUser == null)
             {
                 return OperationResponse.Error("未获取到发件人信息");
             }
             Message message = new Message(title, content, sendUser);
-            User receiveUser = userRepository.GetUserByDisplayName(receiver);
+            User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
             if (receiveUser == null)
             {
                 return OperationResponse.Error("未获取到收件人信息");

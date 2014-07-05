@@ -11,11 +11,11 @@ namespace MessageManager.Domain.DomainModel
     {
         public User(string loginName, string displayName)
         {
-            if (loginName.Equals(""))
+            if (string.IsNullOrEmpty(loginName))
             {
                 throw new ArgumentException("loginName can't be null");
             }
-            if (displayName.Equals(""))
+            if (string.IsNullOrEmpty(displayName))
             {
                 throw new ArgumentException("displayName can't be null");
             }

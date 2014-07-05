@@ -18,25 +18,25 @@ namespace MessageManager.Web.Controllers
         #endregion
 
         #region 消息操作
-        /// <summary>
+        // <summary>
         /// 撰写消息
         /// </summary>
         /// <returns></returns>
-        //[UserSessionCheck]
+        [Authorize]
         public ActionResult Compose()
         {
-            UserDTO sendUser = userServiceImpl.GetUserByLoginName("xiaocai");
+            UserDTO sendUser = userServiceImpl.GetUserByLoginName(User.Identity.Name);
             return View(sendUser);
         }
         /// <summary>
         /// 发送消息
         /// </summary>
         /// <returns></returns>
-        //[UserSessionCheck]
+        [Authorize]
         [HttpPost]
         public JsonResult SendMessage(string incept, string title, string content)
         {
-            OperationResponse sendResult = messageServiceImpl.SendMessage(title, content, Request.Cookies["LoginUserNameKey"].Value, incept);
+            OperationResponse sendResult = messageServiceImpl.SendMessage(title, content, User.Identity.Name, incept);
             if (sendResult.IsSuccess)
             {
                 return Json(new { result = "success", content = sendResult.Message });
