@@ -3,6 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
+using MessageManager.Domain.DomainService;
 using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
 using MessageManager.Infrastructure;
@@ -52,22 +53,22 @@ namespace MessageManager.Application.Implementation
             {
                 return OperationResponse.Error("未获取到发件人信息");
             }
-            Message message = new Message(title, content, sendUser);
             User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
             if (receiveUser == null)
             {
                 return OperationResponse.Error("未获取到收件人信息");
             }
-            OperationResponse sendResult = message.Send(receiveUser);
-            if (sendResult.IsSuccess)
+            Message message = new Message(title, content, sendUser, receiveUser);
+            OperationResponse<Message> serviceResult = SendMessageService.SendMessage(message);
+            if (serviceResult.IsSuccess)
             {
-                return OperationResponse.Success("发送消息成功");
+                return serviceResult.GetOperationResponse();
                 //messageRepository.Add(message);
                 //return messageRepository.Context.Commit();
             }
             else
             {
-                return sendResult;
+                return serviceResult.GetOperationResponse();
             }
         }
         #endregion

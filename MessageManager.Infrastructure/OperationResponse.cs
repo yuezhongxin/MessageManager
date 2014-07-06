@@ -25,6 +25,13 @@ namespace MessageManager.Infrastructure
             this.Message = message;
         }
 
+        public OperationResponse(bool isSuccess, string message, T data)
+        {
+            this.IsSuccess = isSuccess;
+            this.Message = message;
+            this.Data = data;
+        }
+
         public OperationResponse(Exception ex)
         {
             this.IsSuccess = false;
@@ -41,6 +48,11 @@ namespace MessageManager.Infrastructure
         {
             this.Message = msg;
             return this;
+        }
+
+        public OperationResponse GetOperationResponse()
+        {
+            return new OperationResponse(IsSuccess, Id, Message);
         }
 
         public T Data { get; set; }
@@ -77,6 +89,7 @@ namespace MessageManager.Infrastructure
             this.IsSuccess = false;
             this.Message = msg;
         }
+
 
         public static OperationResponse Error(string msg)
         {

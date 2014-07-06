@@ -4,6 +4,7 @@
 **/
 
 using System;
+using System.Collections.Generic;
 
 namespace MessageManager.Domain.Entity
 {
@@ -22,10 +23,14 @@ namespace MessageManager.Domain.Entity
             this.ID = Guid.NewGuid().ToString();
             this.LoginName = loginName;
             this.DisplayName = displayName;
+            this.SendMessages = new List<Message>();
+            this.ReceiveMessages = new List<Message>();
         }
 
-        public string ID { get; set; }
-        public string LoginName { get; set; }
-        public string DisplayName { get; set; }
+        public string ID { get; private set; }
+        public string LoginName { get; private set; }
+        public string DisplayName { get; private set; }
+        public virtual ICollection<Message> SendMessages { get; set; }
+        public virtual ICollection<Message> ReceiveMessages { get; set; }
     }
 }

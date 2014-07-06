@@ -52,10 +52,7 @@
     <Compile Include="Repositories\RepositoryContext.cs" />
     <Compile Include="Repositories\SortOrder.cs" />
     <Compile Include="Repositories\IRepository\IUserRepository.cs" />
-    <Compile Include="DomainService\IMessageDomainService.cs" />
-    <Compile Include="DomainService\MessageDomainService.cs" />
-    <Compile Include="DomainService\UserDomainService.cs" />
-    <Compile Include="DomainService\IUserDomainService.cs" />
+    <Compile Include="DomainService\SendMessageService.cs" />
     <Compile Include="Specifications\AndNotSpecification.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
     <Compile Include="Specifications\AnySpecification.cs" />
