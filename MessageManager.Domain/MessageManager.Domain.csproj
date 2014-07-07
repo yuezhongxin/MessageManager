@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainService\ReadMessageService.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
     <Compile Include="Entity\User.cs" />
@@ -52,7 +53,7 @@
     <Compile Include="Repositories\RepositoryContext.cs" />
     <Compile Include="Repositories\SortOrder.cs" />
     <Compile Include="Repositories\IRepository\IUserRepository.cs" />
-    <Compile Include="DomainService\SendMessageService.cs" />
+    <Compile Include="DomainService\VerifyMessageService.cs" />
     <Compile Include="Specifications\AndNotSpecification.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
     <Compile Include="Specifications\AnySpecification.cs" />

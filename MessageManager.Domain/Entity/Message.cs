@@ -36,6 +36,10 @@ namespace MessageManager.Domain.Entity
             {
                 throw new ArgumentException("receiveUser can't be null");
             }
+            if (sendUser == receiveUser)
+            {
+                throw new ArgumentException("发件人和收件人不能为同一人");
+            }
             this.ID = Guid.NewGuid().ToString();
             this.Title = title;
             this.Content = content;
@@ -48,7 +52,7 @@ namespace MessageManager.Domain.Entity
         public string Title { get; private set; }
         public string Content { get; private set; }
         public DateTime SendTime { get; private set; }
-        public MessageState State { get; private set; }
+        public MessageState State { get; set; }
         public virtual User SendUser { get; private set; }
         public virtual User ReceiveUser { get; private set; }
 

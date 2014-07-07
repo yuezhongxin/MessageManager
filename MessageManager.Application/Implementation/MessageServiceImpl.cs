@@ -3,6 +3,8 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
+using AutoMapper;
+using MessageManager.Application.DTO;
 using MessageManager.Domain.DomainService;
 using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
@@ -59,7 +61,72 @@ namespace MessageManager.Application.Implementation
                 return OperationResponse.Error("未获取到收件人信息");
             }
             Message message = new Message(title, content, sendUser, receiveUser);
-            OperationResponse<Message> serviceResult = SendMessageService.SendMessage(message);
+            OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
+            if (serviceResult.IsSuccess)
+            {
+                return serviceResult.GetOperationResponse();
+                //messageRepository.Add(message);
+                //return messageRepository.Context.Commit();
+            }
+            else
+            {
+                return serviceResult.GetOperationResponse();
+            }
+        }
+
+        /// <summary>
+        /// 阅读消息
+        /// </summary>
+        /// <param name="messageId">消息唯一标示</param>
+        /// <param name="readerLoginName">阅读人-登陆名</param>
+        /// <returns></returns>
+        public OperationResponse<MessageDTO> ReadMessage(string messageId, string readerLoginName)
+        {
+            User readUser = userRepository.GetUserByLoginName(readerLoginName);
+            if (readUser == null)
+            {
+                return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
+            }
+            Message message = messageRepository.GetByKey(messageId);
+            if (message == null)
+            {
+                return new OperationResponse<MessageDTO>(false, "未获取到消息");
+            }
+            OperationResponse<Message> serviceResult = ReadMessageService.ReadMessage(message, readUser);
+            if (serviceResult.IsSuccess)
+            {
+                //messageRepository.Update(message);
+                //messageRepository.Context.Commit();
+                return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message, Mapper.Map<Message, MessageDTO>(message));
+            }
+            else
+            {
+                return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message);
+            }
+        }
+
+        /// <summary>
+        /// 回复消息
+        /// </summary>
+        /// <param name="messageId">消息唯一标示</param>
+        /// <param name="title">消息标题</param>
+        /// <param name="content">消息内容</param>
+        /// <param name="replierLoginName">回复人-登陆名</param>
+        /// <returns></returns>
+        public OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName)
+        {
+            Message message = messageRepository.GetByKey(messageId);
+            if (message == null)
+            {
+                return new OperationResponse(false, "未获取到消息");
+            }
+            User replyUser = userRepository.GetUserByLoginName(replierLoginName);
+            if (replyUser == null)
+            {
+                return OperationResponse.Error("未获取到回复人信息");
+            }
+            Message replyMessage = new Message(title, content, replyUser, message.SendUser);
+            OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
             if (serviceResult.IsSuccess)
             {
                 return serviceResult.GetOperationResponse();
