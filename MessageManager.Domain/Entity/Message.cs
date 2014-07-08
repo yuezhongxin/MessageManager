@@ -55,25 +55,5 @@ namespace MessageManager.Domain.Entity
         public MessageState State { get; set; }
         public virtual User SendUser { get; private set; }
         public virtual User ReceiveUser { get; private set; }
-
-        //public OperationResponse Send(User receiveUser)
-        //{
-        //    if (receiveUser == null)
-        //    {
-        //        return OperationResponse.Error("收件人规则验证失败");
-        //    }
-        //    this.ReceiveUser = receiveUser;
-        //    return OperationResponse.Success("发送消息成功");
-        //    ///to do...
-        //}
-
-        //public Message Read(User readUser)
-        //{
-        //    if (readUser.Equals(this.ReceiveUser) && this.State == MessageState.NoRead)
-        //    {
-        //        this.State = MessageState.Read;
-        //    }
-        //    return this;
-        //}
     }
 }

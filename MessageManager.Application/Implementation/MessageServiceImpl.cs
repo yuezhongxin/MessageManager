@@ -3,10 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using AutoMapper;
 using MessageManager.Application.DTO;
-using MessageManager.Domain.DomainService;
-using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
 using MessageManager.Infrastructure;
 
@@ -50,28 +47,29 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
         {
-            User sendUser = userRepository.GetUserByLoginName(senderLoginName);
-            if (sendUser == null)
-            {
-                return OperationResponse.Error("未获取到发件人信息");
-            }
-            User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
-            if (receiveUser == null)
-            {
-                return OperationResponse.Error("未获取到收件人信息");
-            }
-            Message message = new Message(title, content, sendUser, receiveUser);
-            OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
-            if (serviceResult.IsSuccess)
-            {
-                return serviceResult.GetOperationResponse();
-                //messageRepository.Add(message);
-                //return messageRepository.Context.Commit();
-            }
-            else
-            {
-                return serviceResult.GetOperationResponse();
-            }
+            //User sendUser = userRepository.GetUserByLoginName(senderLoginName);
+            //if (sendUser == null)
+            //{
+            //    return OperationResponse.Error("未获取到发件人信息");
+            //}
+            //User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
+            //if (receiveUser == null)
+            //{
+            //    return OperationResponse.Error("未获取到收件人信息");
+            //}
+            //Message message = new Message(title, content, sendUser, receiveUser);
+            //OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
+            //if (serviceResult.IsSuccess)
+            //{
+            //    return serviceResult.GetOperationResponse();
+            //    //messageRepository.Add(message);
+            //    //return messageRepository.Context.Commit();
+            //}
+            //else
+            //{
+            //    return serviceResult.GetOperationResponse();
+            //}
+            return null;
         }
 
         /// <summary>
@@ -82,27 +80,28 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public OperationResponse<MessageDTO> ReadMessage(string messageId, string readerLoginName)
         {
-            User readUser = userRepository.GetUserByLoginName(readerLoginName);
-            if (readUser == null)
-            {
-                return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
-            }
-            Message message = messageRepository.GetByKey(messageId);
-            if (message == null)
-            {
-                return new OperationResponse<MessageDTO>(false, "未获取到消息");
-            }
-            OperationResponse<Message> serviceResult = ReadMessageService.ReadMessage(message, readUser);
-            if (serviceResult.IsSuccess)
-            {
-                //messageRepository.Update(message);
-                //messageRepository.Context.Commit();
-                return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message, Mapper.Map<Message, MessageDTO>(message));
-            }
-            else
-            {
-                return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message);
-            }
+            //User readUser = userRepository.GetUserByLoginName(readerLoginName);
+            //if (readUser == null)
+            //{
+            //    return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
+            //}
+            //Message message = messageRepository.GetByKey(messageId);
+            //if (message == null)
+            //{
+            //    return new OperationResponse<MessageDTO>(false, "未获取到消息");
+            //}
+            //OperationResponse<Message> serviceResult = ReadMessageService.ReadMessage(message, readUser);
+            //if (serviceResult.IsSuccess)
+            //{
+            //    //messageRepository.Update(message);
+            //    //messageRepository.Context.Commit();
+            //    return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message, Mapper.Map<Message, MessageDTO>(message));
+            //}
+            //else
+            //{
+            //    return new OperationResponse<MessageDTO>(serviceResult.IsSuccess, serviceResult.Message);
+            //}
+            return null;
         }
 
         /// <summary>
@@ -115,28 +114,29 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName)
         {
-            Message message = messageRepository.GetByKey(messageId);
-            if (message == null)
-            {
-                return new OperationResponse(false, "未获取到消息");
-            }
-            User replyUser = userRepository.GetUserByLoginName(replierLoginName);
-            if (replyUser == null)
-            {
-                return OperationResponse.Error("未获取到回复人信息");
-            }
-            Message replyMessage = new Message(title, content, replyUser, message.SendUser);
-            OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
-            if (serviceResult.IsSuccess)
-            {
-                return serviceResult.GetOperationResponse();
-                //messageRepository.Add(message);
-                //return messageRepository.Context.Commit();
-            }
-            else
-            {
-                return serviceResult.GetOperationResponse();
-            }
+            //Message message = messageRepository.GetByKey(messageId);
+            //if (message == null)
+            //{
+            //    return new OperationResponse(false, "未获取到消息");
+            //}
+            //User replyUser = userRepository.GetUserByLoginName(replierLoginName);
+            //if (replyUser == null)
+            //{
+            //    return OperationResponse.Error("未获取到回复人信息");
+            //}
+            //Message replyMessage = new Message(title, content, replyUser, message.SendUser);
+            //OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
+            //if (serviceResult.IsSuccess)
+            //{
+            //    return serviceResult.GetOperationResponse();
+            //    //messageRepository.Add(message);
+            //    //return messageRepository.Context.Commit();
+            //}
+            //else
+            //{
+            //    return serviceResult.GetOperationResponse();
+            //}
+            return null;
         }
         #endregion
     }

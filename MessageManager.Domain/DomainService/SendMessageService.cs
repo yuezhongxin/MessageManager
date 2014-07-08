@@ -12,9 +12,9 @@ namespace MessageManager.Domain.DomainService
     /// <summary>
     /// SendMessage领域服务实现
     /// </summary>
-    public class VerifyMessageService
+    public class SendMessageService
     {
-        public static OperationResponse<Message> VerifyMessage(Message message)
+        public static OperationResponse<Message> SendMessage(Message message)
         {
             //示例业务规则，对象导航关联访问需要探讨
             if (message.SendUser.SendMessages.Where(m => m.SendTime.Date == DateTime.Now.Date).Count() > 200)
