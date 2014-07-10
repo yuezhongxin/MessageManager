@@ -4,9 +4,8 @@
 **/
 
 using MessageManager.Domain.Entity;
-using MessageManager.Infrastructure;
+using MessageManager.Domain.Repositories;
 using System;
-using System.Linq;
 namespace MessageManager.Domain.DomainService
 {
     /// <summary>
@@ -14,19 +13,38 @@ namespace MessageManager.Domain.DomainService
     /// </summary>
     public class SendMessageService
     {
-        public static OperationResponse<Message> SendMessage(Message message)
+        #region Private Fields
+        private readonly IMessageRepository messageRepository;
+        private readonly IUserRepository userRepository;
+        #endregion
+
+        #region Ctor
+        public SendMessageService(IMessageRepository messageRepository, IUserRepository userRepository)
         {
-            //示例业务规则，对象导航关联访问需要探讨
-            if (message.SendUser.SendMessages.Where(m => m.SendTime.Date == DateTime.Now.Date).Count() > 200)
+            this.messageRepository = messageRepository;
+            this.userRepository = userRepository;
+        }
+        #endregion
+
+        public Message SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
+        {
+            User sendUser = userRepository.GetUserByLoginName(senderLoginName);
+            if (sendUser == null)
             {
-                return new OperationResponse<Message>(false, "发件人一天之内只能发送200个短消息");
+                throw new Exception("发送失败，未获取到发件人信息");
             }
-            if (message.SendUser.SendMessages.Where(m => m.SendTime.Date == DateTime.Now.Date && m.ReceiveUser == message.ReceiveUser).Count() > 50)
+            User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
+            if (receiveUser == null)
             {
-                return new OperationResponse<Message>(false, "发件人一天之内只能和同一人发送50个短消息");
+                throw new Exception("发送失败，未获取到收件人信息");
             }
-            //to do...
-            return new OperationResponse<Message>(true, "发送消息成功", message);
+            Message message = new Message(title, content, sendUser, receiveUser);
+            if (messageRepository.GetMessageCount(sendUser, DateTime.Now) > 200)
+            {
+                throw new Exception("发件人一天之内只能发送200个短消息");
+            }
+            messageRepository.Add(message);
+            return message;
         }
     }
 }

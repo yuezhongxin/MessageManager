@@ -6,8 +6,6 @@
 using MessageManager.Domain.Entity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MessageManager.Domain.Repositories
 {
@@ -16,5 +14,8 @@ namespace MessageManager.Domain.Repositories
     /// </summary>
     public interface IMessageRepository : IRepository<Message>
     {
+        int GetMessageCount(User sendUser, DateTime sendTime);
+        ICollection<Message> GetOutbox(User readUser);
+        ICollection<Message> GetInbox(User readUser);
     }
 }

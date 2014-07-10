@@ -6,6 +6,8 @@
 using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
 using MessageManager.Repositories.EntityFramework;
+using System;
+using System.Collections.Generic;
 
 namespace MessageManager.Repositories
 {
@@ -16,6 +18,20 @@ namespace MessageManager.Repositories
         { }
 
         #region IMessageRepository Members
+        public int GetMessageCount(User senduser, DateTime sendTime)
+        {
+            return 3;
+        }
+
+        public ICollection<Message> GetOutbox(User readUser)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICollection<Message> GetInbox(User readUser)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
     }
 }

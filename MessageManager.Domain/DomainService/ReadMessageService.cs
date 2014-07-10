@@ -4,8 +4,9 @@
 **/
 
 using MessageManager.Domain.Entity;
+using MessageManager.Domain.Repositories;
 using MessageManager.Domain.ValueObject;
-using MessageManager.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace MessageManager.Domain.DomainService
@@ -15,35 +16,67 @@ namespace MessageManager.Domain.DomainService
     /// </summary>
     public class ReadMessageService
     {
-        public static OperationResponse<Message> ReadSingleMessage(Message message, User readUser)
+        #region Private Fields
+        private readonly IMessageRepository messageRepository;
+        private readonly IUserRepository userRepository;
+        #endregion
+
+        #region Ctor
+        public ReadMessageService(IMessageRepository messageRepository, IUserRepository userRepository)
         {
+            this.messageRepository = messageRepository;
+            this.userRepository = userRepository;
+        }
+        #endregion
+
+        public Message ReadSingleMessage(string messageId, string readerLoginName)
+        {
+            User readUser = userRepository.GetUserByLoginName(readerLoginName);
+            if (readUser == null)
+            {
+                throw new Exception("读取失败，未获取到读取人信息");
+            }
+            Message message = messageRepository.GetByKey(messageId);
             if (!(message.SendUser == readUser || message.ReceiveUser == readUser))
             {
-                return new OperationResponse<Message>(false, "您并不是收发件人，没有权限阅读本条短消息");
+                throw new Exception("您并不是收发件人，没有权限阅读本条短消息");
             }
             if (message.ReceiveUser == readUser && message.State == MessageState.NoRead)
             {
                 message.State = MessageState.Read;
             }
-            return new OperationResponse<Message>(true, "", message);
+            messageRepository.Update(message);
+            return message;
         }
 
-        public static OperationResponse<ICollection<Message>> ReadOutbox(ICollection<Message> messages, User readUser)
+        public ICollection<Message> ReadOutbox(string readerLoginName)
         {
-            if (messages.Where(m => m.SendUser == readUser).Count() > 0)
+            User readUser = userRepository.GetUserByLoginName(readerLoginName);
+            if (readUser == null)
             {
-                return new OperationResponse<ICollection<Message>>(false, "您并不是发件人，没有权限阅读发件箱");
+                throw new Exception("读取失败，未获取到读取人信息");
             }
-            return new OperationResponse<ICollection<Message>>(true, "", messages);
+            var messages = messageRepository.GetOutbox(readUser);
+            if (messages.Where(m => m.SendUser == readUser).Count() == 0)
+            {
+                throw new Exception("您并不是发件人，没有权限阅读发件箱");
+            }
+            return messages;
         }
 
-        public static OperationResponse<ICollection<Message>> ReadInbox(ICollection<Message> messages, User readUser)
+        public ICollection<Message> ReadInbox(string readerLoginName)
         {
-            if (messages.Where(m => m.ReceiveUser == readUser).Count() > 0)
+            User readUser = userRepository.GetUserByLoginName(readerLoginName);
+            if (readUser == null)
             {
-                return new OperationResponse<ICollection<Message>>(false, "您并不是收件人，没有权限阅读收件箱");
+                throw new Exception("读取失败，未获取到读取人信息");
             }
-            return new OperationResponse<ICollection<Message>>(true, "", messages);
+            var messages = messageRepository.GetInbox(readUser);
+            if (messages.Where(m => m.ReceiveUser == readUser).Count() == 0)
+            {
+                throw new Exception("您并不是收件人，没有权限阅读收件箱");
+            }
+            return messages;
         }
     }
 }

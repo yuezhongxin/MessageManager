@@ -24,7 +24,7 @@ namespace MessageManager.Repositories
         public User GetUserByLoginName(string loginName)
         {
             User user = new User(loginName, "小菜");
-            //user.ID = "07d62c85-a813-4ec7-b80f-c81d94408efa";
+            user.ID = "1";
             return user;
             //return Get(new UserNameEqualsSpecification(name));
         }
@@ -36,7 +36,7 @@ namespace MessageManager.Repositories
         public User GetUserByDisplayName(string displayName)
         {
             User user = new User("dashen", displayName);
-            //user.ID = "dba2b028-6dfe-47b6-ad30-435c53f06ca6";
+            user.ID = "2";
             return user;
             //return Get(new UserNameEqualsSpecification(name));
         }

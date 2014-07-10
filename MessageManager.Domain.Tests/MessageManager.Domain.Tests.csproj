@@ -57,6 +57,10 @@
       <Project>{49c2af9e-c6aa-4013-ac65-adb303104661}</Project>
       <Name>MessageManager.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MessageManager.Repositories\MessageManager.Repositories.csproj">
+      <Project>{43b71851-61d1-4f51-bb9a-1f53405a4378}</Project>
+      <Name>MessageManager.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
