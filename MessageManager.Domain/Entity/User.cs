@@ -32,15 +32,5 @@ namespace MessageManager.Domain.Entity
         public string DisplayName { get; private set; }
         public virtual ICollection<Message> SendMessages { get; set; }
         public virtual ICollection<Message> ReceiveMessages { get; set; }
-
-        public void SendMessage(User receiveUser, Message message)
-        {
-            this.SendMessages.Add(message);
-            receiveUser.ReceiveMessage(this, message);
-        }
-        private void ReceiveMessage(User sendUser, Message message)
-        {
-            this.ReceiveMessages.Add(message);
-        }
     }
 }

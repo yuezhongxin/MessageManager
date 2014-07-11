@@ -39,9 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainService\ReadMessageService.cs" />
-    <Compile Include="DomainService\DeleteMessageService.cs" />
-    <Compile Include="DomainService\ReplyMessageService.cs" />
+    <Compile Include="DomainService\ISendMessageService.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
     <Compile Include="Entity\User.cs" />
