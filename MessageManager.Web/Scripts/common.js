@@ -4,7 +4,7 @@
     return 'http://passport.cnblogs' + suffix;
 }
 
-function login() {
+function login() {User
     location.href = getPassportHost() + "/login.aspx?ReturnUrl=" + location.href;
     return false;
 }
@@ -41,14 +41,14 @@ function getHostPostfix() {
 function GetUserInfo() {
     var prefixUrl = 'http://passport.cnblogs' + getHostPostfix();
     $.ajax({
-        url: prefixUrl + '/user/LoginInfo',
+        url: prefixUrl + '/account/LoginInfo',
         dataType: 'jsonp',
         success: function (data) {
             $("#login_area").html(data);
             var spacerUserId = parseInt($("#current_spaceId").html());
             if (spacerUserId > 0) {
                 $.ajax({
-                    url: prefixUrl + '/user/NewMsgCount',
+                    url: prefixUrl + '/account/NewMsgCount',
                     data: 'spaceUserId=' + spacerUserId,
                     dataType: 'jsonp',
                     success: function (data) {

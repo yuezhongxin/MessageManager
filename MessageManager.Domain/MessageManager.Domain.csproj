@@ -39,21 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainService\ISendMessageService.cs" />
+    <Compile Include="DomainService\IService\ISendMessageService.cs" />
+    <Compile Include="DomainService\GetInboxService.cs" />
     <Compile Include="Entity\Message.cs" />
+    <Compile Include="Entity\MessageBox.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
-    <Compile Include="Entity\User.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IRepository\IMessageRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IRepositoryContext.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryContext.cs" />
     <Compile Include="Repositories\SortOrder.cs" />
-    <Compile Include="Repositories\IRepository\IUserRepository.cs" />
-    <Compile Include="DomainService\SendMessageService.cs" />
+    <Compile Include="DomainService\SendShortMessageService.cs" />
     <Compile Include="Specifications\AndNotSpecification.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
     <Compile Include="Specifications\AnySpecification.cs" />
@@ -68,6 +67,9 @@
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
+    <Compile Include="ValueObject\MessageType.cs" />
+    <Compile Include="ValueObject\Sender.cs" />
+    <Compile Include="ValueObject\IContact.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessageManager.Infrastructure\MessageManager.Infrastructure.csproj">
@@ -75,7 +77,12 @@
       <Name>MessageManager.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="ValueObject\Recipient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\IRepository\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,6 +8,6 @@ namespace MessageManager.Domain.DomainService
 {
     public interface ISendMessageService
     {
-        bool SendMessage(Message message, User sendUser, User receiveUser);
+        bool SendMessage(Message message);
     }
 }

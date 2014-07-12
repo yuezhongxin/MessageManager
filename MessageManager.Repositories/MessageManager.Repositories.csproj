@@ -54,13 +54,13 @@
     <Compile Include="EntityFramework\EntityFrameworkRepository.cs" />
     <Compile Include="EntityFramework\EntityFrameworkRepositoryContext.cs" />
     <Compile Include="EntityFramework\IEntityFrameworkRepositoryContext.cs" />
-    <Compile Include="EntityFramework\ModelConfigurations\UserConfiguration.cs" />
+    <Compile Include="EntityFramework\ModelConfigurations\AccountConfiguration.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\MessageConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specifications\User\UserLoginNameEqualsSpecification.cs" />
-    <Compile Include="Specifications\User\UserStringEqualsSpecification.cs" />
-    <Compile Include="Specifications\User\UserDisplayNameEqualsSpecification.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Specifications\Account\AccountLoginNameEqualsSpecification.cs" />
+    <Compile Include="Specifications\Account\AccountStringEqualsSpecification.cs" />
+    <Compile Include="Specifications\Account\AccountDisplayNameEqualsSpecification.cs" />
+    <Compile Include="AccountRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

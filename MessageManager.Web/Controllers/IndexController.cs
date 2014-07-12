@@ -10,7 +10,7 @@ namespace MessageManager.Web.Controllers
     public class IndexController : Controller
     {
         //#region 应用层服务接口
-        //private readonly IUserService userServiceImpl = ServiceLocator.Instance.GetService<IUserService>();
+        //private readonly IAccountService accountServiceImpl = ServiceLocator.Instance.GetService<IAccountService>();
         //#endregion
 
         //#region 用户操作
@@ -18,11 +18,11 @@ namespace MessageManager.Web.Controllers
         //// GET: /Message/
         //public ActionResult Index()
         //{
-        //    if (!userServiceImpl.ExistUser())
+        //    if (!accountServiceImpl.ExistAccount())
         //    {
-        //        userServiceImpl.AddUser(new List<UserDTO>(){
-        //            new UserDTO{ ID=Guid.NewGuid().ToString(), Name="小菜"},
-        //            new UserDTO{ ID=Guid.NewGuid().ToString(), Name="大神"}
+        //        accountServiceImpl.AddAccount(new List<AccountDTO>(){
+        //            new AccountDTO{ ID=Guid.NewGuid().ToString(), Name="小菜"},
+        //            new AccountDTO{ ID=Guid.NewGuid().ToString(), Name="大神"}
         //        });
         //    }
         //    return View();
@@ -31,9 +31,9 @@ namespace MessageManager.Web.Controllers
         ///// 注册用户
         ///// </summary>
         ///// <returns></returns>
-        //public ActionResult RegisterUser(string userName)
+        //public ActionResult RegisterAccount(string accountName)
         //{
-        //    Session["userName"] = userName;
+        //    Session["accountName"] = accountName;
         //    return RedirectToAction("inbox", "message");
         //}
         //#endregion

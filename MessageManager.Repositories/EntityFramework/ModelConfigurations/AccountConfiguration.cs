@@ -7,13 +7,13 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
     /// <summary>
     /// Represents the entity type configuration for the <see cref="Customer"/> entity.
     /// </summary>
-    public class UserConfiguration : EntityTypeConfiguration<User>
+    public class AccountConfiguration : EntityTypeConfiguration<Account>
     {
         #region Ctor
         /// <summary>
-        /// Initializes a new instance of <c>UserConfiguration</c> class.
+        /// Initializes a new instance of <c>AccountConfiguration</c> class.
         /// </summary>
-        public UserConfiguration()
+        public AccountConfiguration()
         {
             HasKey(c => c.ID);
             Property(c => c.ID)

@@ -3,37 +3,34 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Domain.Entity;
-using MessageManager.Domain.Repositories;
-using MessageManager.Repositories.EntityFramework;
 using Xunit;
 
 namespace MessageManager.Repositories.Tests
 {
-    public class UserRepositoryTest
+    public class AccountRepositoryTest
     {
         [Fact]
-        public void RepositoryTest_AddUserRepository()
+        public void RepositoryTest_AddAccountRepository()
         {
-            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user1 = new User("xiaocai", "小菜");
-            User user2 = new User("dashen", "大神");
-            userRepository.Add(user1);
-            userRepository.Add(user2);
-            userRepository.Context.Commit();
+            //IAccountRepository accountRepository = new AccountRepository(new EntityFrameworkRepositoryContext());
+            //Account account1 = new Account("xiaocai", "小菜");
+            //Account account2 = new Account("dashen", "大神");
+            //accountRepository.Add(account1);
+            //accountRepository.Add(account2);
+            //accountRepository.Context.Commit();
         }
 
         [Fact]
-        public void RepositoryTest_GetUserByLoginName()
+        public void RepositoryTest_GetAccountByLoginName()
         {
-            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user = userRepository.GetUserByLoginName("xiaocai");
+            //IAccountRepository accountRepository = new AccountRepository(new EntityFrameworkRepositoryContext());
+            //Account account = accountRepository.GetAccountByLoginName("xiaocai");
         }
         [Fact]
-        public void RepositoryTest_GetUserByDisplayName()
+        public void RepositoryTest_GetAccountByDisplayName()
         {
-            IUserRepository userRepository = new UserRepository(new EntityFrameworkRepositoryContext());
-            User user = userRepository.GetUserByDisplayName("大神");
+            //IAccountRepository accountRepository = new AccountRepository(new EntityFrameworkRepositoryContext());
+            //Account account = accountRepository.GetAccountByDisplayName("大神");
         }
     }
 }

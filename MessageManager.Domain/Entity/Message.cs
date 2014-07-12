@@ -10,7 +10,7 @@ namespace MessageManager.Domain.Entity
 {
     public class Message : IAggregateRoot
     {
-        public Message(string title, string content, User sendUser, User receiveUser)
+        public Message(string title, string content, IContact sender, IContact recipient)
         {
             if (string.IsNullOrEmpty(title))
             {
@@ -24,36 +24,34 @@ namespace MessageManager.Domain.Entity
             {
                 throw new ArgumentException("content can't be null");
             }
-            if (content.Length > 200)
+            if (content.Length > 400)
             {
-                throw new ArgumentException("内容长度不能超过200");
+                throw new ArgumentException("内容长度不能超过400");
             }
-            if (sendUser == null)
+            if (sender == null)
             {
-                throw new ArgumentException("sendUser can't be null");
+                throw new ArgumentException("sender can't be null");
             }
-            if (receiveUser == null)
+            if (recipient == null)
             {
-                throw new ArgumentException("receiveUser can't be null");
-            }
-            if (sendUser == receiveUser)
-            {
-                throw new ArgumentException("发件人和收件人不能为同一人");
+                throw new ArgumentException("recipient can't be null");
             }
             this.ID = Guid.NewGuid().ToString();
             this.Title = title;
             this.Content = content;
             this.SendTime = DateTime.Now;
             this.State = MessageState.NoRead;
-            this.SendUser = sendUser;
-            this.ReceiveUser = receiveUser;
+            this.Type = MessageType.OutboxAndInbox;
+            this.Sender = sender;
+            this.Recipient = recipient;
         }
         public string ID { get; private set; }
         public string Title { get; private set; }
         public string Content { get; private set; }
         public DateTime SendTime { get; private set; }
         public MessageState State { get; set; }
-        public virtual User SendUser { get; private set; }
-        public virtual User ReceiveUser { get; private set; }
+        public MessageType Type { get; set; }
+        public virtual IContact Sender { get; private set; }
+        public virtual IContact Recipient { get; private set; }
     }
 }

@@ -14,7 +14,7 @@ namespace MessageManager.Web.Controllers
     {
         #region 应用层服务接口
         private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
-        private readonly IUserService userServiceImpl = ServiceLocator.Instance.GetService<IUserService>();
+        private readonly IAccountService accountServiceImpl = ServiceLocator.Instance.GetService<IAccountService>();
         #endregion
 
         #region 消息操作
@@ -25,8 +25,8 @@ namespace MessageManager.Web.Controllers
         [Authorize]
         public ActionResult Compose()
         {
-            UserDTO sendUser = userServiceImpl.GetUserByLoginName(User.Identity.Name);
-            return View(sendUser);
+            AccountDTO sendAccount = accountServiceImpl.GetAccountByLoginName(User.Identity.Name);
+            return View(sendAccount);
         }
         /// <summary>
         /// 发送消息

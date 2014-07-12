@@ -8,14 +8,14 @@ using System;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal class UserDisplayNameEqualsSpecification : UserStringEqualsSpecification
+    internal class AccountDisplayNameEqualsSpecification : AccountStringEqualsSpecification
     {
-        public UserDisplayNameEqualsSpecification(string name)
+        public AccountDisplayNameEqualsSpecification(string name)
             : base(name)
         {
         }
 
-        public override System.Linq.Expressions.Expression<Func<User, bool>> GetExpression()
+        public override System.Linq.Expressions.Expression<Func<Account, bool>> GetExpression()
         {
             return c => c.DisplayName == value;
         }

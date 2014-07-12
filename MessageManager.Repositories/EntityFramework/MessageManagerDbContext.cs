@@ -23,9 +23,9 @@ namespace MessageManager.Repositories.EntityFramework
 
         #region Public Properties
         /// <summary>
-        /// Gets a set of <c>User</c>s.
+        /// Gets a set of <c>Account</c>s.
         /// </summary>
-        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         /// <summary>
         /// Gets a set of <c>Message</c>s.
         /// </summary>
@@ -36,7 +36,7 @@ namespace MessageManager.Repositories.EntityFramework
         {
             modelBuilder
                 .Configurations
-                .Add(new UserConfiguration())
+                .Add(new AccountConfiguration())
                 .Add(new MessageConfiguration());
             base.OnModelCreating(modelBuilder);
         }

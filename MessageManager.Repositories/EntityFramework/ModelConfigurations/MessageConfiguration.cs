@@ -27,13 +27,13 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .IsRequired();
             
             // Relationships
-            HasRequired(x => x.SendUser)
+            HasRequired(x => x.SendAccount)
                 .WithMany()
-                .Map(x => x.MapKey("SendUserID"))
+                .Map(x => x.MapKey("SendAccountID"))
                 .WillCascadeOnDelete(false);
-            HasRequired(x => x.ReceiveUser)
+            HasRequired(x => x.ReceiveAccount)
                 .WithMany()
-                .Map(x => x.MapKey("ReceiveUserID"))
+                .Map(x => x.MapKey("ReceiveAccountID"))
                 .WillCascadeOnDelete(false);
         }
     }

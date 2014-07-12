@@ -17,7 +17,7 @@ namespace MessageManager.Application.Tests
         {
             IMessageService messageService = new MessageServiceImpl(new EntityFrameworkRepositoryContext(),
                     new MessageRepository(new EntityFrameworkRepositoryContext()),
-                    new UserRepository(new EntityFrameworkRepositoryContext()));
+                    new AccountRepository(new EntityFrameworkRepositoryContext()));
             Assert.True(messageService.SendMessage("test", "test", "xiaocai", "大神").IsSuccess);
         }
     }

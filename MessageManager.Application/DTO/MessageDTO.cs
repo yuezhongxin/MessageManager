@@ -11,8 +11,8 @@ namespace MessageManager.Application.DTO
     {
         #region DTO成员
         public string ID { get; set; }
-        public UserDTO SendUser { get; set; }
-        public UserDTO ReceiveUser { get; set; }
+        public AccountDTO SendAccount { get; set; }
+        public AccountDTO ReceiveAccount { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime SendTime { get; set; }

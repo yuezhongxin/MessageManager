@@ -18,17 +18,17 @@ namespace MessageManager.Repositories
         { }
 
         #region IMessageRepository Members
-        public int GetMessageCount(User senduser, DateTime sendTime)
+        public int GetMessageCount(Account sendaccount, DateTime sendTime)
         {
             return 3;
         }
 
-        public ICollection<Message> GetOutbox(User readUser)
+        public ICollection<Message> GetOutbox(Account readAccount)
         {
             throw new System.NotImplementedException();
         }
 
-        public ICollection<Message> GetInbox(User readUser)
+        public ICollection<Message> GetInbox(Account readAccount)
         {
             throw new System.NotImplementedException();
         }

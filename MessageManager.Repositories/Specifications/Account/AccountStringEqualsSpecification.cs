@@ -12,11 +12,11 @@ using MessageManager.Domain.Specifications;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal abstract class UserStringEqualsSpecification : Specification<User>
+    internal abstract class AccountStringEqualsSpecification : Specification<Account>
     {
         protected readonly string value;
 
-        public UserStringEqualsSpecification(string value)
+        public AccountStringEqualsSpecification(string value)
         {
             this.value = value;
         }

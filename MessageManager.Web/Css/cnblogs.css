@@ -288,7 +288,7 @@ a.btnon2:hover	 {
 	line-height:200%;
 }
 
-/* user icon */
+/* account icon */
 .pg {
     
 	height: 48px;
@@ -1295,7 +1295,7 @@ a.plus:Hover{
 	background:#F6F6F6
 }
 
-.qitem_userq{
+.qitem_accountq{
 	margin-left:15px
 }
 
@@ -1708,7 +1708,7 @@ a.post:active	 {color: red; text-decoration: none}
 }
 
 
-/*usersms*/
+/*accountsms*/
 #sms_space{
 	margin:0px 0px 15px 0px;text-align:center;height:35px;
 }
@@ -2167,7 +2167,7 @@ margin-left:0px;
     background-color:Transparent;
     padding-right:10px;
 }
-#login_block,#user_block,#login_area,#link_logined,#logined_block
+#login_block,#account_block,#login_area,#link_logined,#logined_block
 {
     background-color:Transparent;
     

@@ -7,9 +7,9 @@ using MessageManager.Application.DTO;
 namespace MessageManager.Application
 {
     /// <summary>
-    /// User管理应用层服务接口
+    /// Account管理应用层服务接口
     /// </summary>
-    public interface IUserService
+    public interface IAccountService
     {
         #region Methods
         /// <summary>
@@ -17,13 +17,13 @@ namespace MessageManager.Application
         /// </summary>
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
-        UserDTO GetUserByLoginName(string loginName);
+        AccountDTO GetAccountByLoginName(string loginName);
         /// <summary>
         /// 通过显示名获取用户
         /// </summary>
         /// <param name="displayName">显示名</param>
         /// <returns></returns>
-        UserDTO GetUserByDisplayName(string displayName);
+        AccountDTO GetAccountByDisplayName(string displayName);
         #endregion
     }
 }

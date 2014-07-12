@@ -16,7 +16,7 @@ namespace MessageManager.Application.Implementation
     {
         #region Private Fields
         private readonly IMessageRepository messageRepository;
-        private readonly IUserRepository userRepository;
+        private readonly IAccountRepository accountRepository;
         #endregion
 
         #region Ctor
@@ -25,14 +25,14 @@ namespace MessageManager.Application.Implementation
         /// </summary>
         /// <param name="context">用来初始化<c>MessageServiceImpl</c>类型的仓储上下文实例。</param>
         /// <param name="messageRepository">“消息”仓储实例。</param>
-        /// <param name="userRepository">“用户”仓储实例。</param>
+        /// <param name="accountRepository">“用户”仓储实例。</param>
         public MessageServiceImpl(IRepositoryContext context,
             IMessageRepository messageRepository,
-            IUserRepository userRepository)
+            IAccountRepository accountRepository)
             : base(context)
         {
             this.messageRepository = messageRepository;
-            this.userRepository = userRepository;
+            this.accountRepository = accountRepository;
         }
         #endregion
 
@@ -47,17 +47,17 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
         {
-            //User sendUser = userRepository.GetUserByLoginName(senderLoginName);
-            //if (sendUser == null)
+            //Account sendAccount = accountRepository.GetAccountByLoginName(senderLoginName);
+            //if (sendAccount == null)
             //{
             //    return OperationResponse.Error("未获取到发件人信息");
             //}
-            //User receiveUser = userRepository.GetUserByDisplayName(receiverDisplayName);
-            //if (receiveUser == null)
+            //Account receiveAccount = accountRepository.GetAccountByDisplayName(receiverDisplayName);
+            //if (receiveAccount == null)
             //{
             //    return OperationResponse.Error("未获取到收件人信息");
             //}
-            //Message message = new Message(title, content, sendUser, receiveUser);
+            //Message message = new Message(title, content, sendAccount, receiveAccount);
             //OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
             //if (serviceResult.IsSuccess)
             //{
@@ -80,8 +80,8 @@ namespace MessageManager.Application.Implementation
         /// <returns></returns>
         public OperationResponse<MessageDTO> ReadMessage(string messageId, string readerLoginName)
         {
-            //User readUser = userRepository.GetUserByLoginName(readerLoginName);
-            //if (readUser == null)
+            //Account readAccount = accountRepository.GetAccountByLoginName(readerLoginName);
+            //if (readAccount == null)
             //{
             //    return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
             //}
@@ -90,7 +90,7 @@ namespace MessageManager.Application.Implementation
             //{
             //    return new OperationResponse<MessageDTO>(false, "未获取到消息");
             //}
-            //OperationResponse<Message> serviceResult = ReadMessageService.ReadMessage(message, readUser);
+            //OperationResponse<Message> serviceResult = ReadMessageService.ReadMessage(message, readAccount);
             //if (serviceResult.IsSuccess)
             //{
             //    //messageRepository.Update(message);
@@ -119,12 +119,12 @@ namespace MessageManager.Application.Implementation
             //{
             //    return new OperationResponse(false, "未获取到消息");
             //}
-            //User replyUser = userRepository.GetUserByLoginName(replierLoginName);
-            //if (replyUser == null)
+            //Account replyAccount = accountRepository.GetAccountByLoginName(replierLoginName);
+            //if (replyAccount == null)
             //{
             //    return OperationResponse.Error("未获取到回复人信息");
             //}
-            //Message replyMessage = new Message(title, content, replyUser, message.SendUser);
+            //Message replyMessage = new Message(title, content, replyAccount, message.SendAccount);
             //OperationResponse<Message> serviceResult = VerifyMessageService.VerifyMessage(message);
             //if (serviceResult.IsSuccess)
             //{
