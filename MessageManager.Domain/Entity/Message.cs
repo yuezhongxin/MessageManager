@@ -36,12 +36,12 @@ namespace MessageManager.Domain.Entity
             {
                 throw new ArgumentException("recipient can't be null");
             }
-            this.ID = Guid.NewGuid().ToString();
+            //this.ID = Guid.NewGuid().ToString();
+            this.ID = "1";
             this.Title = title;
             this.Content = content;
             this.SendTime = DateTime.Now;
             this.State = MessageState.NoRead;
-            this.Type = MessageType.OutboxAndInbox;
             this.Sender = sender;
             this.Recipient = recipient;
         }
@@ -50,7 +50,6 @@ namespace MessageManager.Domain.Entity
         public string Content { get; private set; }
         public DateTime SendTime { get; private set; }
         public MessageState State { get; set; }
-        public MessageType Type { get; set; }
         public virtual IContact Sender { get; private set; }
         public virtual IContact Recipient { get; private set; }
     }

@@ -40,9 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainService\IService\ISendMessageService.cs" />
-    <Compile Include="DomainService\GetInboxService.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\MessageBox.cs" />
+    <Compile Include="Entity\Inbox.cs" />
+    <Compile Include="Entity\Outbox.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
-    <Compile Include="ValueObject\MessageType.cs" />
     <Compile Include="ValueObject\Sender.cs" />
     <Compile Include="ValueObject\IContact.cs" />
   </ItemGroup>
