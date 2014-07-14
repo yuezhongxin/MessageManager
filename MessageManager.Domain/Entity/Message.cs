@@ -40,7 +40,8 @@ namespace MessageManager.Domain.Entity
             this.ID = "1";
             this.Title = title;
             this.Content = content;
-            this.SendTime = DateTime.Now;
+            //this.SendTime = DateTime.Now;
+            this.SendTime = DateTime.Parse("2014-7-14");
             this.State = MessageState.NoRead;
             this.Sender = sender;
             this.Recipient = recipient;

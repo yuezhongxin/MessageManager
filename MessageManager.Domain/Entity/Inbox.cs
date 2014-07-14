@@ -14,7 +14,7 @@ namespace MessageManager.Domain.Entity
         public Inbox(IContact recipient)
             : base(recipient)
         {
-            this.Messages = new List<Message>() { new Message("title", "title", new Sender("sender"), new Recipient("recipient")) };
+            this.Messages = new List<Message>() { new Message("title", "content", new Sender("sender"), new Recipient("recipient")) };
         }
 
         public override Message GetMessage(string id)
@@ -26,6 +26,16 @@ namespace MessageManager.Domain.Entity
                 message.State = MessageState.Read;
             }
             return message;
+        }
+
+        public ICollection<Message> GetNoReadMessage()
+        {
+            return this.Messages.Where(m => m.State == MessageState.NoRead).ToList();
+        }
+
+        public int GetNoReadMessageCount()
+        {
+            return this.Messages.Where(m => m.State == MessageState.NoRead).Count();
         }
     }
 }

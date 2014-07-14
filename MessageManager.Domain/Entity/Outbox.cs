@@ -13,7 +13,7 @@ namespace MessageManager.Domain.Entity
         public Outbox(IContact sender)
             : base(sender)
         {
-            this.Messages = new List<Message>() { new Message("title", "title", new Sender("sender"), new Recipient("recipient")) };
+            this.Messages = new List<Message>() { new Message("title", "content", new Sender("sender"), new Recipient("recipient")) };
         }
     }
 }

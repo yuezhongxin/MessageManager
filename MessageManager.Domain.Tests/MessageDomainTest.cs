@@ -27,6 +27,62 @@ namespace MessageManager.Domain.Tests
         }
 
         /// <summary>
+        /// 回复短消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_ReplyMessage()
+        {
+            ISendMessageService sendMessageService = new SendShortMessageService();
+            Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
+            IContact reply = new Sender("reply");
+            Message replyMessage = new Message("title", readMessage.Title + "content ", reply, readMessage.Recipient);
+            Assert.True(sendMessageService.SendMessage(replyMessage));
+        }
+
+        /// <summary>
+        /// 转发短消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_RelayMessage()
+        {
+            ISendMessageService sendMessageService = new SendShortMessageService();
+            Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
+            IContact relay = new Sender("relay");
+            IContact recipient = new Sender("recipient");
+            Message relayMessage = new Message("title", "content ", relay, recipient);
+            Assert.True(sendMessageService.SendMessage(relayMessage));
+        }
+
+        /// <summary>
+        /// 阅读未读消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_NoReadMessage()
+        {
+            IContact recipient = new Recipient("recipient");
+            var messages = new Inbox(recipient).GetNoReadMessage();
+            foreach (Message message in messages)
+            {
+                Console.WriteLine("ID:" + message.ID);
+                Console.WriteLine("Title:" + message.Title);
+                Console.WriteLine("Content:" + message.Content);
+                Console.WriteLine("Sender:" + message.Sender.Name);
+                Console.WriteLine("Recipient:" + message.Recipient.Name);
+                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+            }
+        }
+
+        /// <summary>
+        /// 阅读未读消息个数
+        /// </summary>
+        [Fact]
+        public void DomainTest_NoReadMessageCount()
+        {
+            IContact recipient = new Recipient("recipient");
+            Console.WriteLine("未读消息个数：" + new Inbox(recipient).GetNoReadMessageCount());
+        }
+
+        /// <summary>
         /// 阅读收件箱
         /// </summary>
         [Fact]
@@ -93,6 +149,28 @@ namespace MessageManager.Domain.Tests
             Console.WriteLine("Sender:" + message.Sender.Name);
             Console.WriteLine("Recipient:" + message.Recipient.Name);
             Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+        }
+
+        /// <summary>
+        /// 发送人删除消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_SenderDeleteMessage()
+        {
+            IContact sender = new Sender("sender");
+            Message message = new Message("title", "content", new Sender("sender"), new Recipient("recipient"));
+            Assert.True(new Outbox(sender).DeleteMessage(message));
+        }
+
+        /// <summary>
+        /// 接收人删除消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_RecipientDeleteMessage()
+        {
+            IContact recipient = new Recipient("recipient");
+            Message message = new Message("title", "content", new Sender("sender"), new Recipient("recipient"));
+            Assert.True(new Inbox(recipient).DeleteMessage(message));
         }
     }
 }

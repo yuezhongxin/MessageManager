@@ -25,8 +25,9 @@ namespace MessageManager.Domain.Entity
             //return this.Messages.First(m => m.ID == id);
         }
 
-        public virtual bool RemoveMessage(string id)
+        public virtual bool DeleteMessage(Message message)
         {
+            //return this.Messages.Remove(message);
             return true;
         }
     }
