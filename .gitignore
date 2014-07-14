@@ -1,6 +1,4 @@
 obj
 bin
-*.suo
 *.pdb
 /TestResults
-/*.suo
