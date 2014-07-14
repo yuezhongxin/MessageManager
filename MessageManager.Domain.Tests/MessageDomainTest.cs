@@ -34,8 +34,8 @@ namespace MessageManager.Domain.Tests
         {
             ISendMessageService sendMessageService = new SendShortMessageService();
             Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
-            IContact reply = new Sender("reply");
-            Message replyMessage = new Message("title", readMessage.Title + "content ", reply, readMessage.Recipient);
+            IContact reply = readMessage.Recipient;
+            Message replyMessage = new Message("title", readMessage.Title + "content ", reply, readMessage.Sender);
             Assert.True(sendMessageService.SendMessage(replyMessage));
         }
 
@@ -47,9 +47,8 @@ namespace MessageManager.Domain.Tests
         {
             ISendMessageService sendMessageService = new SendShortMessageService();
             Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
-            IContact relay = new Sender("relay");
             IContact recipient = new Sender("recipient");
-            Message relayMessage = new Message("title", "content ", relay, recipient);
+            Message relayMessage = new Message("title", "content ", readMessage.Recipient, recipient);
             Assert.True(sendMessageService.SendMessage(relayMessage));
         }
 
