@@ -3,21 +3,21 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Domain.Entity;
+using MessageManager.Domain.ValueObject;
 using System;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal class AccountLoginNameEqualsSpecification : AccountStringEqualsSpecification
+    internal class ContactLoginNameEqualsSpecification : ContactStringEqualsSpecification
     {
-        public AccountLoginNameEqualsSpecification(string name)
+        public ContactLoginNameEqualsSpecification(string name)
             : base(name)
         {
         }
 
-        public override System.Linq.Expressions.Expression<Func<Account, bool>> GetExpression()
+        public override System.Linq.Expressions.Expression<Func<IContact, bool>> GetExpression()
         {
-            return c => c.LoginName == value;
+            return c => c.Name == value;
         }
     }
 }

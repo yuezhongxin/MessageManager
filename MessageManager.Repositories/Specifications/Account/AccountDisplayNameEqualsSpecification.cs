@@ -4,20 +4,21 @@
 **/
 
 using MessageManager.Domain.Entity;
+using MessageManager.Domain.ValueObject;
 using System;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal class AccountDisplayNameEqualsSpecification : AccountStringEqualsSpecification
+    internal class ContactDisplayNameEqualsSpecification : ContactStringEqualsSpecification
     {
-        public AccountDisplayNameEqualsSpecification(string name)
+        public ContactDisplayNameEqualsSpecification(string name)
             : base(name)
         {
         }
 
-        public override System.Linq.Expressions.Expression<Func<Account, bool>> GetExpression()
+        public override System.Linq.Expressions.Expression<Func<IContact, bool>> GetExpression()
         {
-            return c => c.DisplayName == value;
+            return c => c.Name == value;
         }
     }
 }

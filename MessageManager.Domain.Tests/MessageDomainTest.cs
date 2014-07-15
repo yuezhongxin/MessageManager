@@ -7,6 +7,8 @@ using MessageManager.Domain.DomainService;
 using MessageManager.Domain.Entity;
 using MessageManager.Domain.ValueObject;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace MessageManager.Domain.Tests
@@ -90,6 +92,25 @@ namespace MessageManager.Domain.Tests
             IContact recipient = new Recipient("recipient");
             MessageBox inbox = new Inbox(recipient);
             foreach (Message message in inbox.Messages)
+            {
+                Console.WriteLine("ID:" + message.ID);
+                Console.WriteLine("Title:" + message.Title);
+                Console.WriteLine("Content:" + message.Content);
+                Console.WriteLine("Sender:" + message.Sender.Name);
+                Console.WriteLine("Recipient:" + message.Recipient.Name);
+                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+            }
+        }
+
+        /// <summary>
+        /// 阅读收件箱
+        /// </summary>
+        [Fact]
+        public void DomainTest_ReadInbox2()
+        {
+            IContact recipient = new Recipient("recipient");
+            var messages = new List<Message>().Where(m => m.Recipient == recipient);
+            foreach (Message message in messages)
             {
                 Console.WriteLine("ID:" + message.ID);
                 Console.WriteLine("Title:" + message.Title);

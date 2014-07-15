@@ -7,6 +7,6 @@ namespace MessageManager.Domain.ValueObject
 {
     public interface IContact
     {
-        string Name { get; set; }
+        string Name { get; }
     }
 }

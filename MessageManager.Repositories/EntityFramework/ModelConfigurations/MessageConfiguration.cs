@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.ModelConfiguration;
-using MessageManager.Domain.Entity;
+﻿using MessageManager.Domain.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 
 namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
 {
@@ -25,16 +24,16 @@ namespace MessageManager.Repositories.EntityFramework.ModelConfigurations
                 .HasMaxLength(2000);
             Property(c => c.SendTime)
                 .IsRequired();
-            
+
             // Relationships
-            HasRequired(x => x.SendAccount)
-                .WithMany()
-                .Map(x => x.MapKey("SendAccountID"))
-                .WillCascadeOnDelete(false);
-            HasRequired(x => x.ReceiveAccount)
-                .WithMany()
-                .Map(x => x.MapKey("ReceiveAccountID"))
-                .WillCascadeOnDelete(false);
+            //HasRequired(x => x.SendAccount)
+            //    .WithMany()
+            //    .Map(x => x.MapKey("SendAccountID"))
+            //    .WillCascadeOnDelete(false);
+            //HasRequired(x => x.ReceiveAccount)
+            //    .WithMany()
+            //    .Map(x => x.MapKey("ReceiveAccountID"))
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

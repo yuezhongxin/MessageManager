@@ -3,20 +3,16 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MessageManager.Domain.Entity;
 using MessageManager.Domain.Specifications;
+using MessageManager.Domain.ValueObject;
 
 namespace MessageManager.Domain.Repositories.Specifications
 {
-    internal abstract class AccountStringEqualsSpecification : Specification<Account>
+    internal abstract class ContactStringEqualsSpecification : Specification<IContact>
     {
         protected readonly string value;
 
-        public AccountStringEqualsSpecification(string value)
+        public ContactStringEqualsSpecification(string value)
         {
             this.value = value;
         }

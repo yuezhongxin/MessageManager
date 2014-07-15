@@ -11,6 +11,6 @@ namespace MessageManager.Domain.ValueObject
         {
             this.Name = name;
         }
-        public string Name { get; set; }
+        public string Name { get; private set; }
     }
 }

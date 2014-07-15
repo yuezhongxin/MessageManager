@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
-using MessageManager.Domain.Entity;
+﻿using MessageManager.Domain.Entity;
 using MessageManager.Repositories.EntityFramework.ModelConfigurations;
+using System.Data.Entity;
 
 namespace MessageManager.Repositories.EntityFramework
 {
@@ -16,16 +16,12 @@ namespace MessageManager.Repositories.EntityFramework
         public MessageManagerDbContext()
             : base("MessageManagerDB")
         {
-            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance; 
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             this.Configuration.LazyLoadingEnabled = true;
         }
         #endregion
 
         #region Public Properties
-        /// <summary>
-        /// Gets a set of <c>Account</c>s.
-        /// </summary>
-        public DbSet<Account> Accounts { get; set; }
         /// <summary>
         /// Gets a set of <c>Message</c>s.
         /// </summary>
@@ -36,7 +32,6 @@ namespace MessageManager.Repositories.EntityFramework
         {
             modelBuilder
                 .Configurations
-                .Add(new AccountConfiguration())
                 .Add(new MessageConfiguration());
             base.OnModelCreating(modelBuilder);
         }

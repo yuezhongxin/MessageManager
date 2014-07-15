@@ -44,6 +44,8 @@
     <Compile Include="Entity\MessageBox.cs" />
     <Compile Include="Entity\Inbox.cs" />
     <Compile Include="Entity\Outbox.cs" />
+    <Compile Include="Repositories\IRepository\IContactRepository.cs" />
+    <Compile Include="Repositories\IRepository\IMessageRepository.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
@@ -80,9 +82,7 @@
   <ItemGroup>
     <Compile Include="ValueObject\Recipient.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\IRepository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
