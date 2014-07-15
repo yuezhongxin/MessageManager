@@ -8,6 +8,6 @@ namespace MessageManager.Domain.ValueObject
     public enum MessageState
     {
         Read,
-        NoRead
+        Unread
     }
 }

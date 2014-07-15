@@ -63,7 +63,7 @@ namespace MessageManager.Application
             {
                 switch (source.State)
                 {
-                    case MessageState.NoRead:
+                    case MessageState.Unread:
                         return "未读";
                     case MessageState.Read:
                         return "已读";

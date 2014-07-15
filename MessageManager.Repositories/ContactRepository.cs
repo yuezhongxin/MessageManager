@@ -19,10 +19,6 @@ namespace MessageManager.Repositories
         public Contact GetContactByLoginName(string loginName)
         {
             return new Contact("1");
-            //Contact account = new Contact(loginName, "小菜");
-            //account.ID = "1";
-            //return account;
-            //return Get(new ContactNameEqualsSpecification(name));
         }
         /// <summary>
         /// 通过显示名获取用户
@@ -32,10 +28,6 @@ namespace MessageManager.Repositories
         public Contact GetContactByDisplayName(string displayName)
         {
             return new Contact("2");
-            //Contact account = new Contact("dashen", displayName);
-            //account.ID = "2";
-            //return account;
-            //return Get(new ContactNameEqualsSpecification(name));
         }
         #endregion
     }

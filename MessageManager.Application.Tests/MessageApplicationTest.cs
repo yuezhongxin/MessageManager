@@ -19,7 +19,7 @@ namespace MessageManager.Application.Tests
             IMessageService messageService = new MessageServiceImpl(new EntityFrameworkRepositoryContext(),
                     new MessageRepository(new EntityFrameworkRepositoryContext()),
                     new ContactRepository(),
-                    new SendShortMessageService());
+                    new SendSiteMessageService());
             Assert.True(messageService.SendMessage("title", "content", "senderLoginName", "receiverDisplayName").IsSuccess);
         }
     }

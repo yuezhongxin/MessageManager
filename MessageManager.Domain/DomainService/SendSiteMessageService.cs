@@ -9,7 +9,7 @@ namespace MessageManager.Domain.DomainService
     /// <summary>
     /// SendShortMessag领域服务实现-短消息发送
     /// </summary>
-    public class SendShortMessageService : ISendMessageService
+    public class SendSiteMessageService : ISendMessageService
     {
         public bool SendMessage(Message message)
         {

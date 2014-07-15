@@ -21,7 +21,7 @@ namespace MessageManager.Domain.Tests
         [Fact]
         public void DomainTest_SendShortMessage()
         {
-            ISendMessageService sendMessageService = new SendShortMessageService();
+            ISendMessageService sendMessageService = new SendSiteMessageService();
             Contact sender = new Sender("sender");
             Contact recipient = new Recipient("recipient");
             Message message = new Message("title", "content ", sender, recipient);
@@ -34,7 +34,7 @@ namespace MessageManager.Domain.Tests
         [Fact]
         public void DomainTest_ReplyMessage()
         {
-            ISendMessageService sendMessageService = new SendShortMessageService();
+            ISendMessageService sendMessageService = new SendSiteMessageService();
             Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
             Contact reply = readMessage.Recipient;
             Message replyMessage = new Message("title", readMessage.Title + "content ", reply, readMessage.Sender);
@@ -45,9 +45,9 @@ namespace MessageManager.Domain.Tests
         /// 转发短消息
         /// </summary>
         [Fact]
-        public void DomainTest_RelayMessage()
+        public void DomainTest_ForwardMessage()
         {
-            ISendMessageService sendMessageService = new SendShortMessageService();
+            ISendMessageService sendMessageService = new SendSiteMessageService();
             Message readMessage = new Message("title", "content ", new Sender("sender"), new Recipient("recipient"));
             Contact recipient = new Sender("recipient");
             Message relayMessage = new Message("title", "content ", readMessage.Recipient, recipient);
@@ -55,10 +55,10 @@ namespace MessageManager.Domain.Tests
         }
 
         /// <summary>
-        /// 阅读未读消息
+        /// 获取未读消息列表
         /// </summary>
         [Fact]
-        public void DomainTest_NoReadMessage()
+        public void DomainTest_GetUnreadMessageList()
         {
             Contact recipient = new Recipient("recipient");
             var messages = new List<Message>() { new Message("title", "content", new Sender("sender"), recipient) }.Where(m => m.Recipient == recipient);
@@ -69,15 +69,15 @@ namespace MessageManager.Domain.Tests
                 Console.WriteLine("Content:" + message.Content);
                 Console.WriteLine("Sender:" + message.Sender.Name);
                 Console.WriteLine("Recipient:" + message.Recipient.Name);
-                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+                Console.WriteLine("MessageState:" + (message.State == MessageState.Unread ? "未读" : "已读"));
             }
         }
 
         /// <summary>
-        /// 阅读未读消息个数
+        /// 获取未读消息个数
         /// </summary>
         [Fact]
-        public void DomainTest_NoReadMessageCount()
+        public void DomainTest_GetUnreadMessageCount()
         {
             Contact recipient = new Recipient("recipient");
             int messageCount = new List<Message>() { new Message("title", "content", new Sender("sender"), recipient) }.Where(m => m.Recipient == recipient).Count();
@@ -99,7 +99,7 @@ namespace MessageManager.Domain.Tests
                 Console.WriteLine("Content:" + message.Content);
                 Console.WriteLine("Sender:" + message.Sender.Name);
                 Console.WriteLine("Recipient:" + message.Recipient.Name);
-                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+                Console.WriteLine("MessageState:" + (message.State == MessageState.Unread ? "未读" : "已读"));
             }
         }
 
@@ -118,7 +118,7 @@ namespace MessageManager.Domain.Tests
                 Console.WriteLine("Content:" + message.Content);
                 Console.WriteLine("Sender:" + message.Sender.Name);
                 Console.WriteLine("Recipient:" + message.Recipient.Name);
-                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+                Console.WriteLine("MessageState:" + (message.State == MessageState.Unread ? "未读" : "已读"));
             }
         }
 
@@ -126,7 +126,7 @@ namespace MessageManager.Domain.Tests
         /// 发送人阅读单条消息
         /// </summary>
         [Fact]
-        public void DomainTest_SenderReadMessage()
+        public void DomainTest_ReadMessageSender()
         {
             Contact sender = new Sender("sender");
             Message message = new Message("title", "content", sender, new Recipient("recipient"));
@@ -135,14 +135,14 @@ namespace MessageManager.Domain.Tests
             Console.WriteLine("Content:" + message.Content);
             Console.WriteLine("Sender:" + message.Sender.Name);
             Console.WriteLine("Recipient:" + message.Recipient.Name);
-            Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+            Console.WriteLine("MessageState:" + (message.State == MessageState.Unread ? "未读" : "已读"));
         }
 
         /// <summary>
         /// 接收人阅读单条消息
         /// </summary>
         [Fact]
-        public void DomainTest_RecipientReadMessage()
+        public void DomainTest_ReadMessageRecipient()
         {
             Contact recipient = new Recipient("recipient");
             Message message = new Message("title", "content", new Sender("sender"), recipient);
@@ -151,7 +151,7 @@ namespace MessageManager.Domain.Tests
             Console.WriteLine("Content:" + message.Content);
             Console.WriteLine("Sender:" + message.Sender.Name);
             Console.WriteLine("Recipient:" + message.Recipient.Name);
-            Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+            Console.WriteLine("MessageState:" + (message.State == MessageState.Unread ? "未读" : "已读"));
         }
     }
 }

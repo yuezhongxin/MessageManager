@@ -18,19 +18,19 @@ namespace MessageManager.Application
 
         OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName);
 
-        OperationResponse RelayMessage(string messageId, string title, string content, string relayLoginName);
+        OperationResponse ForwardMessage(string messageId, string title, string content, string senderLoginName, string receiverDisplayName);
 
-        OperationResponse<ICollection<MessageDTO>> GetNoReadMessage(string messageId, string readerLoginName);
+        OperationResponse<ICollection<MessageDTO>> GetUnreadMessageList(string messageId, string readerLoginName);
 
-        OperationResponse<int> GetNoReadMessageCount(string messageId, string readerLoginName);
+        OperationResponse<int> GetUnreadMessageCount(string messageId, string readerLoginName);
 
         OperationResponse<ICollection<MessageDTO>> ReadInbox(string readerLoginName);
 
         OperationResponse<ICollection<MessageDTO>> ReadOutbox(string readerLoginName);
 
-        OperationResponse<MessageDTO> SenderReadMessage(string messageId, string readerLoginName);
+        OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName);
 
-        OperationResponse<MessageDTO> RecipientReadMessage(string messageId, string readerLoginName);
+        OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName);
         #endregion
     }
 }

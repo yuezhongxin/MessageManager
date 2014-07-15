@@ -9,6 +9,7 @@ using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
 using MessageManager.Domain.ValueObject;
 using MessageManager.Infrastructure;
+using System.Collections.Generic;
 
 namespace MessageManager.Application.Implementation
 {
@@ -70,41 +71,40 @@ namespace MessageManager.Application.Implementation
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse RelayMessage(string messageId, string title, string content, string relayLoginName)
+        public OperationResponse ForwardMessage(string messageId, string title, string content, string senderLoginName, string receiverDisplayName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<System.Collections.Generic.ICollection<MessageDTO>> GetNoReadMessage(string messageId, string readerLoginName)
+        public OperationResponse<ICollection<MessageDTO>> GetUnreadMessageList(string messageId, string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<int> GetNoReadMessageCount(string messageId, string readerLoginName)
+        public OperationResponse<int> GetUnreadMessageCount(string messageId, string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<System.Collections.Generic.ICollection<MessageDTO>> ReadInbox(string readerLoginName)
+        public OperationResponse<ICollection<MessageDTO>> ReadInbox(string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<System.Collections.Generic.ICollection<MessageDTO>> ReadOutbox(string readerLoginName)
+        public OperationResponse<ICollection<MessageDTO>> ReadOutbox(string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<MessageDTO> SenderReadMessage(string messageId, string readerLoginName)
+        public OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
 
-        public OperationResponse<MessageDTO> RecipientReadMessage(string messageId, string readerLoginName)
+        public OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName)
         {
             throw new System.NotImplementedException();
         }
         #endregion
-
     }
 }

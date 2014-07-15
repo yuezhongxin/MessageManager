@@ -40,7 +40,7 @@ namespace MessageManager.Domain.Entity
             this.Title = title;
             this.Content = content;
             this.SendTime = DateTime.Now;
-            this.State = MessageState.NoRead;
+            this.State = MessageState.Unread;
             this.Sender = sender;
             this.Recipient = recipient;
         }
@@ -54,7 +54,7 @@ namespace MessageManager.Domain.Entity
 
         public void Read(Contact reader)
         {
-            if (this.Recipient == reader && this.State == MessageState.NoRead)
+            if (this.Recipient == reader && this.State == MessageState.Unread)
             {
                 this.State = MessageState.Read;
             }
