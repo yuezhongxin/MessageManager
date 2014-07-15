@@ -56,9 +56,6 @@
     <Compile Include="EntityFramework\IEntityFrameworkRepositoryContext.cs" />
     <Compile Include="EntityFramework\ModelConfigurations\MessageConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Specifications\Account\AccountLoginNameEqualsSpecification.cs" />
-    <Compile Include="Specifications\Account\AccountStringEqualsSpecification.cs" />
-    <Compile Include="Specifications\Account\AccountDisplayNameEqualsSpecification.cs" />
     <Compile Include="ContactRepository.cs" />
   </ItemGroup>
   <ItemGroup>

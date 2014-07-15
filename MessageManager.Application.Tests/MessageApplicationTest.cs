@@ -4,6 +4,7 @@
 **/
 
 using MessageManager.Application.Implementation;
+using MessageManager.Domain.DomainService;
 using MessageManager.Repositories;
 using MessageManager.Repositories.EntityFramework;
 using Xunit;
@@ -17,8 +18,9 @@ namespace MessageManager.Application.Tests
         {
             IMessageService messageService = new MessageServiceImpl(new EntityFrameworkRepositoryContext(),
                     new MessageRepository(new EntityFrameworkRepositoryContext()),
-                    new AccountRepository(new EntityFrameworkRepositoryContext()));
-            Assert.True(messageService.SendMessage("test", "test", "xiaocai", "大神").IsSuccess);
+                    new ContactRepository(),
+                    new SendShortMessageService());
+            Assert.True(messageService.SendMessage("title", "content", "senderLoginName", "receiverDisplayName").IsSuccess);
         }
     }
 }

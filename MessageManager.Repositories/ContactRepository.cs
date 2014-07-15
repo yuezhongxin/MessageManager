@@ -10,15 +10,15 @@ namespace MessageManager.Repositories
 {
     public class ContactRepository : IContactRepository
     {
-        #region IContactRepository Members
+        #region ContactRepository Members
         /// <summary>
         /// 通过登录名获取用户
         /// </summary>
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
-        public IContact GetContactByLoginName(string loginName)
+        public Contact GetContactByLoginName(string loginName)
         {
-            return null;
+            return new Contact("1");
             //Contact account = new Contact(loginName, "小菜");
             //account.ID = "1";
             //return account;
@@ -29,9 +29,9 @@ namespace MessageManager.Repositories
         /// </summary>
         /// <param name="displayName">显示名</param>
         /// <returns></returns>
-        public IContact GetContactByDisplayName(string displayName)
+        public Contact GetContactByDisplayName(string displayName)
         {
-            return null;
+            return new Contact("2");
             //Contact account = new Contact("dashen", displayName);
             //account.ID = "2";
             //return account;

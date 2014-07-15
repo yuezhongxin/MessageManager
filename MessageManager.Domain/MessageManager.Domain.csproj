@@ -41,9 +41,6 @@
   <ItemGroup>
     <Compile Include="DomainService\IService\ISendMessageService.cs" />
     <Compile Include="Entity\Message.cs" />
-    <Compile Include="Entity\MessageBox.cs" />
-    <Compile Include="Entity\Inbox.cs" />
-    <Compile Include="Entity\Outbox.cs" />
     <Compile Include="Repositories\IRepository\IContactRepository.cs" />
     <Compile Include="Repositories\IRepository\IMessageRepository.cs" />
     <Compile Include="ValueObject\MessageState.cs" />
@@ -71,7 +68,7 @@
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
     <Compile Include="ValueObject\Sender.cs" />
-    <Compile Include="ValueObject\IContact.cs" />
+    <Compile Include="ValueObject\Contact.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessageManager.Infrastructure\MessageManager.Infrastructure.csproj">

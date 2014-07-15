@@ -50,9 +50,9 @@ namespace MessageManager.Application
         /// 1. AutoMapper框架的初始化</remarks>
         public static void Initialize()
         {
-            Mapper.CreateMap<AccountDTO, Account>();
+            //Mapper.CreateMap<ContactDTO, Account>();
+            //Mapper.CreateMap<Account, ContactDTO>();
             Mapper.CreateMap<MessageDTO, Message>();
-            Mapper.CreateMap<Account, AccountDTO>();
             Mapper.CreateMap<Message, MessageDTO>();
             Mapper.CreateMap<Message, MessageDTO>()
                 .ForMember(dest => dest.Status, opt => opt.ResolveUsing<MessageStateCustomResolver>());
@@ -63,9 +63,9 @@ namespace MessageManager.Application
             {
                 switch (source.State)
                 {
-                    case Recipient.NoRead:
+                    case MessageState.NoRead:
                         return "未读";
-                    case Recipient.Read:
+                    case MessageState.Read:
                         return "已读";
                     default:
                         return "未读";

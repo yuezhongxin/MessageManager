@@ -47,12 +47,10 @@
   <ItemGroup>
     <Compile Include="ApplicationService.cs" />
     <Compile Include="DTO\MessageDTO.cs" />
-    <Compile Include="DTO\AccountDTO.cs" />
+    <Compile Include="DTO\ContactDTO.cs" />
     <Compile Include="Implementation\MessageServiceImpl.cs" />
     <Compile Include="IMessageService.cs" />
-    <Compile Include="Implementation\AccountServiceImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IAccountService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

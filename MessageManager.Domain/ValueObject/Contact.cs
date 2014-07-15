@@ -5,11 +5,13 @@
 
 namespace MessageManager.Domain.ValueObject
 {
-    public class Sender : Contact
+    public class Contact
     {
-        public Sender(string name)
-            : base(name)
+        public Contact(string name)
         {
+            this.Name = name;
         }
+
+        public string Name { get; private set; }
     }
 }

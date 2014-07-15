@@ -10,7 +10,7 @@ namespace MessageManager.Domain.Entity
 {
     public class Message : IAggregateRoot
     {
-        public Message(string title, string content, IContact sender, IContact recipient)
+        public Message(string title, string content, Contact sender, Contact recipient)
         {
             if (string.IsNullOrEmpty(title))
             {
@@ -36,12 +36,10 @@ namespace MessageManager.Domain.Entity
             {
                 throw new ArgumentException("recipient can't be null");
             }
-            //this.ID = Guid.NewGuid().ToString();
-            this.ID = "1";
+            this.ID = Guid.NewGuid().ToString();
             this.Title = title;
             this.Content = content;
-            //this.SendTime = DateTime.Now;
-            this.SendTime = DateTime.Parse("2014-7-14");
+            this.SendTime = DateTime.Now;
             this.State = MessageState.NoRead;
             this.Sender = sender;
             this.Recipient = recipient;
@@ -51,10 +49,10 @@ namespace MessageManager.Domain.Entity
         public string Content { get; private set; }
         public DateTime SendTime { get; private set; }
         public MessageState State { get; set; }
-        public virtual IContact Sender { get; private set; }
-        public virtual IContact Recipient { get; private set; }
+        public virtual Contact Sender { get; private set; }
+        public virtual Contact Recipient { get; private set; }
 
-        public void Read(IContact reader)
+        public void Read(Contact reader)
         {
             if (this.Recipient == reader && this.State == MessageState.NoRead)
             {

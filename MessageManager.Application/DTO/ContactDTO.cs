@@ -6,7 +6,7 @@
 
 namespace MessageManager.Application.DTO
 {
-    public class AccountDTO
+    public class ContactDTO
     {
         #region DTO成员
         public string ID { get; set; }
