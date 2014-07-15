@@ -53,5 +53,13 @@ namespace MessageManager.Domain.Entity
         public MessageState State { get; set; }
         public virtual IContact Sender { get; private set; }
         public virtual IContact Recipient { get; private set; }
+
+        public void Read(IContact reader)
+        {
+            if (this.Recipient == reader && this.State == MessageState.NoRead)
+            {
+                this.State = MessageState.Read;
+            }
+        }
     }
 }

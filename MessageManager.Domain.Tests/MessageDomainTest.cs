@@ -74,6 +74,25 @@ namespace MessageManager.Domain.Tests
         }
 
         /// <summary>
+        /// 阅读未读消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_NoReadMessage2()
+        {
+            IContact recipient = new Recipient("recipient");
+            var messages = new List<Message>() { new Message("title", "content", new Sender("sender"), new Recipient("recipient")) }.Where(m => m.Recipient == recipient);
+            foreach (Message message in messages)
+            {
+                Console.WriteLine("ID:" + message.ID);
+                Console.WriteLine("Title:" + message.Title);
+                Console.WriteLine("Content:" + message.Content);
+                Console.WriteLine("Sender:" + message.Sender.Name);
+                Console.WriteLine("Recipient:" + message.Recipient.Name);
+                Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+            }
+        }
+
+        /// <summary>
         /// 阅读未读消息个数
         /// </summary>
         [Fact]
@@ -81,6 +100,17 @@ namespace MessageManager.Domain.Tests
         {
             IContact recipient = new Recipient("recipient");
             Console.WriteLine("未读消息个数：" + new Inbox(recipient).GetNoReadMessageCount());
+        }
+
+        /// <summary>
+        /// 阅读未读消息个数
+        /// </summary>
+        [Fact]
+        public void DomainTest_NoReadMessageCount2()
+        {
+            IContact recipient = new Recipient("recipient");
+            int messageCount = new List<Message>() { new Message("title", "content", new Sender("sender"), new Recipient("recipient")) }.Where(m => m.Recipient == recipient).Count();
+            Console.WriteLine("未读消息个数：" + messageCount);
         }
 
         /// <summary>
@@ -109,7 +139,7 @@ namespace MessageManager.Domain.Tests
         public void DomainTest_ReadInbox2()
         {
             IContact recipient = new Recipient("recipient");
-            var messages = new List<Message>().Where(m => m.Recipient == recipient);
+            var messages = new List<Message>() { new Message("title", "content", new Sender("sender"), new Recipient("recipient")) }.Where(m => m.Recipient == recipient);
             foreach (Message message in messages)
             {
                 Console.WriteLine("ID:" + message.ID);
@@ -164,6 +194,22 @@ namespace MessageManager.Domain.Tests
         {
             IContact recipient = new Recipient("recipient");
             Message message = new Inbox(recipient).GetMessage("1");
+            Console.WriteLine("Title:" + message.Title);
+            Console.WriteLine("Content:" + message.Content);
+            Console.WriteLine("Sender:" + message.Sender.Name);
+            Console.WriteLine("Recipient:" + message.Recipient.Name);
+            Console.WriteLine("MessageState:" + (message.State == MessageState.NoRead ? "未读" : "已读"));
+        }
+
+        /// <summary>
+        /// 接收人阅读单条消息
+        /// </summary>
+        [Fact]
+        public void DomainTest_RecipientReadMessage2()
+        {
+            IContact recipient = new Recipient("recipient");
+            Message message = new Message("title", "content", new Sender("sender"), recipient);
+            message.Read(recipient);
             Console.WriteLine("Title:" + message.Title);
             Console.WriteLine("Content:" + message.Content);
             Console.WriteLine("Sender:" + message.Sender.Name);
