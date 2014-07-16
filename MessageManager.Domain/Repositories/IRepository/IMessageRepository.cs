@@ -13,5 +13,7 @@ namespace MessageManager.Domain.Repositories
         ICollection<Message> GetInbox(Contact reader);
 
         ICollection<Message> GetOutbox(Contact reader);
+
+        Message GetMessageById(string id);
     }
 }

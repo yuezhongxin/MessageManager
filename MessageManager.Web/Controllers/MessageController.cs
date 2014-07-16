@@ -3,20 +3,16 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
-using MessageManager.Application;
+
 using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
+using MessageManager.Web.MessageService;
 using System.Web.Mvc;
 
 namespace MessageManager.Web.Controllers
 {
     public class MessageController : Controller
     {
-        #region 应用层服务接口
-        private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
-        private readonly IAccountService accountServiceImpl = ServiceLocator.Instance.GetService<IAccountService>();
-        #endregion
-
         #region 消息操作
         // <summary>
         /// 撰写消息
@@ -25,8 +21,8 @@ namespace MessageManager.Web.Controllers
         [Authorize]
         public ActionResult Compose()
         {
-            AccountDTO sendAccount = accountServiceImpl.GetAccountByLoginName(User.Identity.Name);
-            return View(sendAccount);
+            ContactDTO sender = new ContactDTO() { LoginName = "xiaocai", DisplayName = "小菜" };//accountServiceImpl.GetAccountByLoginName(User.Identity.Name);
+            return View(sender);
         }
         /// <summary>
         /// 发送消息
@@ -36,14 +32,17 @@ namespace MessageManager.Web.Controllers
         [HttpPost]
         public JsonResult SendMessage(string incept, string title, string content)
         {
-            OperationResponse sendResult = messageServiceImpl.SendMessage(title, content, User.Identity.Name, incept);
-            if (sendResult.IsSuccess)
+            using (MessageServiceClient messageServiceClient = new MessageServiceClient())
             {
-                return Json(new { result = "success", content = sendResult.Message });
-            }
-            else
-            {
-                return Json(new { result = "error", content = sendResult.Message });
+                OperationResponse sendResult = messageServiceClient.SendMessage(title, content, User.Identity.Name, incept);
+                if (sendResult.IsSuccess)
+                {
+                    return Json(new { result = "success", content = sendResult.Message });
+                }
+                else
+                {
+                    return Json(new { result = "error", content = sendResult.Message });
+                }
             }
         }
         #endregion

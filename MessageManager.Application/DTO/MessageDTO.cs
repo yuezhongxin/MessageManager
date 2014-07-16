@@ -11,12 +11,12 @@ namespace MessageManager.Application.DTO
     {
         #region DTO成员
         public string ID { get; set; }
-        public ContactDTO SendAccount { get; set; }
-        public ContactDTO ReceiveAccount { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime SendTime { get; set; }
-        public string Status { get; set; }
+        public string State { get; set; }
+        public ContactDTO Sender { get; set; }
+        public ContactDTO Recipient { get; set; }
         #endregion
     }
 }

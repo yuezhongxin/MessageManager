@@ -32,6 +32,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageManager.WebAPI", "MessageManager.WebAPI\MessageManager.WebAPI.csproj", "{68F490AC-B41E-43E3-B400-6FA3481C1927}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageManager.Web", "MessageManager.Web\MessageManager.Web.csproj", "{C697CC59-3215-4352-9872-84B7BDA8C1B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D61C3728-4201-4AD1-936F-3F968E38E8D3} = {D61C3728-4201-4AD1-936F-3F968E38E8D3}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1.1-StaticFiles", "2.1.1-StaticFiles", "{B1FB252F-BFB0-4BE3-85A7-8EB22140416F}"
 EndProject

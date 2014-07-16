@@ -20,24 +20,29 @@ namespace MessageManager.Repositories
         #region IMessageRepository Members
         public ICollection<Message> GetUnreadMessageList(Contact reader)
         {
-            throw new System.NotImplementedException();
+            return new List<Message>() { new Message("title", "content", new Sender("1", "xiaocai", "小菜"), new Recipient("2", "dashen", "大神")) };
         }
 
         public int GetUnreadMessageCount(Contact reader)
         {
-            throw new System.NotImplementedException();
+            return 1;
         }
 
         public ICollection<Message> GetInbox(Contact reader)
         {
-            throw new System.NotImplementedException();
+            return new List<Message>() { new Message("title", "content", new Sender("1", "xiaocai", "小菜"), new Recipient("2", "dashen", "大神")) };
         }
 
         public ICollection<Message> GetOutbox(Contact reader)
         {
-            throw new System.NotImplementedException();
+            return new List<Message>() { new Message("title", "content", new Sender("1", "xiaocai", "小菜"), new Recipient("2", "dashen", "大神")) };
+        }
+
+        public Message GetMessageById(string id)
+        {
+            //return new Message("title", "content", new Sender("1", "xiaocai", "小菜"), new Recipient("2", "dashen", "大神"));
+            return new Message("title", "content", new Sender("2", "dashen", "大神"), new Recipient("1", "xiaocai", "小菜"));
         }
         #endregion
-
     }
 }

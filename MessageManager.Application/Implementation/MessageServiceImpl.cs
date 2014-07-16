@@ -164,7 +164,7 @@ namespace MessageManager.Application.Implementation
 
         public OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName)
         {
-            Message message = messageRepository.GetByKey(messageId);
+            Message message = messageRepository.GetMessageById(messageId);
             if (message == null)
             {
                 return new OperationResponse<MessageDTO>(false, "未获取到消息");
@@ -179,7 +179,7 @@ namespace MessageManager.Application.Implementation
 
         public OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName)
         {
-            Message message = messageRepository.GetByKey(messageId);
+            Message message = messageRepository.GetMessageById(messageId);
             if (message == null)
             {
                 return new OperationResponse<MessageDTO>(false, "未获取到消息");
@@ -190,7 +190,7 @@ namespace MessageManager.Application.Implementation
                 return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
             }
             message.Read(reader);
-            messageRepository.Update(message);
+            //messageRepository.Update(message);
             return new OperationResponse<MessageDTO>(true, "", Mapper.Map<Message, MessageDTO>(message));
         }
         #endregion

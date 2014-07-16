@@ -54,7 +54,7 @@ namespace MessageManager.Domain.Entity
 
         public void Read(Contact reader)
         {
-            if (this.Recipient == reader && this.State == MessageState.Unread)
+            if (this.Recipient.Name.Equals(reader.Name) && this.State == MessageState.Unread)
             {
                 this.State = MessageState.Read;
             }

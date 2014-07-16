@@ -49,12 +49,11 @@ namespace MessageManager.Application
         /// 1. AutoMapper框架的初始化</remarks>
         public static void Initialize()
         {
-            Mapper.CreateMap<ContactDTO, Contact>();
+            //Mapper.CreateMap<ContactDTO, Contact>();
             Mapper.CreateMap<Contact, ContactDTO>();
-            Mapper.CreateMap<MessageDTO, Message>();
-            Mapper.CreateMap<Message, MessageDTO>();
+            //Mapper.CreateMap<MessageDTO, Message>();
             Mapper.CreateMap<Message, MessageDTO>()
-                .ForMember(dest => dest.Status, opt => opt.ResolveUsing<MessageStateCustomResolver>());
+                .ForMember(dest => dest.State, opt => opt.ResolveUsing<MessageStateCustomResolver>());
         }
         public class MessageStateCustomResolver : ValueResolver<Message, string>
         {

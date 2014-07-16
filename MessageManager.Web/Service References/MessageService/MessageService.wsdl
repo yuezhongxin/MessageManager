@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MessageService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" />
+      <xsd:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="MessageService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReplyMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReplyMessage" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReplyMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReplyMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ForwardMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForwardMessage" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ForwardMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForwardMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_GetUnreadMessageList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreadMessageList" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_GetUnreadMessageList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreadMessageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_GetUnreadMessageCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreadMessageCount" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_GetUnreadMessageCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnreadMessageCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadInbox_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadInbox" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadInbox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadInboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadOutbox_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadOutbox" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadOutbox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadOutboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadMessageSender_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMessageSender" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadMessageSender_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMessageSenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadMessageRecipient_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMessageRecipient" />
+  </wsdl:message>
+  <wsdl:message name="MessageService_ReadMessageRecipient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadMessageRecipientResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MessageService">
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/SendMessage" message="tns:MessageService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/SendMessageResponse" message="tns:MessageService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReplyMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ReplyMessage" message="tns:MessageService_ReplyMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ReplyMessageResponse" message="tns:MessageService_ReplyMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForwardMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ForwardMessage" message="tns:MessageService_ForwardMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ForwardMessageResponse" message="tns:MessageService_ForwardMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreadMessageList">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/GetUnreadMessageList" message="tns:MessageService_GetUnreadMessageList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/GetUnreadMessageListResponse" message="tns:MessageService_GetUnreadMessageList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreadMessageCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/GetUnreadMessageCount" message="tns:MessageService_GetUnreadMessageCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/GetUnreadMessageCountResponse" message="tns:MessageService_GetUnreadMessageCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadInbox">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ReadInbox" message="tns:MessageService_ReadInbox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ReadInboxResponse" message="tns:MessageService_ReadInbox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadOutbox">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ReadOutbox" message="tns:MessageService_ReadOutbox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ReadOutboxResponse" message="tns:MessageService_ReadOutbox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadMessageSender">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ReadMessageSender" message="tns:MessageService_ReadMessageSender_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ReadMessageSenderResponse" message="tns:MessageService_ReadMessageSender_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadMessageRecipient">
+      <wsdl:input wsaw:Action="http://tempuri.org/MessageService/ReadMessageRecipient" message="tns:MessageService_ReadMessageRecipient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/MessageService/ReadMessageRecipientResponse" message="tns:MessageService_ReadMessageRecipient_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_MessageService" type="tns:MessageService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://tempuri.org/MessageService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReplyMessage">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ReplyMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForwardMessage">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ForwardMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreadMessageList">
+      <soap:operation soapAction="http://tempuri.org/MessageService/GetUnreadMessageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreadMessageCount">
+      <soap:operation soapAction="http://tempuri.org/MessageService/GetUnreadMessageCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadInbox">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ReadInbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadOutbox">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ReadOutbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadMessageSender">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ReadMessageSender" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadMessageRecipient">
+      <soap:operation soapAction="http://tempuri.org/MessageService/ReadMessageRecipient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessageService">
+    <wsdl:port name="BasicHttpBinding_MessageService" binding="tns:BasicHttpBinding_MessageService">
+      <soap:address location="http://localhost:1084/MessageService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

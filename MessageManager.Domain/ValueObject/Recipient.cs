@@ -11,5 +11,10 @@ namespace MessageManager.Domain.ValueObject
             : base(name)
         {
         }
+
+        public Recipient(string name, string loginName, string displayName)
+            : base(name, loginName, displayName)
+        {
+        }
     }
 }

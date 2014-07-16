@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" />
+  <xs:complexType name="OperationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:OperationResponseOfanyType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OperationResponse" nillable="true" type="tns:OperationResponse" />
+  <xs:complexType name="OperationResponseOfanyType">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="anyType" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSuccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResponseOfanyType" nillable="true" type="tns:OperationResponseOfanyType" />
+  <xs:complexType name="OperationResponseOfArrayOfMessageDTOdN4IiYhA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfMessageDTO" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" minOccurs="0" name="Data" nillable="true" type="q1:ArrayOfMessageDTO" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSuccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResponseOfArrayOfMessageDTOdN4IiYhA" nillable="true" type="tns:OperationResponseOfArrayOfMessageDTOdN4IiYhA" />
+  <xs:complexType name="OperationResponseOfint">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="int" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSuccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResponseOfint" nillable="true" type="tns:OperationResponseOfint" />
+  <xs:complexType name="OperationResponseOfMessageDTOdN4IiYhA">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="OperationResponseOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MessageDTO" Namespace="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MessageManager.Application.DTO" minOccurs="0" name="Data" nillable="true" type="q2:MessageDTO" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSuccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperationResponseOfMessageDTOdN4IiYhA" nillable="true" type="tns:OperationResponseOfMessageDTOdN4IiYhA" />
+</xs:schema>

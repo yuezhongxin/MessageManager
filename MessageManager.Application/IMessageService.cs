@@ -12,6 +12,7 @@ namespace MessageManager.Application
     /// <summary>
     /// Message管理应用层服务接口
     /// </summary>
+    [ServiceContract(Name = "MessageService")]
     public interface IMessageService
     {
         #region Methods

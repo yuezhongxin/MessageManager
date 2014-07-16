@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1084/MessageService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" />
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="senderLoginName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="receiverDisplayName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="SendMessageResult" nillable="true" type="q1:OperationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReplyMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="replierLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReplyMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ReplyMessageResult" nillable="true" type="q2:OperationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ForwardMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="content" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="senderLoginName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="receiverDisplayName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ForwardMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ForwardMessageResult" nillable="true" type="q3:OperationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnreadMessageList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnreadMessageListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="GetUnreadMessageListResult" nillable="true" type="q4:OperationResponseOfArrayOfMessageDTOdN4IiYhA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnreadMessageCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUnreadMessageCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="GetUnreadMessageCountResult" nillable="true" type="q5:OperationResponseOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadInbox">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadInboxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ReadInboxResult" nillable="true" type="q6:OperationResponseOfArrayOfMessageDTOdN4IiYhA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadOutbox">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadOutboxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ReadOutboxResult" nillable="true" type="q7:OperationResponseOfArrayOfMessageDTOdN4IiYhA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadMessageSender">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadMessageSenderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ReadMessageSenderResult" nillable="true" type="q8:OperationResponseOfMessageDTOdN4IiYhA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadMessageRecipient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messageId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="readerLoginName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadMessageRecipientResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MessageManager.Infrastructure" minOccurs="0" name="ReadMessageRecipientResult" nillable="true" type="q9:OperationResponseOfMessageDTOdN4IiYhA" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
