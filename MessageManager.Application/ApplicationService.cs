@@ -28,7 +28,6 @@ namespace MessageManager.Application
         public ApplicationService(IRepositoryContext context)
         {
             this.context = context;
-            Initialize();
         }
         #endregion
 

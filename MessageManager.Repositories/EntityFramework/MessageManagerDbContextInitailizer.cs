@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace MessageManager.Repositories.EntityFramework
 {
@@ -15,7 +11,7 @@ namespace MessageManager.Repositories.EntityFramework
         // 的注释，以便在数据库重建时，相应的SQL脚本会被执行。对于已有数据库的情况，请直接注释掉以下代码行。
         protected override void Seed(MessageManagerDbContext context)
         {
-            base.Seed(context);
+            //base.Seed(context);
         }
 
         /// <summary>
@@ -23,8 +19,7 @@ namespace MessageManager.Repositories.EntityFramework
         /// </summary>
         public static void Initialize()
         {
-            Database.SetInitializer<MessageManagerDbContext>(null);
-            //Database.SetInitializer(new DropCreateDatabaseAlways<MessageManagerDbContext>());
+            //Database.SetInitializer<MessageManagerDbContext>(null);
         }
     }
 }

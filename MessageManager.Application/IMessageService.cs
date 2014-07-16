@@ -6,6 +6,7 @@
 using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
 using System.Collections.Generic;
+using System.ServiceModel;
 namespace MessageManager.Application
 {
     /// <summary>
@@ -14,22 +15,31 @@ namespace MessageManager.Application
     public interface IMessageService
     {
         #region Methods
+        [OperationContract]
         OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName);
 
+        [OperationContract]
         OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName);
 
+        [OperationContract]
         OperationResponse ForwardMessage(string messageId, string title, string content, string senderLoginName, string receiverDisplayName);
 
-        OperationResponse<ICollection<MessageDTO>> GetUnreadMessageList(string messageId, string readerLoginName);
+        [OperationContract]
+        OperationResponse<ICollection<MessageDTO>> GetUnreadMessageList(string readerLoginName);
 
-        OperationResponse<int> GetUnreadMessageCount(string messageId, string readerLoginName);
+        [OperationContract]
+        OperationResponse<int> GetUnreadMessageCount(string readerLoginName);
 
+        [OperationContract]
         OperationResponse<ICollection<MessageDTO>> ReadInbox(string readerLoginName);
 
+        [OperationContract]
         OperationResponse<ICollection<MessageDTO>> ReadOutbox(string readerLoginName);
 
+        [OperationContract]
         OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName);
 
+        [OperationContract]
         OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName);
         #endregion
     }

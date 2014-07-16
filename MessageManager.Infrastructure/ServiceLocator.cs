@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 
 namespace MessageManager.Infrastructure
 {
@@ -21,7 +21,7 @@ namespace MessageManager.Infrastructure
         private static readonly ServiceLocator instance = new ServiceLocator();
         #endregion
 
-            #region Ctors
+        #region Ctors
         /// <summary>
         /// Initializes a new instance of <c>ServiceLocator</c> class.
         /// </summary>
