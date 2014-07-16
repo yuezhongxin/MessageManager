@@ -41,6 +41,7 @@ namespace MessageManager.Domain.Entity
             this.Content = content;
             this.SendTime = DateTime.Now;
             this.State = MessageState.Unread;
+            this.DisplayType = MessageDisplayType.OutboxAndInbox;
             this.Sender = sender;
             this.Recipient = recipient;
         }
@@ -48,16 +49,42 @@ namespace MessageManager.Domain.Entity
         public string Title { get; private set; }
         public string Content { get; private set; }
         public DateTime SendTime { get; private set; }
-        public MessageState State { get; set; }
+        public MessageState State { get; private set; }
+        public MessageDisplayType DisplayType { get; private set; }
         public virtual Contact Sender { get; private set; }
         public virtual Contact Recipient { get; private set; }
 
-        public void Read(Contact reader)
+        public void SetState(Contact reader)
         {
             if (this.Recipient.Name.Equals(reader.Name) && this.State == MessageState.Unread)
             {
                 this.State = MessageState.Read;
             }
+        }
+
+        public bool SetDisplayType(Contact reader)
+        {
+            // to do...
+            switch (this.DisplayType)
+            {
+                case MessageDisplayType.OutboxAndInbox:
+                    if (this.Sender.Name.Equals(reader.Name))
+                    {
+                        this.DisplayType = MessageDisplayType.Inbox;
+                    }
+                    else
+                    {
+                        this.DisplayType = MessageDisplayType.Outbox;
+                    }
+                    return true;
+                case MessageDisplayType.Outbox:
+                    break;
+                case MessageDisplayType.Inbox:
+                    break;
+                default:
+                    break;
+            }
+            return false;
         }
     }
 }

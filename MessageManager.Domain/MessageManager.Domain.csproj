@@ -67,6 +67,7 @@
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
+    <Compile Include="ValueObject\MessageDisplayType.cs" />
     <Compile Include="ValueObject\Sender.cs" />
     <Compile Include="ValueObject\Contact.cs" />
   </ItemGroup>

@@ -1,5 +1,4 @@
-﻿@model MessageManager.Application.DTO.ContactDTO
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -102,7 +101,7 @@
                 </div>
             </div>
             <div id="sideright">
-                > 当前用户：@Model.DisplayName （<a href="/../index/index">选择用户</a>）<br />
+                > 当前用户：@HttpUtility.UrlDecode(Request.Cookies["DisplayName"].Value) <br />
                 <br />
                 > <a href="/message/compose" class="big blue">撰写新短信</a><br />
                 <br>

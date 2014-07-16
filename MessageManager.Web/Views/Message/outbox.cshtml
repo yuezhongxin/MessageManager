@@ -59,9 +59,9 @@
                                 @foreach (MessageManager.Application.DTO.MessageDTO message in Model)
                                 {
                                     <tr id="msg_item_@message.ID">
-                                        <td class="gray">@message.Status</td>
-                                        <td class="gray">@message.FromUserName</td>
-                                        <td><a target="_blank" href="/message/show/@message.ID" title="@message.Title">@message.Title</a></td>
+                                        <td class="gray">@message.State</td>
+                                        <td class="gray">@message.Sender.DisplayName</td>
+                                        <td><a target="_blank" href="/message/sender/@message.ID" title="@message.Title">@message.Title</a></td>
                                         <td align="center" class="gray">@message.SendTime</td>
                                         <td align="center" style="width: 40px;"><a class="click_del_off" onclick="RemoveMsg('@message.ID')" title="删除">删除</a></td>
                                     </tr>
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div id="sideright">
-                > 当前用户：@ViewBag.UserName （<a href="/../index/index">选择用户</a>）<br />
+                > 当前用户：@HttpUtility.UrlDecode(Request.Cookies["DisplayName"].Value) <br />
                 <br />
                 > <a href="/message/compose" class="big blue">撰写新短消息</a><br />
             </div>

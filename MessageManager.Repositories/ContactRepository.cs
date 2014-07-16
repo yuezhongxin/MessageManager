@@ -13,12 +13,26 @@ namespace MessageManager.Repositories
         #region ContactRepository Members
         public Contact GetContactByLoginName(string loginName)
         {
-            return new Contact("1", "xiaocai", "小菜");
+            if (loginName.Equals("xiaocai"))
+            {
+                return new Contact("1", "xiaocai", "小菜");
+            }
+            else
+            {
+                return new Contact("2", "dashen", "大神");
+            }
         }
 
         public Contact GetContactByDisplayName(string displayName)
         {
-            return new Contact("2", "dashen", "大神");
+            if (displayName.Equals("大神"))
+            {
+                return new Contact("2", "dashen", "大神");
+            }
+            else
+            {
+                return new Contact("1", "xiaocai", "小菜");
+            }
         }
         #endregion
     }

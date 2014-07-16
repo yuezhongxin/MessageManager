@@ -146,7 +146,7 @@ namespace MessageManager.Domain.Tests
         {
             Contact recipient = new Recipient("recipient");
             Message message = new Message("title", "content", new Sender("sender"), recipient);
-            message.Read(recipient);
+            message.SetState(recipient);
             Console.WriteLine("Title:" + message.Title);
             Console.WriteLine("Content:" + message.Content);
             Console.WriteLine("Sender:" + message.Sender.Name);

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace MessageManager.Web.Controllers
@@ -10,6 +11,8 @@ namespace MessageManager.Web.Controllers
         public void LogOn()
         {
             FormsAuthentication.SetAuthCookie("xiaocai", false);
+            Response.Cookies.Add(new HttpCookie("DisplayName", HttpUtility.UrlEncode("小菜")));
+
 
             //HttpCookie cookie = FormsAuthentication.GetAuthCookie("xiaocai2", false);
             //FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(cookie.Value);

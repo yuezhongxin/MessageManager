@@ -1,7 +1,6 @@
 ﻿using MessageManager.Application;
 using MessageManager.Application.DTO;
 using MessageManager.Infrastructure;
-using System;
 using System.Collections.Generic;
 
 namespace MessageManager.Services
@@ -14,49 +13,51 @@ namespace MessageManager.Services
         private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
         #endregion
 
+        /// <returns></returns>
         public OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
         {
+            //to do 异常处理，日志记录
             return messageServiceImpl.SendMessage(title, content, senderLoginName, receiverDisplayName);
         }
 
         public OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ReplyMessage(messageId, title, content, replierLoginName);
         }
 
         public OperationResponse ForwardMessage(string messageId, string title, string content, string senderLoginName, string receiverDisplayName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ForwardMessage(messageId, title, content, senderLoginName, receiverDisplayName);
         }
 
         public OperationResponse<ICollection<MessageDTO>> GetUnreadMessageList(string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.GetUnreadMessageList(readerLoginName);
         }
 
         public OperationResponse<int> GetUnreadMessageCount(string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.GetUnreadMessageCount(readerLoginName);
         }
 
         public OperationResponse<ICollection<MessageDTO>> ReadInbox(string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ReadInbox(readerLoginName);
         }
 
         public OperationResponse<ICollection<MessageDTO>> ReadOutbox(string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ReadOutbox(readerLoginName);
         }
 
         public OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ReadMessageSender(messageId, readerLoginName);
         }
 
         public OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.ReadMessageRecipient(messageId, readerLoginName);
         }
     }
 }

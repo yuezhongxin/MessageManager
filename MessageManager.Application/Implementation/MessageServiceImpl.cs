@@ -58,8 +58,8 @@ namespace MessageManager.Application.Implementation
             Message message = new Message(title, content, sender, receiver);
             if (sendMessageService.SendMessage(message))
             {
+                messageRepository.AddMessage(message);
                 return OperationResponse.Success("发送成功");
-                //messageRepository.Add(message);
                 //return Context.Commit();
             }
             else
@@ -189,8 +189,8 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
             }
-            message.Read(reader);
-            //messageRepository.Update(message);
+            message.SetState(reader);
+            messageRepository.UpdateMessage(message);
             return new OperationResponse<MessageDTO>(true, "", Mapper.Map<Message, MessageDTO>(message));
         }
         #endregion

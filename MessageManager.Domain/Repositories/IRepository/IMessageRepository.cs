@@ -15,5 +15,11 @@ namespace MessageManager.Domain.Repositories
         ICollection<Message> GetOutbox(Contact reader);
 
         Message GetMessageById(string id);
+
+        void AddMessage(Message message);
+
+        void UpdateMessage(Message message);
+
+        void DeleteMessage(Message message);
     }
 }

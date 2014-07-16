@@ -9,16 +9,16 @@ namespace MessageManager.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "ShowMessageRoute",
-                "Message/Show/{id}",
-                new { controller = "Message", action = "Show", id = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //    "ShowMessageRoute",
+            //    "Message/ReadMessageSender/{id}",
+            //    new { controller = "Message", action = "Show", id = UrlParameter.Optional }
+            //    );
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Message", action = "Compose" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Message", action = "Compose", id = UrlParameter.Optional }
             );
 
             //routes.MapRoute(

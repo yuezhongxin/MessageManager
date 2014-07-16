@@ -16,7 +16,7 @@ namespace MessageManager.Repositories.Tests
         public void RepositoryTest_GetContactByLoginName()
         {
             IContactRepository contactRepository = new ContactRepository();
-            Contact contact = contactRepository.GetContactByLoginName("1");
+            Contact contact = contactRepository.GetContactByLoginName("xiaocai");
             Console.WriteLine("Name:" + contact.Name);
             Console.WriteLine("LoginName:" + contact.LoginName);
             Console.WriteLine("DisplayName:" + contact.DisplayName);
