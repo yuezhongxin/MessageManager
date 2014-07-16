@@ -10,9 +10,13 @@ namespace MessageManager.Services
     // 注意: 为了启动 WCF 测试客户端以测试此服务，请在解决方案资源管理器中选择 Service1.svc 或 Service1.svc.cs，然后开始调试。
     public class MessageService : IMessageService
     {
+        #region 应用层服务接口
+        private readonly IMessageService messageServiceImpl = ServiceLocator.Instance.GetService<IMessageService>();
+        #endregion
+
         public OperationResponse SendMessage(string title, string content, string senderLoginName, string receiverDisplayName)
         {
-            throw new NotImplementedException();
+            return messageServiceImpl.SendMessage(title, content, senderLoginName, receiverDisplayName);
         }
 
         public OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName)

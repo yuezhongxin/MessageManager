@@ -5,7 +5,9 @@
 
 using MessageManager.Domain.Entity;
 using MessageManager.Domain.Repositories;
+using MessageManager.Domain.ValueObject;
 using MessageManager.Repositories.EntityFramework;
+using System.Collections.Generic;
 
 namespace MessageManager.Repositories
 {
@@ -16,7 +18,26 @@ namespace MessageManager.Repositories
         { }
 
         #region IMessageRepository Members
+        public ICollection<Message> GetUnreadMessageList(Contact reader)
+        {
+            throw new System.NotImplementedException();
+        }
 
+        public int GetUnreadMessageCount(Contact reader)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICollection<Message> GetInbox(Contact reader)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ICollection<Message> GetOutbox(Contact reader)
+        {
+            throw new System.NotImplementedException();
+        }
         #endregion
+
     }
 }

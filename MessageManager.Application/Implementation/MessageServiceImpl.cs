@@ -3,6 +3,7 @@
 * address:https://www.github.com/yuezhongxin/MessageManager
 **/
 
+using AutoMapper;
 using MessageManager.Application.DTO;
 using MessageManager.Domain.DomainService;
 using MessageManager.Domain.Entity;
@@ -10,6 +11,7 @@ using MessageManager.Domain.Repositories;
 using MessageManager.Domain.ValueObject;
 using MessageManager.Infrastructure;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MessageManager.Application.Implementation
 {
@@ -123,8 +125,8 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<ICollection<MessageDTO>>(false, "未获取到阅读人信息");
             }
-            var messages = messageRepository.GetAll();
-            return new OperationResponse<ICollection<MessageDTO>>(true, "", null);
+            var messages = messageRepository.GetUnreadMessageList(reader);
+            return new OperationResponse<ICollection<MessageDTO>>(true, "", Mapper.Map<ICollection<Message>, ICollection<MessageDTO>>(messages.ToList()));
         }
 
         public OperationResponse<int> GetUnreadMessageCount(string readerLoginName)
@@ -134,7 +136,7 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<int>(false, "未获取到阅读人信息");
             }
-            int messageCount = messageRepository.GetCount();
+            int messageCount = messageRepository.GetUnreadMessageCount(reader);
             return new OperationResponse<int>(true, "", messageCount);
         }
 
@@ -145,8 +147,8 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<ICollection<MessageDTO>>(false, "未获取到阅读人信息");
             }
-            var messages = messageRepository.GetAll();
-            return new OperationResponse<ICollection<MessageDTO>>(true, "", null);
+            var messages = messageRepository.GetInbox(reader);
+            return new OperationResponse<ICollection<MessageDTO>>(true, "", Mapper.Map<ICollection<Message>, ICollection<MessageDTO>>(messages.ToList()));
         }
 
         public OperationResponse<ICollection<MessageDTO>> ReadOutbox(string readerLoginName)
@@ -156,8 +158,8 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<ICollection<MessageDTO>>(false, "未获取到阅读人信息");
             }
-            var messages = messageRepository.GetAll();
-            return new OperationResponse<ICollection<MessageDTO>>(true, "", null);
+            var messages = messageRepository.GetOutbox(reader);
+            return new OperationResponse<ICollection<MessageDTO>>(true, "", Mapper.Map<ICollection<Message>, ICollection<MessageDTO>>(messages.ToList()));
         }
 
         public OperationResponse<MessageDTO> ReadMessageSender(string messageId, string readerLoginName)
@@ -172,7 +174,7 @@ namespace MessageManager.Application.Implementation
             {
                 return new OperationResponse<MessageDTO>(false, "未获取到阅读人信息");
             }
-            return new OperationResponse<MessageDTO>(false, "", null);
+            return new OperationResponse<MessageDTO>(true, "", Mapper.Map<Message, MessageDTO>(message));
         }
 
         public OperationResponse<MessageDTO> ReadMessageRecipient(string messageId, string readerLoginName)
@@ -189,7 +191,7 @@ namespace MessageManager.Application.Implementation
             }
             message.Read(reader);
             messageRepository.Update(message);
-            return new OperationResponse<MessageDTO>(false, "", null);
+            return new OperationResponse<MessageDTO>(true, "", Mapper.Map<Message, MessageDTO>(message));
         }
         #endregion
     }

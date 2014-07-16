@@ -9,7 +9,7 @@ namespace MessageManager.Services
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            //MessageManagerDbContextInitailizer.Initialize();
+            MessageManagerDbContextInitailizer.Initialize();
             ApplicationService.Initialize();
         }
 

@@ -49,8 +49,8 @@ namespace MessageManager.Application
         /// 1. AutoMapper框架的初始化</remarks>
         public static void Initialize()
         {
-            //Mapper.CreateMap<ContactDTO, Account>();
-            //Mapper.CreateMap<Account, ContactDTO>();
+            Mapper.CreateMap<ContactDTO, Contact>();
+            Mapper.CreateMap<Contact, ContactDTO>();
             Mapper.CreateMap<MessageDTO, Message>();
             Mapper.CreateMap<Message, MessageDTO>();
             Mapper.CreateMap<Message, MessageDTO>()
