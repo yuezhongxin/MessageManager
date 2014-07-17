@@ -70,7 +70,7 @@ namespace MessageManager.Application.Implementation
 
         public OperationResponse ReplyMessage(string messageId, string title, string content, string replierLoginName)
         {
-            Message replyMessage = messageRepository.GetByKey(messageId);
+            Message replyMessage = messageRepository.GetMessageById(messageId);
             if (replyMessage == null)
             {
                 return OperationResponse.Error("未获取到消息");
@@ -80,11 +80,11 @@ namespace MessageManager.Application.Implementation
             {
                 return OperationResponse.Error("未获取到回复人信息");
             }
-            Message message = new Message(title, content, sender, replyMessage.Recipient);
+            Message message = new Message(title, content, sender, replyMessage.Sender);
             if (sendMessageService.SendMessage(message))
             {
+                messageRepository.AddMessage(message);
                 return OperationResponse.Success("回复成功");
-                //messageRepository.Add(message);
                 //return Context.Commit();
             }
             else
@@ -108,8 +108,8 @@ namespace MessageManager.Application.Implementation
             Message message = new Message(title, content, sender, receiver);
             if (sendMessageService.SendMessage(message))
             {
+                messageRepository.AddMessage(message);
                 return OperationResponse.Success("转发成功");
-                //messageRepository.Add(message);
                 //return Context.Commit();
             }
             else

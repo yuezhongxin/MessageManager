@@ -12,10 +12,10 @@
             if (confirm("确认要删除吗?")) {
                 $("#span_" + Id).html('<td colspan="4" style="color:red">删除中......</td>');
                 var param = {
-                    ID: Id
+                    id: Id
                 };
                 $.ajax({
-                    url: '/Message/DeleteMessage',
+                    url: '/message/DeleteMessage',
                     type: 'post',
                     data: JSON.stringify(param),
                     dataType: 'json',

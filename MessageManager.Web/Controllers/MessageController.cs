@@ -36,6 +36,23 @@ namespace MessageManager.Web.Controllers
             }
         }
         [Authorize]
+        [HttpPost]
+        public JsonResult ReplyMessage(string id, string title, string content)
+        {
+            using (MessageServiceClient messageServiceClient = new MessageServiceClient())
+            {
+                OperationResponse sendResult = messageServiceClient.ReplyMessage(id, title, content.Replace("\n", "<br />"), User.Identity.Name);
+                if (sendResult.IsSuccess)
+                {
+                    return Json(new { result = "success", content = sendResult.Message });
+                }
+                else
+                {
+                    return Json(new { result = "error", content = sendResult.Message });
+                }
+            }
+        }
+        [Authorize]
         public ActionResult Outbox()
         {
             using (MessageServiceClient messageServiceClient = new MessageServiceClient())
@@ -66,6 +83,13 @@ namespace MessageManager.Web.Controllers
             {
                 return View("show", messageServiceClient.ReadMessageRecipient(id, User.Identity.Name).Data);
             }
+        }
+        [Authorize]
+        [HttpPost]
+        public JsonResult DeleteMessage(string id)
+        {
+            //
+            return Json(new { result = "error", content = "暂无实现" });
         }
         #endregion
     }
